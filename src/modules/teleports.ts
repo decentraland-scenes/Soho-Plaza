@@ -1,4 +1,4 @@
-import { openTeleportUI } from './ui'
+// import { openTeleportUI } from './ui'
 
 export enum Locations {
   CROWD = 'crowd',
@@ -50,7 +50,7 @@ export class Teleport extends Entity {
     this.addComponent(
       new OnPointerDown(
         async function () {
-          openTeleportUI(thisTeleport)
+          //openTeleportUI(thisTeleport)
         },
         {
           button: ActionButton.PRIMARY,

@@ -1,53 +1,81 @@
 import utils from '../../node_modules/decentraland-ecs-utils/index'
 
-export function addScreen() {
-  const e = new Entity()
-  e.addComponent(new PlaneShape())
-  e.addComponent(
-    new Transform({
-      position: new Vector3(285, 17.5, 279),
-      rotation: Quaternion.Euler(0, 210, 0), //new Quaternion(-0.7259005, 0.2195348, -0.5940643, 0.2682545),
-      scale: new Vector3(10 * 2.8, 5.6 * 2.8, 10 * 2.8),
-    })
-  )
-  e.getComponent(Transform).rotate(new Vector3(1, 0, 0), 10)
-  const v = new VideoTexture(
-    new VideoClip('https://theuniverse.club/live/genesisplaza/index.m3u8')
-  )
-  const mat = new Material()
-  mat.albedoTexture = v
-  mat.specularIntensity = 0
-  mat.roughness = 1
+export class VideoScreen extends Entity {
+  texture: VideoTexture
+  constructor(
+    screenPos: TranformConstructorArgs,
+    triggerPos: TranformConstructorArgs,
+    triggerScale: Vector3,
+    streamURL: string
+  ) {
+    super()
+    engine.addEntity(this)
 
-  e.addComponent(mat)
-  engine.addEntity(e)
+    this.addComponent(new PlaneShape())
+    this.addComponent(new Transform(screenPos))
 
-  const videoTrigger = new Entity()
-  videoTrigger.addComponent(
-    new Transform({ position: new Vector3(270, 5, 255) })
-  )
+    this.addComponent(new Animator())
 
-  let videoTriggerBox = new utils.TriggerBoxShape(
-    new Vector3(90, 14, 90),
-    Vector3.Zero()
-  )
-  videoTrigger.addComponent(
-    new utils.TriggerComponent(
-      videoTriggerBox, //shape
-      0, //layer
-      0, //triggeredByLayer
-      null, //onTriggerEnter
-      null, //onTriggerExit
-      () => {
-        v.playing = true
-        log('triggered!')
-      },
-      () => {
-        v.playing = false
-        log('triggered!')
-      }, //onCameraExit
-      false
+    this.texture = new VideoTexture(new VideoClip(streamURL))
+    const mat = new Material()
+    mat.albedoTexture = this.texture
+    mat.specularIntensity = 0
+    mat.roughness = 1
+
+    this.addComponent(mat)
+
+    const triggerEntity = new Entity()
+    triggerEntity.addComponent(new Transform(triggerPos))
+
+    let triggerBox = new utils.TriggerBoxShape(triggerScale, Vector3.Zero())
+
+    triggerEntity.addComponent(
+      new utils.TriggerComponent(
+        triggerBox, //shape
+        0, //layer
+        0, //triggeredByLayer
+        null, //onTriggerEnter
+        null, //onTriggerExit
+        () => {
+          this.activate()
+        },
+        () => {
+          this.deactivate()
+        }, //onCameraExit
+        false // debug mode
+      )
     )
+    engine.addEntity(triggerEntity)
+  }
+
+  public activate(): void {
+    this.texture.playing = true
+  }
+  public deactivate(): void {
+    this.texture.playing = false
+  }
+}
+
+export function addScreens() {
+  const screen1 = new VideoScreen(
+    {
+      position: new Vector3(28.8, 10.4, 62.5),
+      rotation: Quaternion.Euler(0, 0, 0), //new Quaternion(-0.7259005, 0.2195348, -0.5940643, 0.2682545),
+      scale: new Vector3(10 * 2, 5.6 * 2, 10 * 2),
+    },
+    { position: new Vector3(28.8, 5, 75) },
+    new Vector3(75, 14, 80),
+    'https://theuniverse.club/live/genesisplaza/index.m3u8'
   )
-  engine.addEntity(videoTrigger)
+
+  const screen2 = new VideoScreen(
+    {
+      position: new Vector3(22.45, 7.6, 296.2),
+      rotation: Quaternion.Euler(0, 130, 0), //new Quaternion(-0.7259005, 0.2195348, -0.5940643, 0.2682545),
+      scale: new Vector3(10 * 1.6, 5.6 * 1.6, 10 * 1.6),
+    },
+    { position: new Vector3(40, 5, 282) },
+    new Vector3(75, 14, 80),
+    'https://theuniverse.club/live/genesisplaza/index.m3u8'
+  )
 }

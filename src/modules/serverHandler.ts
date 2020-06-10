@@ -4,7 +4,6 @@ import {
   MessageBoards,
   serverChecker,
 } from './messageboard'
-import { updateTradeCentrer } from './marketData'
 
 export const sceneMessageBus = new MessageBus()
 
@@ -220,7 +219,7 @@ export async function updateMarketData() {
     marketData = newMarketData
   }
   log('MARKET DATA: ', marketData)
-  updateTradeCentrer(marketData)
+  //updateTradeCentrer(marketData)
 }
 
 export async function getMarketData(): Promise<MarketData> {
