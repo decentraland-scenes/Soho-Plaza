@@ -89,3 +89,13 @@ lights_capsule.addComponent(
   })
 )
 engine.addEntity(lights_capsule)
+
+//add skate_park
+let skate_park = new Entity()
+skate_park.addComponent(new GLTFShape("models/skate_park.glb"))
+skate_park.addComponent(new Transform({
+	position: new Vector3(160, 0, 160),
+	rotation: Quaternion.Euler(0, 0, 0)
+}
+))
+engine.addEntity(skate_park)
