@@ -1,6 +1,9 @@
 // Hack for player position
 
 import { addScreens } from './modules/video'
+import { addZenquencer } from './zenquencer/zenquencerBuilder'
+import { addMural } from './mural/muralBuilder'
+import { addVoxels } from './voxels/game'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -10,6 +13,17 @@ Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
 // VIDEO SCREENS
 
 addScreens()
+
+//// Sequencer Fountain
+addZenquencer()
+
+//// Mural
+
+addMural()
+
+/// Voxels
+
+addVoxels()
 
 // SOHO BASE BUILDING
 
@@ -92,10 +106,11 @@ engine.addEntity(lights_capsule)
 
 //add skate_park
 let skate_park = new Entity()
-skate_park.addComponent(new GLTFShape("models/skate_park.glb"))
-skate_park.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
+skate_park.addComponent(new GLTFShape('models/skate_park.glb'))
+skate_park.addComponent(
+  new Transform({
+    position: new Vector3(160, 0, 160),
+    rotation: Quaternion.Euler(0, 0, 0),
+  })
+)
 engine.addEntity(skate_park)

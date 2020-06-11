@@ -1,11 +1,7 @@
 import { seqNumbers } from './stones'
+import { awsServer, fireBaseServer } from '../modules/serverHandler'
 import { playerRealm, setRealm } from '../modules/realmData'
 import utils from '../../node_modules/decentraland-ecs-utils/index'
-
-// external servers being used by the project - Please change these to your own if working on something else!
-export let awsServer = 'https://genesis-plaza.s3.us-east-2.amazonaws.com/'
-export let fireBaseServer =
-  'https://us-central1-genesis-plaza.cloudfunctions.net/app/'
 
 // get latest sequencer state stored in server
 export async function getStones(): Promise<number[][]> {

@@ -8,7 +8,7 @@ export function addMural(): void {
   const muralTransform = new Entity()
   muralTransform.addComponent(
     new Transform({
-      position: new Vector3(160, 0, 24),
+      position: new Vector3(312, 0, 75),
       rotation: Quaternion.Euler(0, 90, 0),
     })
   )
@@ -25,7 +25,7 @@ export function addMural(): void {
   muralWall.addComponent(resources.models.standard.muralWall)
   muralWall.addComponent(
     new Transform({
-      position: new Vector3(160, 0, 24),
+      position: new Vector3(312, 0, 75),
     })
   )
   muralWall.addComponent(
