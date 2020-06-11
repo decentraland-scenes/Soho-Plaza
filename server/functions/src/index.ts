@@ -1,33 +1,53 @@
+import { VoxelData, messageBoard } from './customTypes'
+import {
+  updateVoxelJSON,
+  updateMuralJSON,
+  getMuralJSON,
+  getVoxelJSON,
+  updateSeqJSON,
+  getSeqJSON,
+  uploadMessageBoardJSON,
+  updateMessageJSON,
+} from './awsUpload'
+
 const functions = require('firebase-functions')
 const express = require('express')
 const cors = require('cors')
 const app = express()
 app.use(cors({ origin: true }))
 
-export enum Mode {
-  Add = 0,
-  Subtract = 1,
-  EyeDrop = 2,
-}
+let awsBaseURL = 'https://soho-plaza.s3.us-east-2.amazonaws.com/'
 
-export type VoxelData = {
-  x: number
-  y: number
-  z: number
-  colIndex: number
-  mode: Mode
-}
+//// TEST
 
 app.get('/hello-world', (req: any, res: any) => {
   return res.status(200).send('Hello World!')
 })
 
+///// MURAL
+
+app.get('/mural', async (req: any, res: any) => {
+  let realm = req.query.realm
+  let url = awsBaseURL + '/mural/' + realm + '/tiles.json'
+
+  let currentMural: number[] = await getMuralJSON(url)
+
+  return res.status(200).json({ tiles: currentMural })
+})
+
+app.post('/update-mural', async (req: any, res: any) => {
+  let tiles = req.body.tiles
+  let realm = req.query.realm
+  updateMuralJSON(tiles, realm)
+
+  return res.status(200).send('Updated Mural')
+})
+
+//// VOXEL EDITOR
+
 app.get('/voxels', async (req: any, res: any) => {
   let realm = req.query.realm
-  let url =
-    'https://soho-plaza.s3.us-east-2.amazonaws.com/voxels' +
-    realm +
-    '/voxels.json'
+  let url = awsBaseURL + '/voxels/' + realm + '/voxels.json'
 
   let currentVoxels: VoxelData[] = await getVoxelJSON(url)
 
@@ -52,52 +72,45 @@ app.post('/reset-voxels', async (req: any, res: any) => {
   return res.status(200).send('Updated Voxels')
 })
 
-//// AWS
-const AWS = require('aws-sdk')
+/// SEQUENCER
 
-const AWSconfig = require('../keys/aws-key.json')
+app.get('/sequencer', async (req: any, res: any) => {
+  let realm = req.query.realm
+  let url = awsBaseURL + '/sequencer/' + realm + '/stones.json'
 
-// You will need your own amazon key to handle this authentication step
-AWS.config.setPromisesDependency()
-AWS.config.update({
-  accessKeyId: AWSconfig.AWSAccessKeyId,
-  secretAccessKey: AWSconfig.AWSSecretKey,
-  region: 'us-east-2',
+  let currentSeq: number[][] = await getSeqJSON(url)
+
+  return res.status(200).json({ stones: currentSeq })
 })
 
-export async function updateVoxelJSON(tiles: VoxelData[], realm: string) {
-  var upload = new AWS.S3.ManagedUpload({
-    params: {
-      Bucket: 'soho-plaza',
-      Key: 'voxels/' + realm + '/voxels.json',
-      Body: JSON.stringify({ tiles: tiles }),
-      ACL: 'public-read',
-      ContentType: 'application/json; charset=utf-8',
-    },
-  })
+app.post('/update-sequencer', async (req: any, res: any) => {
+  let stones = req.body.stones
+  let realm = req.query.realm
 
-  var promise = upload.promise()
+  updateSeqJSON(stones, realm)
 
-  promise.then(
-    function (data: any) {
-      console.log('Successfully uploaded voxel JSON')
-    },
-    function (err: any) {
-      console.log('There was an error uploading voxel json file: ', err.message)
-    }
-  )
-}
-
-export async function getVoxelJSON(url: string): Promise<VoxelData[]> {
-  try {
-    let response = await fetch(url).then()
-    let json = await response.json()
-    return json.tiles
-  } catch {
-    console.log('error fetching from AWS server')
-    console.log('url used: ', url)
-    return []
-  }
-}
+  return res.status(200).send('Updated Sequencer')
+})
 
 exports.app = functions.https.onRequest(app)
+
+/// MESSAGE BOARD
+
+app.post('/create', (req: any, res: any) => {
+  let location: string = String(req.query.location)
+  let jsonContents: messageBoard = req.body
+
+  uploadMessageBoardJSON(location, jsonContents)
+  return res.status(200).send('Created message board')
+})
+
+app.post('/addmessage', (req: any, res: any) => {
+  let location: string = String(req.query.location)
+  let message: string = String(req.query.message)
+
+  let url = awsBaseURL + '/messageboards/' + location + '.json'
+
+  updateMessageJSON(url, message, location)
+
+  return res.status(200).send('updated message board')
+})
