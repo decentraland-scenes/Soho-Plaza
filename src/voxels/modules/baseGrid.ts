@@ -1,7 +1,7 @@
 import { Manager, Mode, materials } from '../manager'
 import { voxels, Voxel, VOXEL_SIZE } from './voxel'
-import { picker } from './picker'
 import resources from '../resources'
+import { picker } from './picker'
 
 // Adds a voxel to the scene
 const voxelShape = new BoxShape()
@@ -21,26 +21,30 @@ function addBaseVoxel(x: number, y: number, z: number) {
   voxel.addComponent(materials[Manager.colorIndex])
 }
 
-// Base grid
-const baseGrid = new Entity()
-baseGrid.addComponent(resources.models.baseGrid)
-baseGrid.addComponent(
-  new Transform({
-    position: new Vector3(211, 0.1, 144),
-  })
-)
-baseGrid.addComponent(
-  new OnPointerDown(
-    (e) => {
-      if (Manager.activeMode == Mode.Add) {
-        let transform = picker.getComponent(Transform).position
-        addBaseVoxel(transform.x, VOXEL_SIZE / 2 + 0.1, transform.z) // Base grid height is 0.1
-      }
-    },
-    {
-      button: ActionButton.POINTER,
-      showFeedback: false,
-    }
+export function buildBaseGrid() {
+  // Base grid
+  const baseGrid = new Entity()
+  baseGrid.addComponent(resources.models.baseGrid)
+  baseGrid.addComponent(
+    new Transform({
+      position: new Vector3(211, 0.1, 142),
+    })
   )
-)
-engine.addEntity(baseGrid)
+  baseGrid.addComponent(
+    new OnPointerDown(
+      (e) => {
+        if (Manager.activeMode == Mode.Add) {
+          let transform = picker.getComponent(Transform).position
+          addBaseVoxel(transform.x, VOXEL_SIZE / 2 + 0.1, transform.z) // Base grid height is 0.1
+        }
+      },
+      {
+        button: ActionButton.POINTER,
+        showFeedback: false,
+      }
+    )
+  )
+  engine.addEntity(baseGrid)
+}
+
+// buildBaseGrid()

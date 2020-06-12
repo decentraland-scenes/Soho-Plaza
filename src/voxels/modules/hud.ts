@@ -1,6 +1,8 @@
 import resources from '../resources'
 import { Mode } from '../manager'
 
+export let inRange: boolean = false
+
 export class HUD {
   private container: UIContainerRect
   private addIcon: UIImage
@@ -13,7 +15,7 @@ export class HUD {
     this.container.width = '100%'
     this.container.height = '100%'
     this.container.positionY = 25
-    this.container.visible = true
+    this.container.visible = false
     this.container.isPointerBlocker = false
 
     // Add icon
@@ -49,22 +51,32 @@ export class HUD {
     this.eyeDropIcon.visible = false
   }
 
-  public switchModeIcon(mode: Mode): void {
+  public switchModeIcon(mode: Mode, force?: boolean): void {
+    if (!inRange && !force) return
     switch (mode) {
       case Mode.Add:
         this.addIcon.visible = true
         this.subtractIcon.visible = false
         this.eyeDropIcon.visible = false
+        this.container.visible = true
         break
       case Mode.Subtract:
         this.addIcon.visible = false
         this.subtractIcon.visible = true
         this.eyeDropIcon.visible = false
+        this.container.visible = true
         break
       case Mode.EyeDrop:
         this.addIcon.visible = false
         this.subtractIcon.visible = false
         this.eyeDropIcon.visible = true
+        this.container.visible = true
+        break
+      case Mode.None:
+        this.addIcon.visible = false
+        this.subtractIcon.visible = false
+        this.eyeDropIcon.visible = false
+        this.container.visible = false
         break
       default:
         break

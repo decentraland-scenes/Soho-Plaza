@@ -1,9 +1,11 @@
 import { Manager, materials, colors, Mode } from './manager'
-import { pickerMaterial, pickedVoxelID } from './modules/picker'
-import { HUD } from './modules/hud'
+import { pickerMaterial } from './modules/picker'
+import { HUD, inRange } from './modules/hud'
 import utils from '../../node_modules/decentraland-ecs-utils/index'
 import { getVoxels } from './modules/serverHandler'
 import { Voxel, VOXEL_SIZE, voxels, VoxelData } from './modules/voxel'
+import { buildBaseGrid } from './modules/baseGrid'
+// import { buildBaseGrid } from './modules/baseGrid'
 
 export function addVoxels(): void {
   // UI Elements
@@ -63,43 +65,85 @@ export function addVoxels(): void {
 
   /// update voxels periodically
 
+  buildBaseGrid()
+
+  let activeArea = new Entity()
+  engine.addEntity(activeArea)
+  activeArea.addComponent(
+    new Transform({
+      position: new Vector3(219, 0.1, 150),
+    })
+  )
+
+  let triggerBox = new utils.TriggerBoxShape(
+    new Vector3(40, 40, 40),
+    Vector3.Zero()
+  )
+
+  activeArea.addComponent(
+    new utils.TriggerComponent(
+      triggerBox, //shape
+      0, //layer
+      0, //triggeredByLayer
+      null, //onTriggerEnter
+      null, //onTriggerExit
+      () => {
+        hud.switchModeIcon(Mode.Add, true)
+        Manager.activeMode = Mode.Add
+        updateVoxels()
+        inRange = true
+      },
+      () => {
+        hud.switchModeIcon(Mode.None, true)
+        //Manager.activeMode = Mode.None
+        inRange = false
+      }, //onCameraExit
+      false
+    )
+  )
+
   let updateHandler = new Entity()
   engine.addEntity(updateHandler)
 
   updateHandler.addComponent(
     new utils.Interval(10000, async function () {
-      let voxelList: VoxelData[] = await getVoxels()
-
-      for (let i = 0; i < voxelList.length; i++) {
-        switch (voxelList[i].mode) {
-          case Mode.Add:
-            const voxel = new Voxel(
-              new BoxShape(),
-              new Transform({
-                position: new Vector3(
-                  voxelList[i].x,
-                  voxelList[i].y,
-                  voxelList[i].z
-                ),
-                scale: new Vector3(VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE),
-              })
-            )
-            voxels.push(voxel)
-            voxel.addComponent(materials[voxelList[i].colIndex])
-            break
-          case Mode.Subtract:
-            let voxelName =
-              'x' +
-              voxelList[i].x.toString() +
-              'y' +
-              voxelList[i].y.toString() +
-              'z' +
-              voxelList[i].z.toString()
-
-            engine.removeEntity(engine.entities[voxelName])
-            break
-        }
-      } //else third mode?????
+      if (!inRange) return
+      await updateVoxels()
     })
   )
+}
+
+async function updateVoxels() {
+  let voxelList: VoxelData[] = await getVoxels()
+
+  for (let i = 0; i < voxelList.length; i++) {
+    switch (voxelList[i].mode) {
+      case Mode.Add:
+        const voxel = new Voxel(
+          new BoxShape(),
+          new Transform({
+            position: new Vector3(
+              voxelList[i].x,
+              voxelList[i].y,
+              voxelList[i].z
+            ),
+            scale: new Vector3(VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE),
+          })
+        )
+        voxels.push(voxel)
+        voxel.addComponent(materials[voxelList[i].colIndex])
+        break
+      case Mode.Subtract:
+        let voxelName =
+          'x' +
+          voxelList[i].x.toString() +
+          'y' +
+          voxelList[i].y.toString() +
+          'z' +
+          voxelList[i].z.toString()
+
+        engine.removeEntity(engine.entities[voxelName])
+        break
+    }
+  } //else third mode?????
 }

@@ -9,7 +9,8 @@ import { Audio } from './modules/audio'
 export enum Mode {
   Add = 0,
   Subtract = 1,
-  EyeDrop = 2
+  EyeDrop = 2,
+  None = 3,
 }
 
 // Sound entities
@@ -42,7 +43,6 @@ for (let i = 0; i < colors.length; i++) {
 }
 
 export class Manager {
-
   public static colorIndex: number = 0
   public static activeMode = Mode.Add
 
