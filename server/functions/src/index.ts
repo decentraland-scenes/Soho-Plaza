@@ -92,8 +92,6 @@ app.post('/update-sequencer', async (req: any, res: any) => {
   return res.status(200).send('Updated Sequencer')
 })
 
-exports.app = functions.https.onRequest(app)
-
 /// MESSAGE BOARD
 
 app.post('/create', (req: any, res: any) => {
@@ -114,3 +112,5 @@ app.post('/addmessage', (req: any, res: any) => {
 
   return res.status(200).send('updated message board')
 })
+
+exports.app = functions.https.onRequest(app)
