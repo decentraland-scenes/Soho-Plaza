@@ -4,6 +4,7 @@ import { addScreens } from './modules/video'
 import { addZenquencer } from './zenquencer/zenquencerBuilder'
 import { addMural } from './mural/muralBuilder'
 import { addVoxels } from './voxels/game'
+import { addPiano } from './piano/pianoBuilder'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -24,6 +25,14 @@ addMural()
 /// Voxels
 
 addVoxels()
+
+// Piano
+
+addPiano(
+  new Transform({
+    position: new Vector3(230, 0, 22),
+  })
+)
 
 // SOHO BASE BUILDING
 

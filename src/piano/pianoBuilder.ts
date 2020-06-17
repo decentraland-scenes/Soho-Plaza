@@ -2,15 +2,11 @@ import utils from '../../node_modules/decentraland-ecs-utils/index'
 import resources from '../resources'
 import { PianoKey, keys } from './pianoKey'
 
-export function addPiano(): void {
+export function addPiano(transform: Transform): void {
   // For piano for transforming the piano
   const pianoBase = new Entity()
   pianoBase.addComponent(resources.models.standard.pianoBase)
-  pianoBase.addComponent(
-    new Transform({
-      position: new Vector3(162.0, 0.0, 291.312),
-    })
-  )
+  pianoBase.addComponent(new Transform(transform))
   engine.addEntity(pianoBase)
 
   // Key shape
