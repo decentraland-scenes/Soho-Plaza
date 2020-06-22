@@ -50,6 +50,16 @@ soho_base.addComponent(
 )
 engine.addEntity(soho_base)
 
+//add globe
+let globe = new Entity()
+globe.addComponent(new GLTFShape("models/globe.glb"))
+globe.addComponent(new Transform({
+	position: new Vector3(160, 0, 160),
+	rotation: Quaternion.Euler(0, 0, 0)
+}
+))
+engine.addEntity(globe)
+
 //add museum
 let museum = new Entity()
 museum.addComponent(new GLTFShape('models/museum.glb'))
