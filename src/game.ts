@@ -5,6 +5,7 @@ import { addZenquencer } from './zenquencer/zenquencerBuilder'
 import { addMural } from './mural/muralBuilder'
 import { addVoxels } from './voxels/game'
 import { addPiano } from './piano/pianoBuilder'
+import { createFountain } from './modules/fountain'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -33,6 +34,8 @@ addPiano(
     position: new Vector3(230, 0, 22),
   })
 )
+
+createFountain({ position: new Vector3(231, 0, 85) })
 
 // SOHO BASE BUILDING
 
@@ -130,124 +133,131 @@ engine.addEntity(skate_park)
 
 //add kraken
 let kraken = new Entity()
-kraken.addComponent(new GLTFShape("models/kraken.glb"))
-kraken.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
+kraken.addComponent(new GLTFShape('models/kraken.glb'))
+kraken.addComponent(
+  new Transform({
+    position: new Vector3(160, 0, 160),
+    rotation: Quaternion.Euler(0, 0, 0),
+  })
+)
 engine.addEntity(kraken)
 
 //add enter_coin
 let enter_coin = new Entity()
-enter_coin.addComponent(new GLTFShape("models/enter_coin.glb"))
-enter_coin.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
+enter_coin.addComponent(new GLTFShape('models/enter_coin.glb'))
+enter_coin.addComponent(
+  new Transform({
+    position: new Vector3(160, 0, 160),
+    rotation: Quaternion.Euler(0, 0, 0),
+  })
+)
 engine.addEntity(enter_coin)
 
 //add chopper
 let chopper = new Entity()
-chopper.addComponent(new GLTFShape("models/chopper.glb"))
-chopper.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
+chopper.addComponent(new GLTFShape('models/chopper.glb'))
+chopper.addComponent(
+  new Transform({
+    position: new Vector3(160, 0, 160),
+    rotation: Quaternion.Euler(0, 0, 0),
+  })
+)
 engine.addEntity(chopper)
 
 // ADD NFT AREA
 
 //add nft_area
 let nft_area = new Entity()
-nft_area.addComponent(new GLTFShape("models/nft_area.glb"))
-nft_area.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
+nft_area.addComponent(new GLTFShape('models/nft_area.glb'))
+nft_area.addComponent(
+  new Transform({
+    position: new Vector3(160, 0, 160),
+    rotation: Quaternion.Euler(0, 0, 0),
+  })
+)
 engine.addEntity(nft_area)
 
 //add ethremon_tenteink
 let ethremon_tenteink = new Entity()
-ethremon_tenteink.addComponent(new GLTFShape("models/ethremon_tenteink.glb"))
-ethremon_tenteink.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
+ethremon_tenteink.addComponent(new GLTFShape('models/ethremon_tenteink.glb'))
+ethremon_tenteink.addComponent(
+  new Transform({
+    position: new Vector3(160, 0, 160),
+    rotation: Quaternion.Euler(0, 0, 0),
+  })
+)
 engine.addEntity(ethremon_tenteink)
 
 //add ethremon_matara
 let ethremon_matara = new Entity()
-ethremon_matara.addComponent(new GLTFShape("models/ethremon_matara.glb"))
-ethremon_matara.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
+ethremon_matara.addComponent(new GLTFShape('models/ethremon_matara.glb'))
+ethremon_matara.addComponent(
+  new Transform({
+    position: new Vector3(160, 0, 160),
+    rotation: Quaternion.Euler(0, 0, 0),
+  })
+)
 engine.addEntity(ethremon_matara)
 
 //add kotaro
 let kotaro = new Entity()
-kotaro.addComponent(new GLTFShape("models/kotaro.glb"))
-kotaro.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
+kotaro.addComponent(new GLTFShape('models/kotaro.glb'))
+kotaro.addComponent(
+  new Transform({
+    position: new Vector3(160, 0, 160),
+    rotation: Quaternion.Euler(0, 0, 0),
+  })
+)
 engine.addEntity(kotaro)
 
-//add water_fountain
-let water_fountain = new Entity()
-water_fountain.addComponent(new GLTFShape("models/water_fountain.glb"))
-water_fountain.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(water_fountain)
+// //add water_fountain
+// let water_fountain = new Entity()
+// water_fountain.addComponent(new GLTFShape("models/water_fountain.glb"))
+// water_fountain.addComponent(new Transform({
+// 	position: new Vector3(160, 0, 160),
+// 	rotation: Quaternion.Euler(0, 0, 0)
+// }
+// ))
+// engine.addEntity(water_fountain)
 
-// VOXEL FOUNTAIN 
+// VOXEL FOUNTAIN
 
-//add FirstRing
-let FirstRing = new Entity()
-FirstRing.addComponent(new GLTFShape("models/FirstRing.glb"))
-FirstRing.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(FirstRing)
+// //add FirstRing
+// let FirstRing = new Entity()
+// FirstRing.addComponent(new GLTFShape("models/FirstRing.glb"))
+// FirstRing.addComponent(new Transform({
+// 	position: new Vector3(160, 0, 160),
+// 	rotation: Quaternion.Euler(0, 0, 0)
+// }
+// ))
+// engine.addEntity(FirstRing)
 
-//add SecondRing
-let SecondRing = new Entity()
-SecondRing.addComponent(new GLTFShape("models/SecondRing.glb"))
-SecondRing.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(SecondRing)
+// //add SecondRing
+// let SecondRing = new Entity()
+// SecondRing.addComponent(new GLTFShape("models/SecondRing.glb"))
+// SecondRing.addComponent(new Transform({
+// 	position: new Vector3(160, 0, 160),
+// 	rotation: Quaternion.Euler(0, 0, 0)
+// }
+// ))
+// engine.addEntity(SecondRing)
 
-//add ThirdRing
-let ThirdRing = new Entity()
-ThirdRing.addComponent(new GLTFShape("models/ThirdRing.glb"))
-ThirdRing.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(ThirdRing)
+// //add ThirdRing
+// let ThirdRing = new Entity()
+// ThirdRing.addComponent(new GLTFShape("models/ThirdRing.glb"))
+// ThirdRing.addComponent(new Transform({
+// 	position: new Vector3(160, 0, 160),
+// 	rotation: Quaternion.Euler(0, 0, 0)
+// }
+// ))
+// engine.addEntity(ThirdRing)
 
-//add FourthRing
-let FourthRing = new Entity()
-FourthRing.addComponent(new GLTFShape("models/FourthRing.glb"))
-FourthRing.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(FourthRing)
+// //add FourthRing
+// let FourthRing = new Entity()
+// FourthRing.addComponent(new GLTFShape("models/FourthRing.glb"))
+// FourthRing.addComponent(new Transform({
+// 	position: new Vector3(160, 0, 160),
+// 	rotation: Quaternion.Euler(0, 0, 0)
+// }
+// ))
+// engine.addEntity(FourthRing)
