@@ -17,7 +17,7 @@ export function addZenquencer(): void {
   pool.addComponent(resources.models.pool)
   pool.addComponent(
     new Transform({
-      position: new Vector3(283.9, 0.2, 283),
+      position: new Vector3(285.4, 0.2, 287.2),
       rotation: Quaternion.Euler(0, 90, 0),
     })
   )
