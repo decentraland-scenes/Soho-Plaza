@@ -37,7 +37,7 @@ export class MusicalDrop extends Entity {
     // Sound
     this.addComponent(new AudioSource(sound))
 
-    this.anim = new AnimationState('ArmatureAction.001', { looping: false })
+    this.anim = new AnimationState('Drop_Action', { looping: false })
 
     this.addComponent(new Animator()).addClip(this.anim)
 

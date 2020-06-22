@@ -8,14 +8,14 @@ export default {
     tube: new GLTFShape('models/zenquencer/tube.glb'),
   },
   sounds: {
-    kalimbaNotes: {
-      f3: new AudioClip('sounds/zenquencer/f3.mp3'),
-      a3: new AudioClip('sounds/zenquencer/a3.mp3'),
-      c3: new AudioClip('sounds/zenquencer/c3.mp3'),
-      a4: new AudioClip('sounds/zenquencer/a4.mp3'),
-      e4: new AudioClip('sounds/zenquencer/e4.mp3'),
-      f4: new AudioClip('sounds/zenquencer/f4.mp3'),
-      g4: new AudioClip('sounds/zenquencer/g4.mp3'),
+    crystalNotes: {
+      a3: new AudioClip('sounds/zenquencer/1A.mp3'),
+      c3: new AudioClip('sounds/zenquencer/2C.mp3'),
+      d3: new AudioClip('sounds/zenquencer/3D.mp3'),
+      f3: new AudioClip('sounds/zenquencer/4F.mp3'),
+      g3: new AudioClip('sounds/zenquencer/5G.mp3'),
+      a4: new AudioClip('sounds/zenquencer/6A1.mp3'),
+      c4: new AudioClip('sounds/zenquencer/7C1.mp3'),
     },
   },
 }

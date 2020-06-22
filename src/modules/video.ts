@@ -61,7 +61,7 @@ export class VideoScreen extends Entity {
 export function addScreens() {
   const screen1 = new VideoScreen(
     {
-      position: new Vector3(28.8, 10.4, 62.5),
+      position: new Vector3(28.8, 10.4, 58.15),
       rotation: Quaternion.Euler(0, 0, 0), //new Quaternion(-0.7259005, 0.2195348, -0.5940643, 0.2682545),
       scale: new Vector3(10 * 2, 5.6 * 2, 10 * 2),
     },
