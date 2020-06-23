@@ -12,6 +12,17 @@ export function addBuildings() {
   )
   engine.addEntity(soho_base)
 
+  //add globe
+  let globe = new Entity()
+  globe.addComponent(new GLTFShape('models/globe.glb'))
+  globe.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(globe)
+
   //add museum
   let museum = new Entity()
   museum.addComponent(new GLTFShape('models/museum.glb'))
@@ -171,15 +182,4 @@ export function addBuildings() {
     })
   )
   engine.addEntity(kotaro)
-
-  //add water_fountain
-  let water_fountain = new Entity()
-  water_fountain.addComponent(new GLTFShape('models/water_fountain.glb'))
-  water_fountain.addComponent(
-    new Transform({
-      position: new Vector3(160, 0, 160),
-      rotation: Quaternion.Euler(0, 0, 0),
-    })
-  )
-  engine.addEntity(water_fountain)
 }
