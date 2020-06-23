@@ -183,7 +183,7 @@ export default class BoomBox extends Entity {
 
 let boombox = new BoomBox(
   {
-    position: new Vector3(156.5, 5.25, 119),
+    position: new Vector3(156.5, 5.24, 119),
     rotation: Quaternion.Euler(0, -15, 0),
   },
   'sounds/boombox/bgm.mp3',
@@ -202,8 +202,6 @@ let boombox = new BoomBox(
 
 sceneMessageBus.on('boombox', (e) => {
   log('play song ', e.song)
-  boombox.toggle(true)
-  boombox.songPlaying = e.song
 
   if (boombox.playing && boombox.songPlaying !== e.song) {
     switch (boombox.songPlaying) {
@@ -218,6 +216,9 @@ sceneMessageBus.on('boombox', (e) => {
         break
     }
   }
+
+  boombox.toggle(true)
+  boombox.songPlaying = e.song
 
   switch (e.song) {
     case 1:
@@ -258,11 +259,17 @@ sceneMessageBus.on('boomboxOff', (e) => {
         boombox.switch3.toggle(false)
         break
     }
-    boombox.playing = false
+    boombox.toggle(false)
     boombox.songPlaying = 0
-  }
-  if (boombox.hasComponent(AudioSource)) {
-    boombox.getComponent(AudioSource).playing = false
-    boombox.removeComponent(AudioSource)
+    if (boombox.hasComponent(AudioSource)) {
+      boombox.getComponent(AudioSource).playing = false
+      boombox.removeComponent(AudioSource)
+    }
   }
 })
+
+boombox.addComponent(
+  new OnPointerDown((e) => {
+    openNFTDialog('ethereum://0x03f41eaa68968a4443ecee18139637c59c8f7b6b/70')
+  })
+)

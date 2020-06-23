@@ -5,13 +5,13 @@ export function createFountain(position: TranformConstructorArgs) {
   let rings: Ring[] = []
 
   let base = new Entity()
-  base.addComponent(new GLTFShape('models/fountain/Base.glb'))
+  //base.addComponent(new GLTFShape('models/fountain/Base.glb'))
   base.addComponent(new Transform(position))
   engine.addEntity(base)
 
   let ring1 = new Ring(
     {
-      position: new Vector3(0, -0.9, 0),
+      position: new Vector3(0, -0.75, 0),
     },
     'models/fountain/FirstRing.glb',
     '1stRing_Action_01',
@@ -24,7 +24,7 @@ export function createFountain(position: TranformConstructorArgs) {
 
   let ring2 = new Ring(
     {
-      position: new Vector3(0, -0.9, 0),
+      position: new Vector3(0, -0.8, 0),
     },
     'models/fountain/SecondRing.glb',
     '2ndRing_Action_01',
@@ -37,7 +37,7 @@ export function createFountain(position: TranformConstructorArgs) {
 
   let ring3 = new Ring(
     {
-      position: new Vector3(0, -0.9, 0),
+      position: new Vector3(0, -1, 0),
     },
     'models/fountain/ThirdRing.glb',
     '3rdRing_Action_01',
@@ -49,7 +49,7 @@ export function createFountain(position: TranformConstructorArgs) {
 
   let ring4 = new Ring(
     {
-      position: new Vector3(0, -0.9, 0),
+      position: new Vector3(0, -1, 0),
     },
     'models/fountain/FourthRing.glb',
     '4thRing_Action_01',
@@ -60,7 +60,7 @@ export function createFountain(position: TranformConstructorArgs) {
   rings.push(ring4)
 
   let cyanConsole = new Console(
-    { position: new Vector3(-23, 0, 0) },
+    { position: new Vector3(-23, -0.1, 0) },
     base,
     'models/buttons/Cyan/Base/BaseCyan.glb',
     3,
@@ -74,7 +74,7 @@ export function createFountain(position: TranformConstructorArgs) {
 
   let redConsole = new Console(
     {
-      position: new Vector3(0, 0, 23),
+      position: new Vector3(0, -0.1, 23),
       rotation: Quaternion.Euler(0, 90, 0),
     },
     base,
@@ -90,7 +90,7 @@ export function createFountain(position: TranformConstructorArgs) {
 
   let violetConsole = new Console(
     {
-      position: new Vector3(23, 0, 0),
+      position: new Vector3(23, -0.1, 0),
       rotation: Quaternion.Euler(0, 180, 0),
     },
     base,
@@ -105,7 +105,10 @@ export function createFountain(position: TranformConstructorArgs) {
   )
 
   let yellowConsole = new Console(
-    { position: new Vector3(0, 0, -23), rotation: Quaternion.Euler(0, 270, 0) },
+    {
+      position: new Vector3(0, -0.1, -23),
+      rotation: Quaternion.Euler(0, 270, 0),
+    },
     base,
     'models/buttons/Yellow/Base/BaseYellow.glb',
     0,
