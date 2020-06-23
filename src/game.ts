@@ -7,6 +7,7 @@ import { addPiano } from './piano/pianoBuilder'
 import { createFountain } from './modules/fountain'
 import { addBuildings } from './modules/buildings'
 import { addLinks } from './modules/externalLinks'
+import { followingEye } from './modules/krakenEye'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -47,3 +48,7 @@ createFountain({ position: new Vector3(231.5, 0, 84.5) })
 // Links to partners
 
 addLinks()
+
+// Kraken following eye
+
+followingEye()
