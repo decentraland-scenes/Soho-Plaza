@@ -2,11 +2,11 @@
 
 import { addScreens } from './modules/video'
 import { addZenquencer } from './zenquencer/zenquencerBuilder'
-import { addMural } from './mural/muralBuilder'
 import { addVoxels } from './voxels/game'
 import { addPiano } from './piano/pianoBuilder'
 import { createFountain } from './modules/fountain'
 import { addBuildings } from './modules/buildings'
+import { addLinks } from './modules/externalLinks'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -26,9 +26,9 @@ addZenquencer()
 
 //// Mural
 
-addMural()
+//addMural()
 
-/// Voxels
+/// Voxel 3d editor
 
 addVoxels()
 
@@ -40,4 +40,10 @@ addPiano(
   })
 )
 
+// Voxel fountain
+
 createFountain({ position: new Vector3(231.5, 0, 84.5) })
+
+// Links to partners
+
+addLinks()
