@@ -33,14 +33,14 @@ export class BoomBoxSwitch extends Entity {
    * but maybe an animation will be added in the future as well.
    */
   public toggle(value: boolean): void {
-    this.clicked = value
     if (value) {
-      this.onAnim.stop()
-      this.onAnim.play()
-    } else {
       this.offAnim.stop()
       this.offAnim.play()
+    } else {
+      this.onAnim.stop()
+      this.onAnim.play()
     }
+    this.clicked = value
     this.getComponent(AudioSource).playOnce()
   }
 }
@@ -226,21 +226,21 @@ sceneMessageBus.on('boombox', (e) => {
       boombox.addComponentOrReplace(
         new AudioSource(new AudioClip(boombox.music1))
       )
-      boombox.getComponent(AudioSource).playOnce()
+      boombox.getComponent(AudioSource).playing = true
       break
     case 2:
       boombox.switch2.toggle(true)
       boombox.addComponentOrReplace(
         new AudioSource(new AudioClip(boombox.music2))
       )
-      boombox.getComponent(AudioSource).playOnce()
+      boombox.getComponent(AudioSource).playing = true
       break
     case 3:
       boombox.switch3.toggle(true)
       boombox.addComponentOrReplace(
         new AudioSource(new AudioClip(boombox.music3))
       )
-      boombox.getComponent(AudioSource).playOnce()
+      boombox.getComponent(AudioSource).playing = true
       break
   }
 })
