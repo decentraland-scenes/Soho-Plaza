@@ -1,16 +1,15 @@
 export function addBuildings() {
-  // SOHO BASE BUILDING
+  // SOHO BASE STREET
 
-  //add soho_base
-  let soho_base = new Entity()
-  soho_base.addComponent(new GLTFShape('models/soho_base.glb'))
-  soho_base.addComponent(
-    new Transform({
-      position: new Vector3(160, 0, 160),
-      rotation: Quaternion.Euler(0, 0, 0),
-    })
-  )
-  engine.addEntity(soho_base)
+//add street
+let street = new Entity()
+street.addComponent(new GLTFShape("models/street.glb"))
+street.addComponent(new Transform({
+	position: new Vector3(160, 0, 160),
+	rotation: Quaternion.Euler(0, 0, 0)
+}
+))
+engine.addEntity(street)
 
   //add globe
   let globe = new Entity()
@@ -23,6 +22,8 @@ export function addBuildings() {
   )
   engine.addEntity(globe)
 
+  // MAIN MUSEUM 
+
   //add museum
   let museum = new Entity()
   museum.addComponent(new GLTFShape('models/museum.glb'))
@@ -33,6 +34,19 @@ export function addBuildings() {
     })
   )
   engine.addEntity(museum)
+
+   //add color_drops
+   let color_drops = new Entity()
+   color_drops.addComponent(new GLTFShape('models/color_drops.glb'))
+   color_drops.addComponent(
+     new Transform({
+       position: new Vector3(160, 0, 160),
+       rotation: Quaternion.Euler(0, 0, 0),
+     })
+   )
+   engine.addEntity(color_drops)
+
+  // PS1 MUSEUM
 
   //add museum_b
   let museum_b = new Entity()
@@ -45,27 +59,7 @@ export function addBuildings() {
   )
   engine.addEntity(museum_b)
 
-  //add color_drops
-  let color_drops = new Entity()
-  color_drops.addComponent(new GLTFShape('models/color_drops.glb'))
-  color_drops.addComponent(
-    new Transform({
-      position: new Vector3(160, 0, 160),
-      rotation: Quaternion.Euler(0, 0, 0),
-    })
-  )
-  engine.addEntity(color_drops)
-
-  //add dots
-  let dots = new Entity()
-  dots.addComponent(new GLTFShape('models/dots.glb'))
-  dots.addComponent(
-    new Transform({
-      position: new Vector3(160, 0, 160),
-      rotation: Quaternion.Euler(0, 0, 0),
-    })
-  )
-  engine.addEntity(dots)
+// CAPSULE NIGHTCLUB
 
   //add capsule
   let capsule = new Entity()
@@ -182,4 +176,76 @@ export function addBuildings() {
     })
   )
   engine.addEntity(kotaro)
+
+  //add water_fountain
+let water_fountain = new Entity()
+water_fountain.addComponent(new GLTFShape("models/water_fountain.glb"))
+water_fountain.addComponent(new Transform({
+	position: new Vector3(160, 0, 160),
+	rotation: Quaternion.Euler(0, 0, 0)
+}
+))
+engine.addEntity(water_fountain)
+
+// ANIMALS PARK
+
+//add animals_park
+let animals_park = new Entity()
+animals_park.addComponent(new GLTFShape("models/animals_park.glb"))
+animals_park.addComponent(new Transform({
+	position: new Vector3(160, 0, 160),
+	rotation: Quaternion.Euler(0, 0, 0)
+}
+))
+engine.addEntity(animals_park)
+
+
+// DINO CINEMA 
+
+//add cinema_park
+let cinema_park = new Entity()
+cinema_park.addComponent(new GLTFShape("models/cinema_park.glb"))
+cinema_park.addComponent(new Transform({
+	position: new Vector3(160, 0, 160),
+	rotation: Quaternion.Euler(0, 0, 0)
+}
+))
+engine.addEntity(cinema_park)
+
+// DRAGON CAVE 
+
+//add dragon_park
+let dragon_park = new Entity()
+dragon_park.addComponent(new GLTFShape("models/dragon_park.glb"))
+dragon_park.addComponent(new Transform({
+	position: new Vector3(160, 0, 160),
+	rotation: Quaternion.Euler(0, 0, 0)
+}
+))
+engine.addEntity(dragon_park)
+
+//KONG PARK
+
+//add kong_park
+let kong_park = new Entity()
+kong_park.addComponent(new GLTFShape("models/kong_park.glb"))
+kong_park.addComponent(new Transform({
+	position: new Vector3(160, 0, 160),
+	rotation: Quaternion.Euler(0, 0, 0)
+}
+))
+engine.addEntity(kong_park)
+
+// SPACESHIP 
+
+//add spaceship_park
+let spaceship_park = new Entity()
+spaceship_park.addComponent(new GLTFShape("models/spaceship_park.glb"))
+spaceship_park.addComponent(new Transform({
+	position: new Vector3(160, 0, 160),
+	rotation: Quaternion.Euler(0, 0, 0)
+}
+))
+engine.addEntity(spaceship_park)
+
 }
