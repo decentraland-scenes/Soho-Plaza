@@ -1,7 +1,7 @@
 import { setNewMessage } from './serverHandler'
 
 import { MessageBoards } from './messageboard'
-import { Audio } from '../voxels/modules/audio'
+//import { Audio } from '../voxels/modules/audio'
 
 export const screenSpaceUI = new UICanvas()
 screenSpaceUI.visible = true

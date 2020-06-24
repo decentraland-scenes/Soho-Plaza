@@ -1,12 +1,14 @@
 import utils from '../../node_modules/decentraland-ecs-utils/index'
 
 import { Stone, stones, seqNumbers } from './stones'
-import { getStones } from './serverHandler'
-import { sceneMessageBus } from '../modules/serverHandler'
-import { loopPlayer, loopDuration } from './musicalDrops'
+import { getStones, changeSequencer } from './serverHandler'
+import { loopPlayer, loopDuration, drops } from './musicalDrops'
 import resources from './resources'
 
-export function addZenquencer(): void {
+export function addZenquencer(
+  transform: TranformConstructorArgs,
+  messageBus: MessageBus
+): void {
   // create trigger area object, setting size and relative position
   let zenquencerTriggerBox = new utils.TriggerBoxShape(
     new Vector3(40, 4, 39),
@@ -15,12 +17,7 @@ export function addZenquencer(): void {
 
   const pool = new Entity()
   pool.addComponent(resources.models.pool)
-  pool.addComponent(
-    new Transform({
-      position: new Vector3(285.4, 0.2, 287.2),
-      rotation: Quaternion.Euler(0, 90, 0),
-    })
-  )
+  pool.addComponent(new Transform(transform))
   pool.addComponent(
     new utils.TriggerComponent(
       zenquencerTriggerBox, //shape
@@ -76,7 +73,8 @@ export function addZenquencer(): void {
         }),
         crystalSounds[note],
         beat * 7 + note,
-        pool
+        pool,
+        messageBus
       )
       currentStone.setParent(pool)
 
@@ -110,7 +108,7 @@ export function addZenquencer(): void {
   linear.addComponent(
     new OnPointerDown(
       () => {
-        sceneMessageBus.emit('seqOn', {})
+        messageBus.emit('seqOn', {})
       },
       { hoverText: 'Loop' }
     )
@@ -128,7 +126,7 @@ export function addZenquencer(): void {
   random.addComponent(
     new OnPointerDown(
       () => {
-        sceneMessageBus.emit('randomMode', {})
+        messageBus.emit('randomMode', {})
       },
       { hoverText: 'Random' }
     )
@@ -147,7 +145,7 @@ export function addZenquencer(): void {
   slow2.addComponent(
     new OnPointerDown(
       () => {
-        sceneMessageBus.emit('seqSpeed', { speed: 12 })
+        messageBus.emit('seqSpeed', { speed: 12 })
       },
       { hoverText: 'Very Slow' }
     )
@@ -166,7 +164,7 @@ export function addZenquencer(): void {
   slow1.addComponent(
     new OnPointerDown(
       () => {
-        sceneMessageBus.emit('seqSpeed', { speed: 8 })
+        messageBus.emit('seqSpeed', { speed: 8 })
       },
       { hoverText: 'Slow' }
     )
@@ -185,7 +183,7 @@ export function addZenquencer(): void {
   neutral.addComponent(
     new OnPointerDown(
       () => {
-        sceneMessageBus.emit('seqSpeed', { speed: 4 })
+        messageBus.emit('seqSpeed', { speed: 4 })
       },
       { hoverText: 'Normal' }
     )
@@ -204,7 +202,7 @@ export function addZenquencer(): void {
   fast1.addComponent(
     new OnPointerDown(
       () => {
-        sceneMessageBus.emit('seqSpeed', { speed: 2 })
+        messageBus.emit('seqSpeed', { speed: 2 })
       },
       { hoverText: 'Fast' }
     )
@@ -223,13 +221,13 @@ export function addZenquencer(): void {
   fast2.addComponent(
     new OnPointerDown(
       () => {
-        sceneMessageBus.emit('seqSpeed', { speed: 1 })
+        messageBus.emit('seqSpeed', { speed: 1 })
       },
       { hoverText: 'Very Fast' }
     )
   )
 
-  sceneMessageBus.on('seqOn', (e) => {
+  messageBus.on('seqOn', (e) => {
     loopPlayer.playingMode = 1
     loopPlayer.currentBeat = -1
     loopPlayer.durationLeft = loopDuration
@@ -241,7 +239,7 @@ export function addZenquencer(): void {
     energyAnimation.play()
   })
 
-  sceneMessageBus.on('randomMode', (e) => {
+  messageBus.on('randomMode', (e) => {
     loopPlayer.playingMode = 2
     loopPlayer.currentBeat = -1
     loopPlayer.durationLeft = loopDuration
@@ -253,14 +251,14 @@ export function addZenquencer(): void {
     energyAnimation.play()
   })
 
-  sceneMessageBus.on('seqOff', (e) => {
+  messageBus.on('seqOff', (e) => {
     loopPlayer.playingMode = 0
     linear.getComponent(Transform).rotation = Quaternion.Euler(0, 0, 0)
     random.getComponent(Transform).rotation = Quaternion.Euler(0, 0, 0)
     neutral.getComponent(Transform).rotation = Quaternion.Euler(0, 0, 0)
   })
 
-  sceneMessageBus.on('seqSpeed', (e) => {
+  messageBus.on('seqSpeed', (e) => {
     if (loopPlayer.playingMode) {
       let newSpeed = e.speed * 4
 
@@ -307,7 +305,7 @@ export function addZenquencer(): void {
           break
       }
     } else {
-      sceneMessageBus.emit('seqOn', {})
+      messageBus.emit('seqOn', {})
     }
   })
 
@@ -338,6 +336,43 @@ export function addZenquencer(): void {
       }
     }
   }
+
+  messageBus.on('showStone', (e) => {
+    stones[e.stone].stoneOn = true
+    stones[e.stone].getComponent(Transform).rotation = Quaternion.Euler(0, 0, 0)
+
+    stones[e.stone].drop.addComponentOrReplace(stones[e.stone].drop.shape)
+
+    if (!loopPlayer.playingMode) {
+      stones[e.stone].drop.play()
+    }
+
+    let note = e.stone % 7
+    let beat = Math.floor(e.stone / 7)
+    log('beat ', beat, ' note ', note)
+    seqNumbers[beat][note] = 1
+    changeSequencer()
+  })
+
+  messageBus.on('hideStone', (e) => {
+    stones[e.stone].stoneOn = false
+    stones[e.stone].getComponent(Transform).rotation = Quaternion.Euler(
+      180,
+      0,
+      0
+    )
+
+    stones[e.stone].drop.removeComponent(GLTFShape)
+
+    let note = e.stone % 7
+    let beat = Math.floor(e.stone / 7)
+    seqNumbers[beat][note] = 0
+    changeSequencer()
+  })
+
+  messageBus.on('playStone', (e) => {
+    drops[e.note].play()
+  })
 }
 
 // define some entities and components outside the initiate function so they can be called externally

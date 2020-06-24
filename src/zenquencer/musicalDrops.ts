@@ -1,8 +1,8 @@
 import { seqNumbers } from './stones'
 import { stones } from './stones'
 import resources from './resources'
-import { sceneMessageBus } from '../modules/serverHandler'
 import { energyAnimation, linear, random } from './zenquencerBuilder'
+import { sceneMessageBus } from '../modules/serverHandler'
 
 //export const sceneMessageBus = new MessageBus()
 
@@ -54,9 +54,6 @@ export class MusicalDrop extends Entity {
 }
 
 // pick up message bus events, from you and other players
-sceneMessageBus.on('playStone', (e) => {
-  drops[e.note].play()
-})
 
 // system to play the loop continuously
 export class PlaySequence implements ISystem {

@@ -1,7 +1,6 @@
-import { MusicalDrop, drops, loopPlayer } from './musicalDrops'
-import { changeSequencer } from './serverHandler'
-import { sceneMessageBus } from '../modules/serverHandler'
+import { MusicalDrop, drops } from './musicalDrops'
 import resources from './resources'
+import { changeSequencer } from './serverHandler'
 
 // export const sceneMessageBus = new MessageBus()
 
@@ -21,7 +20,8 @@ export class Stone extends Entity {
     transform: Transform,
     sound: AudioClip,
     index: number,
-    parent: Entity
+    parent: Entity,
+    messagebus: MessageBus
   ) {
     super()
     this.setParent(parent)
@@ -41,9 +41,9 @@ export class Stone extends Entity {
         (e) => {
           log('toggle stone')
           if (this.stoneOn) {
-            sceneMessageBus.emit('hideStone', { stone: thisStone.index })
+            messagebus.emit('hideStone', { stone: thisStone.index })
           } else {
-            sceneMessageBus.emit('showStone', { stone: thisStone.index })
+            messagebus.emit('showStone', { stone: thisStone.index })
           }
         },
         {
@@ -66,32 +66,3 @@ export class Stone extends Entity {
     drops.push(this.drop)
   }
 }
-
-sceneMessageBus.on('showStone', (e) => {
-  stones[e.stone].stoneOn = true
-  stones[e.stone].getComponent(Transform).rotation = Quaternion.Euler(0, 0, 0)
-
-  stones[e.stone].drop.addComponentOrReplace(stones[e.stone].drop.shape)
-
-  if (!loopPlayer.playingMode) {
-    stones[e.stone].drop.play()
-  }
-
-  let note = e.stone % 7
-  let beat = Math.floor(e.stone / 7)
-  log('beat ', beat, ' note ', note)
-  seqNumbers[beat][note] = 1
-  changeSequencer()
-})
-
-sceneMessageBus.on('hideStone', (e) => {
-  stones[e.stone].stoneOn = false
-  stones[e.stone].getComponent(Transform).rotation = Quaternion.Euler(180, 0, 0)
-
-  stones[e.stone].drop.removeComponent(GLTFShape)
-
-  let note = e.stone % 7
-  let beat = Math.floor(e.stone / 7)
-  seqNumbers[beat][note] = 0
-  changeSequencer()
-})

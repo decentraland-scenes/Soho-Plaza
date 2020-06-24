@@ -1,12 +1,7 @@
 import utils from '../../node_modules/decentraland-ecs-utils/index'
 import { TriggerBoxShape } from '../../node_modules/decentraland-ecs-utils/triggers/triggerSystem'
 
-export const sceneMessageBus = new MessageBus()
-
-export let keys: PianoKey[] = []
-
 export class PianoKey extends Entity {
-  
   material: Material = new Material()
   onColor: Color3 = new Color3(1.75, 1.25, 0.0) // Orange glow
   offColor: Color3 = Color3.Black() // To zero out emissive
@@ -18,7 +13,8 @@ export class PianoKey extends Entity {
     color: Color3,
     sound: AudioClip,
     trigger: TriggerBoxShape,
-    note: number
+    note: number,
+    messagebus: MessageBus
   ) {
     super()
     this.addComponent(shape)
@@ -44,11 +40,11 @@ export class PianoKey extends Entity {
         null, //onTriggerExit
         () => {
           //onCameraEnter
-          sceneMessageBus.emit('noteOn', { note: this.note })
+          messagebus.emit('noteOn', { note: this.note })
         },
         () => {
           //onCameraExit
-          sceneMessageBus.emit('noteOff', { note: this.note })
+          messagebus.emit('noteOff', { note: this.note })
         },
         false // debug
       )
@@ -62,11 +58,3 @@ export class PianoKey extends Entity {
     this.material.emissiveColor = this.offColor
   }
 }
-
-sceneMessageBus.on('noteOn', (e) => {
-  keys[e.note].play()
-})
-
-sceneMessageBus.on('noteOff', (e) => {
-  keys[e.note].end()
-})

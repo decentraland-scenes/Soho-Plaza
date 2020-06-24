@@ -30,7 +30,6 @@ export function followingEye() {
       this.timer += dt
       if (this.timer > this.checkInterval) {
         this.timer = 0
-        //log('interval')
         this.getAngle()
       }
 
@@ -52,7 +51,7 @@ export function followingEye() {
 
       let direction = eyePos.subtract(playerPos)
 
-      log('distance :', direction.lengthSquared(), ' dir: ', direction)
+      //log('distance :', direction.lengthSquared(), ' dir: ', direction)
 
       if (direction.lengthSquared() > 10000) return
       this.rotating = true
@@ -62,7 +61,7 @@ export function followingEye() {
     }
   }
 
-  engine.addSystem(new KrakenWatch(5, 2, CurveType.EASEOUTELASTIC))
+  engine.addSystem(new KrakenWatch(5, 1, CurveType.EASEOUTELASTIC))
 }
 
 export enum CurveType {

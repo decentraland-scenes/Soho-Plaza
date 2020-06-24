@@ -1,7 +1,10 @@
 import utils from '../../node_modules/decentraland-ecs-utils/index'
 import { sceneMessageBus } from './serverHandler'
 
-export function createFountain(position: TranformConstructorArgs) {
+export function createFountain(
+  position: TranformConstructorArgs,
+  messagebus: MessageBus
+) {
   let rings: Ring[] = []
 
   let base = new Entity()
@@ -69,7 +72,8 @@ export function createFountain(position: TranformConstructorArgs) {
     'models/buttons/Cyan/Buttons/ButtonB_Cyan.glb',
     'ButtonB_Action',
     'models/buttons/Cyan/Buttons/ButtonC_Cyan.glb',
-    'ButtonC_Action'
+    'ButtonC_Action',
+    messagebus
   )
 
   let redConsole = new Console(
@@ -85,7 +89,8 @@ export function createFountain(position: TranformConstructorArgs) {
     'models/buttons/Red/Buttons/ButtonB_Red.glb',
     'ButtonB_Action',
     'models/buttons/Red/Buttons/ButtonC_Red.glb',
-    'ButtonC_Action'
+    'ButtonC_Action',
+    messagebus
   )
 
   let violetConsole = new Console(
@@ -101,7 +106,8 @@ export function createFountain(position: TranformConstructorArgs) {
     'models/buttons/Violet/Buttons/ButtonB_Violet.glb',
     'ButtonB_Action',
     'models/buttons/Violet/Buttons/ButtonC_Violet.glb',
-    'ButtonC_Action'
+    'ButtonC_Action',
+    messagebus
   )
 
   let yellowConsole = new Console(
@@ -117,10 +123,11 @@ export function createFountain(position: TranformConstructorArgs) {
     'models/buttons/Yellow/Buttons/ButtonB_Yellow.glb',
     'ButtonB_Action',
     'models/buttons/Yellow/Buttons/ButtonC_Yellow.glb',
-    'ButtonC_Action'
+    'ButtonC_Action',
+    messagebus
   )
 
-  sceneMessageBus.on('fountainAnim', (e) => {
+  messagebus.on('fountainAnim', (e) => {
     fountainPlayer.playingMode = 0
     base.addComponentOrReplace(
       new utils.Delay(20000, () => {
@@ -334,7 +341,7 @@ export class Ring extends Entity {
     this.getComponent(Animator).addClip(this.animation3)
   }
   public play1(): void {
-    log('playing1')
+    //log('playing1')
     this.animation1.stop()
     this.animation2.stop()
     this.animation3.stop()
@@ -342,7 +349,7 @@ export class Ring extends Entity {
     this.animation1.play()
   }
   public play2(): void {
-    log('playing2')
+    //log('playing2')
     this.animation1.stop()
     this.animation2.stop()
     this.animation3.stop()
@@ -350,7 +357,7 @@ export class Ring extends Entity {
     this.animation2.play()
   }
   public play3(): void {
-    log('playing3')
+    //log('playing3')
     this.animation1.stop()
     this.animation2.stop()
     this.animation3.stop()
@@ -395,7 +402,8 @@ export class Console extends Entity {
     button2Model: string,
     button2Anim: string,
     button3Model: string,
-    button3Anim: string
+    button3Anim: string,
+    messagebus: MessageBus
   ) {
     super()
     engine.addEntity(this)
@@ -411,21 +419,21 @@ export class Console extends Entity {
     button1.addComponent(
       new OnPointerDown(() => {
         button1.press()
-        sceneMessageBus.emit('fountainAnim', { ring: targetRing, anim: 1 })
+        messagebus.emit('fountainAnim', { ring: targetRing, anim: 1 })
       })
     )
 
     button2.addComponent(
       new OnPointerDown(() => {
         button2.press()
-        sceneMessageBus.emit('fountainAnim', { ring: targetRing, anim: 2 })
+        messagebus.emit('fountainAnim', { ring: targetRing, anim: 2 })
       })
     )
 
     button3.addComponent(
       new OnPointerDown(() => {
         button3.press()
-        sceneMessageBus.emit('fountainAnim', { ring: targetRing, anim: 3 })
+        messagebus.emit('fountainAnim', { ring: targetRing, anim: 3 })
       })
     )
   }

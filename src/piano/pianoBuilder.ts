@@ -1,8 +1,8 @@
 import utils from '../../node_modules/decentraland-ecs-utils/index'
 import resources from '../resources'
-import { PianoKey, keys } from './pianoKey'
+import { PianoKey } from './pianoKey'
 
-export function addPiano(transform: Transform): void {
+export function addPiano(transform: Transform, messagebus: MessageBus): void {
   // For piano for transforming the piano
   const pianoBase = new Entity()
   pianoBase.addComponent(resources.models.standard.pianoBase)
@@ -39,6 +39,8 @@ export function addPiano(transform: Transform): void {
 
   let whiteKeyXPos = -8.0001 // Workaround: Issue with setting this to -8
 
+  let keys: PianoKey[] = []
+
   for (let i = 0; i < whiteKeySounds.length; i++) {
     const key = new PianoKey(
       keyShape,
@@ -50,7 +52,8 @@ export function addPiano(transform: Transform): void {
       Color3.White(),
       whiteKeySounds[i],
       resources.trigger.triggerWhitePianoKey,
-      i
+      i,
+      messagebus
     )
     key.setParent(pianoBase)
     keys.push(key)
@@ -90,7 +93,8 @@ export function addPiano(transform: Transform): void {
       Color3.Black(),
       blackKeySounds[i],
       resources.trigger.triggerBlackPianoKey,
-      i + whiteKeySounds.length
+      i + whiteKeySounds.length,
+      messagebus
     )
     key.setParent(pianoBase)
     keys.push(key)
@@ -108,4 +112,12 @@ export function addPiano(transform: Transform): void {
       new Vector3(0, -0.5, 0)
     )
   )
+
+  messagebus.on('noteOn', (e) => {
+    keys[e.note].play()
+  })
+
+  messagebus.on('noteOff', (e) => {
+    keys[e.note].end()
+  })
 }
