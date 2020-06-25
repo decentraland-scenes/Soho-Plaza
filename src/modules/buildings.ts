@@ -11,7 +11,17 @@ street.addComponent(new Transform({
 ))
 engine.addEntity(street)
 
-  //add globe
+//add teleports
+let teleports = new Entity()
+teleports.addComponent(new GLTFShape("models/teleports.glb"))
+teleports.addComponent(new Transform({
+	position: new Vector3(160, 0, 160),
+	rotation: Quaternion.Euler(0, 0, 0)
+}
+))
+engine.addEntity(teleports)
+
+//add globe
   let globe = new Entity()
   globe.addComponent(new GLTFShape('models/globe.glb'))
   globe.addComponent(
