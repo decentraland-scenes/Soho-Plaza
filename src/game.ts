@@ -64,7 +64,7 @@ addPiano(
 
 // Voxel fountain
 
-// createFountain({ position: new Vector3(231.5, 0, 84.5) }, sceneMessageBus)
+createFountain({ position: new Vector3(231.5, 0, 84.5) }, sceneMessageBus)
 
 // Links to partners
 
