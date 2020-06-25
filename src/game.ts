@@ -12,6 +12,7 @@ import { addVoxels } from './voxels/voxelBuilder'
 import { addNFTs } from './galleries/galleryBuilder'
 import utils from '../node_modules/decentraland-ecs-utils/index'
 import { addDanceFloor } from './modules/danceFloor'
+import { placeTeleports } from './modules/teleports'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -80,3 +81,7 @@ followingEye()
 // ELEVATOR AND OTHER PLATFORMS
 
 placePlatforms()
+
+// Teleports
+
+placeTeleports()

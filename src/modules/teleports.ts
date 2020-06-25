@@ -1,35 +1,30 @@
 import {} from './ui' // prevents package not found bug
-import { openTeleportUI } from './ui'
 
 export enum Locations {
-  CROWD = 'crowd',
-  MAGIC = 'magic',
-  KOKO = '-39,58',
-  SALMONOMICON = '-52,1',
-  DRAGONRUSH = '-43,53',
+  PLANETVR = '-82,14',
+  SOYOU = '25,-127',
+  SUGAR = '-2,-35',
+  LONDON = '-70,85',
   MUSEUM = '16,83',
-  TOMBCHASER = '12,46',
-  BLOCK = '61,-27',
-  FRUIT = '59,133',
-  CASTLE = '-134,-121',
-  INFINITY = '-71,-38',
-  MOLES = '59,135',
-  PRESENT = '-40,-49',
-  CASINO = '-55,143',
-  TOKI = '28,45',
+  MINTBASE = '51,100',
+  MAKERS = '-56,99',
+  PIXELCHAIN = '51,96',
+  SUPERRARE = '55,94',
+  BOOMBOX = '',
+  FEVER = '',
+  KNOWNORIGIN = '',
+  DODI = '',
 }
 
 export class Teleport extends Entity {
   model: GLTFShape
   location: Locations
   name: string
-  description?: string
   constructor(
     model: GLTFShape,
     transform: TranformConstructorArgs,
     location: Locations,
-    name: string,
-    description: string
+    name: string
   ) {
     super()
     engine.addEntity(this)
@@ -66,225 +61,137 @@ export class Teleport extends Entity {
 }
 
 export function placeTeleports() {
-  // artichoke & garden
+  // near museum A
   let teleportPos1 = new Transform({
-    position: new Vector3(81.7, 0.3, 18.45),
+    position: new Vector3(78.55, 0.3, 243),
     rotation: Quaternion.Euler(0, 0, 0),
   })
 
-  // garden & hallway
+  // museum A & museum B
   let teleportPos2 = new Transform({
-    position: new Vector3(100.19, 0.3, 69),
+    position: new Vector3(71.3, 0.3, 190),
     rotation: Quaternion.Euler(0, 225, 0),
   })
 
-  // garden & market
+  // fountain South
   let teleportPos3 = new Transform({
-    position: new Vector3(177.5, 0.3, 51),
+    position: new Vector3(229.4, 0.3, 54.41),
     rotation: Quaternion.Euler(0, 0, 0),
   })
 
-  // garden & rock
+  // fountain East
   let teleportPos4 = new Transform({
-    position: new Vector3(189.84, 0.3, 68),
+    position: new Vector3(266.4, 0.3, 83.94),
     rotation: Quaternion.Euler(0, 270, 0),
   })
 
-  // rock & market
+  // voxel editor
   let teleportPos5 = new Transform({
-    position: new Vector3(210.19, 0.45, 68.8),
+    position: new Vector3(267.99, 0.8, 182.64),
     rotation: Quaternion.Euler(0, 90, 0),
   })
 
-  // sculpture & wearables
+  // kraken East
   let teleportPos6 = new Transform({
-    position: new Vector3(211.19, 0.3, 119.5),
+    position: new Vector3(209, 1.8, 212.8),
     rotation: Quaternion.Euler(0, 270, 0),
   })
 
-  // wearables - west
+  // kraken West
   let teleportPos7 = new Transform({
-    position: new Vector3(226.8, 0.3, 132.8),
+    position: new Vector3(163.83, 0.3, 236.63),
     rotation: Quaternion.Euler(0, 90, 0),
   })
 
-  // wearables - NW
+  // minicapsule 1
   let teleportPos8 = new Transform({
-    position: new Vector3(228.3, 0.45, 168.8),
+    position: new Vector3(144.88, 0.45, 293.19),
     rotation: Quaternion.Euler(0, 135, 0),
   })
 
-  // wearables - N
+  // minicapsule 2
   let teleportPos9 = new Transform({
-    position: new Vector3(261.2, 0.3, 174.4),
+    position: new Vector3(169.92, 0.3, 307),
     rotation: Quaternion.Euler(0, 135, 0),
   })
 
-  // whale - S
+  // kraken South
   let teleportPos10 = new Transform({
-    position: new Vector3(222.7, 0.45, 203.8),
+    position: new Vector3(175.89, 2, 175.11),
     rotation: Quaternion.Euler(0, 45, 0),
   })
 
-  // center - N
-  let teleportPos11 = new Transform({
-    position: new Vector3(174.71, 0.4, 209.8),
-    rotation: Quaternion.Euler(0, 45, 0),
-  })
-
-  // whale & mountains
-  let teleportPos12 = new Transform({
-    position: new Vector3(97.63, 0.3, 249.46),
-    rotation: Quaternion.Euler(0, 0, 0),
-  })
-
-  // tower- east
-  let teleportPos13 = new Transform({
-    position: new Vector3(89.42, 0.3, 101.4),
-    rotation: Quaternion.Euler(0, 0, 0),
-  })
-
-  // tower- south
-  let teleportPos14 = new Transform({
-    position: new Vector3(17.44, 0.25, 75.3),
-    rotation: Quaternion.Euler(0, 45, 0),
-  })
-
-  // center - N2
-  let teleportPos15 = new Transform({
-    position: new Vector3(145.45, 0.7, 210),
-    rotation: Quaternion.Euler(0, 45, 0),
-  })
+  //   let teleportPos11 = new Transform({
+  //     position: new Vector3(175.89, 2, 175.11),
+  //     rotation: Quaternion.Euler(0, 45, 0),
+  //   })
 
   let teleports = [
-    {
-      name: 'Dragon Rush',
-      model: new GLTFShape('models/teleports/dragon_rush.glb'),
-      location: Locations.DRAGONRUSH,
-      transform: teleportPos1,
-      description:
-        'Fly on the back of a dragon, need we\nsay more?\nScene by the amusement park district.',
-    },
-    {
-      name: 'Toki Toki Land',
-      model: new GLTFShape('models/teleports/toki_land.glb'),
-      location: Locations.TOKI,
-      transform: teleportPos2,
-      description:
-        'A christmas themed adventure.\nSave the Toki Tokis from\nan evil snowman and his henchmen.',
-    },
-    {
-      name: 'Random amazing scene',
-      model: new GLTFShape('models/teleports/star.glb'),
-      location: Locations.MAGIC,
-      transform: teleportPos3,
-      description:
-        'Visit a random scene from\na curated list of amazing places!\n',
-    },
-    {
-      name: 'Block Runner',
-      model: new GLTFShape('models/teleports/block_runner.glb'),
-      location: Locations.BLOCK,
-      transform: teleportPos4,
-      description:
-        'A collection of competitive minigames\nthat are a lot of fun to play!\n',
-    },
-    {
-      name: 'Serenity Island Casino',
-      model: new GLTFShape('models/teleports/roulette.glb'),
-      location: Locations.CASINO,
-      transform: teleportPos5,
-      description:
-        'Play roulette and slot machines in a\nluxurious casino by the shore!\n',
-    },
-    {
-      name: 'Koko Jones',
-      model: new GLTFShape('models/teleports/koko_jones.glb'),
-      location: Locations.KOKO,
-      transform: teleportPos6,
-      description:
-        'Visit the temple of eternal bananas\nto collect gems and face evil monkeys\nScene by the amusement park district.',
-    },
-    {
-      name: 'Fruit Catcher',
-      model: new GLTFShape('models/teleports/fruit_catcher.glb'),
-      location: Locations.FRUIT,
-      transform: teleportPos7,
-      description:
-        'Catch as many fruits as you can,\navoid bombs! Compete for the\nhighest score!',
-    },
-    {
-      name: 'Random amazing scene',
-      model: new GLTFShape('models/teleports/star.glb'),
-      location: Locations.MAGIC,
-      transform: teleportPos8,
-      description:
-        'Visit a random scene from\na curated list of amazing places!\n',
-    },
-    {
-      name: 'Join other players',
-      model: new GLTFShape('models/teleports/crowd.glb'),
-      location: Locations.CROWD,
-      transform: teleportPos9,
-      description:
-        'Teleport to the most crowded location\nin all of Decentraland to meet up\nwith other players!',
-    },
-    {
-      name: 'Book of Salmonomicon',
-      model: new GLTFShape('models/teleports/salmonomicon.glb'),
-      location: Locations.SALMONOMICON,
-      transform: teleportPos10,
-      description:
-        'In this bizarre horror-themed game\nhelp Mika out and defeat a\nterrible creature.',
-    },
     {
       name: 'Museum District',
       model: new GLTFShape('models/teleports/museum_district.glb'),
       location: Locations.MUSEUM,
-      transform: teleportPos11,
-      description:
-        'The Museum district houses works\nfrom digital and traditional artists.\nSuperb moving sculptures & paintings.',
+      transform: teleportPos1,
     },
     {
-      name: 'Click a Mole',
-      model: new GLTFShape('models/teleports/click_a_mole.glb'),
-      location: Locations.MOLES,
-      transform: teleportPos12,
-      description: 'Whack the moles before they hide!\n\n',
+      name: 'Mintbase',
+      model: new GLTFShape('models/teleports/Mintbase.glb'),
+      location: Locations.MINTBASE,
+      transform: teleportPos2,
     },
     {
-      name: 'Tomb Chaser',
-      model: new GLTFShape('models/teleports/tomb_chaser.glb'),
-      location: Locations.TOMBCHASER,
-      transform: teleportPos13,
-      description:
-        'Speed run through an ancient pyramid\navoiding obstacles as you try to keep\nup, in this exciting game.',
+      name: 'MakersPlace',
+      model: new GLTFShape('models/teleports/Makersplace.glb'),
+      location: Locations.MAKERS,
+      transform: teleportPos3,
     },
     {
-      name: 'Infinity Engine',
-      model: new GLTFShape('models/teleports/infinity_engine.glb'),
-      location: Locations.INFINITY,
-      transform: teleportPos14,
-      description:
-        'Mine for loot underground, then\ndefend a train from\nbandits.',
+      name: 'PixelChain',
+      model: new GLTFShape('models/teleports/PixelChain.glb'),
+      location: Locations.PIXELCHAIN,
+      transform: teleportPos4,
     },
     {
-      name: 'Join other players',
-      model: new GLTFShape('models/teleports/crowd.glb'),
-      location: Locations.CROWD,
-      transform: teleportPos15,
-      description:
-        'Teleport to the most crowded location\nin all of Decentraland to meet up\nwith other players!',
+      name: 'MANA Fever',
+      model: new GLTFShape('models/teleports/MANAFEVER.glb'),
+      location: Locations.FEVER,
+      transform: teleportPos5,
     },
+    {
+      name: 'Planet VR',
+      model: new GLTFShape('models/teleports/PlanetVR.glb'),
+      location: Locations.PLANETVR,
+      transform: teleportPos6,
+    },
+    {
+      name: 'SuperRare',
+      model: new GLTFShape('models/teleports/SuperRare.glb'),
+      location: Locations.SUPERRARE,
+      transform: teleportPos7,
+    },
+    {
+      name: 'London Underground',
+      model: new GLTFShape('models/teleports/LondonUnderground.glb'),
+      location: Locations.LONDON,
+      transform: teleportPos8,
+    },
+    {
+      name: 'Sugar Club',
+      model: new GLTFShape('models/teleports/SugarClub.glb'),
+      location: Locations.SUGAR,
+      transform: teleportPos9,
+    },
+    {
+      name: 'Boombox Club',
+      model: new GLTFShape('models/teleports/Boombox-club.glb'),
+      location: Locations.BOOMBOX,
+      transform: teleportPos10,
+    },
+
+    // SO YOU  teleportPos11
   ]
 
   for (let i of teleports) {
-    let t = new Teleport(
-      i.model,
-      i.transform,
-      i.location,
-      i.name,
-      i.description
-    )
+    let t = new Teleport(i.model, i.transform, i.location, i.name)
   }
 }
