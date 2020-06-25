@@ -1,5 +1,5 @@
 export default class Door extends Entity {
-  open: boolean = false
+  isOpen: boolean = false
   openAnim: AnimationState
   closeAnim: AnimationState
   //   openSound = new AudioClip('sounds/open.mp3')
@@ -26,14 +26,14 @@ export default class Door extends Entity {
     this.openAnim.stop()
 
     if (open) {
-      this.open = open
+      this.isOpen = open
       this.openAnim.play()
     }
   }
 
   toggle(value: boolean, playSound = true) {
-    if (this.open === value) return
-    this.open = value
+    if (this.isOpen === value) return
+    this.isOpen = value
 
     // if (playSound) {
     //   const source = new AudioSource(value ? this.openClip : this.closeClip)
@@ -45,7 +45,7 @@ export default class Door extends Entity {
 
     this.openAnim.stop()
     this.closeAnim.stop()
-    const clip = value ? this.closeAnim : this.openAnim
+    const clip = value ? this.openAnim : this.closeAnim
     clip.play()
   }
 }

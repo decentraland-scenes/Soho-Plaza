@@ -1,49 +1,6 @@
 import { sceneMessageBus } from './serverHandler'
 import utils from '../../node_modules/decentraland-ecs-utils/index'
-
-export class BoomBoxSwitch extends Entity {
-  onAnim: AnimationState
-  offAnim: AnimationState
-  clicked: boolean = false
-  constructor(model: string, parent: Entity, onAnim: string, offAnim: string) {
-    super()
-    engine.addEntity(this)
-
-    this.addComponent(new GLTFShape(model))
-
-    this.setParent(parent)
-
-    this.addComponent(
-      new Transform({
-        position: new Vector3(0, 0.5, -0.05),
-      })
-    )
-
-    this.addComponent(new AudioSource(new AudioClip('sounds/click.mp3')))
-
-    this.addComponent(new Animator())
-    this.onAnim = new AnimationState(onAnim, { looping: false })
-    this.offAnim = new AnimationState(offAnim, { looping: false })
-    this.getComponent(Animator).addClip(this.onAnim)
-    this.getComponent(Animator).addClip(this.offAnim)
-  }
-
-  /**
-   * A button can be pressed.  At the moment this just plays a sound effect
-   * but maybe an animation will be added in the future as well.
-   */
-  public toggle(value: boolean): void {
-    if (value) {
-      this.offAnim.stop()
-      this.offAnim.play()
-    } else {
-      this.onAnim.stop()
-      this.onAnim.play()
-    }
-    this.clicked = value
-    this.getComponent(AudioSource).playOnce()
-  }
-}
+import { Switch } from './buttons'
 
 export default class BoomBox extends Entity {
   music1: string
@@ -60,9 +17,9 @@ export default class BoomBox extends Entity {
   button3OffAnim: string
   playing: boolean = false
   songPlaying: number = 0
-  switch1: BoomBoxSwitch
-  switch2: BoomBoxSwitch
-  switch3: BoomBoxSwitch
+  switch1: Switch
+  switch2: Switch
+  switch3: Switch
 
   constructor(
     position: TranformConstructorArgs,
@@ -97,23 +54,33 @@ export default class BoomBox extends Entity {
     this.music2 = music2
     this.music3 = music3
 
-    this.switch1 = new BoomBoxSwitch(
+    this.switch1 = new Switch(
       button1Model,
-      this,
+      {
+        position: new Vector3(0, 0.5, -0.05),
+      },
+
       button1Anim,
-      button1OffAnim
+      button1OffAnim,
+      this
     )
-    this.switch2 = new BoomBoxSwitch(
+    this.switch2 = new Switch(
       button2Model,
-      this,
+      {
+        position: new Vector3(0, 0.5, -0.05),
+      },
       button2Anim,
-      button2OffAnim
+      button2OffAnim,
+      this
     )
-    this.switch3 = new BoomBoxSwitch(
+    this.switch3 = new Switch(
       button3Model,
-      this,
+      {
+        position: new Vector3(0, 0.5, -0.05),
+      },
       button3Anim,
-      button3OffAnim
+      button3OffAnim,
+      this
     )
 
     let thisBoombox = this

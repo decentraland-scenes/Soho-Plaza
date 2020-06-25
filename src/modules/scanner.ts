@@ -30,16 +30,17 @@ export class WearablesScanner extends Entity {
     this.getComponent(Animator).addClip(this.allowAnim)
     this.getComponent(Animator).addClip(this.rejectAnim)
 
-    if (!triggerPos) {
-      triggerPos = { position: new Vector3(0, 1.5, 2) }
-    }
-
     if (!triggerScale) {
       triggerScale = new Vector3(2.5, 4, 2.5)
     }
 
     const scannerTriggerEntity = new Entity()
-    scannerTriggerEntity.setParent(this)
+
+    if (!triggerPos) {
+      triggerPos = { position: new Vector3(0, 1.5, 2) }
+      scannerTriggerEntity.setParent(this)
+    }
+
     scannerTriggerEntity.addComponent(new Transform(triggerPos))
 
     let triggerBox = new utils.TriggerBoxShape(triggerScale, Vector3.Zero())
@@ -68,7 +69,7 @@ export class WearablesScanner extends Entity {
           )
         },
         null, //onCameraExit
-        true
+        false
       )
     )
     engine.addEntity(scannerTriggerEntity)

@@ -1,6 +1,7 @@
 import utils from '../../node_modules/decentraland-ecs-utils/index'
 import { sceneMessageBus } from './serverHandler'
 import Door from './door'
+import { Button } from './buttons'
 
 /// Reusable class for all platforms
 export class Platform extends Entity {
@@ -62,6 +63,7 @@ export class TwoWayPlatform extends Entity {
   animationDown: AnimationState
   moving: boolean = false
   speed: number
+  isUp: boolean = false
 
   constructor(
     model: GLTFShape,
@@ -143,6 +145,7 @@ export class TwoWayPlatform extends Entity {
     this.addComponentOrReplace(
       new utils.Delay(this.speed, () => {
         this.moving = false
+        this.isUp = true
       })
     )
   }
@@ -154,6 +157,7 @@ export class TwoWayPlatform extends Entity {
     this.addComponentOrReplace(
       new utils.Delay(this.speed, () => {
         this.moving = false
+        this.isUp = false
       })
     )
   }
@@ -164,9 +168,9 @@ export function placePlatforms() {
   let elevator = new TwoWayPlatform(
     new GLTFShape('models/elevator/Elevator.glb'),
     { rotation: Quaternion.Euler(0, 0, 0), position: new Vector3(160, 0, 160) },
-    { position: new Vector3(19, 2, 21) },
-    { position: new Vector3(19, 16, 21) },
-    new Vector3(4, 4, 4),
+    { position: new Vector3(19, 2, 21.5) },
+    { position: new Vector3(19, 16, 21.5) },
+    new Vector3(5, 5, 5),
     'ElevatorUP_Action',
     'ElevatorDOWN_Action',
     'elevatorUp',
@@ -176,7 +180,7 @@ export function placePlatforms() {
 
   sceneMessageBus.on('elevatorUp', (e) => {
     elevator.up()
-    topDoor.toggle(false)
+    //topDoor.toggle(true)
     bottomDoor.toggle(false)
     log('elevator going up')
     topDoor.addComponentOrReplace(
@@ -189,7 +193,7 @@ export function placePlatforms() {
   sceneMessageBus.on('elevatorDown', (e) => {
     elevator.down()
     topDoor.toggle(false)
-    bottomDoor.toggle(false)
+    //bottomDoor.toggle(false)
     log('elevator going down')
     bottomDoor.addComponentOrReplace(
       new utils.Delay(8000, () => {
@@ -211,6 +215,64 @@ export function placePlatforms() {
     'DoorBottomElevatorOPEN_Action',
     'DoorBottomElevatorCLOSE_Action'
   )
+
+  let upButton = new Button(
+    'models/elevator/Button.glb',
+    {
+      rotation: Quaternion.Euler(0, 0, 0),
+      position: new Vector3(21.7, 1.8, 23.8),
+    },
+    'Button_Action'
+  )
+
+  upButton.addComponent(
+    new OnPointerDown(() => {
+      sceneMessageBus.emit('callElevatorDown', {})
+    })
+  )
+
+  sceneMessageBus.on('callElevatorDown', () => {
+    upButton.press()
+    if (elevator.isUp) {
+      topDoor.toggle(true)
+      elevator.down()
+      upButton.addComponentOrReplace(
+        new utils.Delay(6000, () => {
+          bottomDoor.toggle(true)
+        })
+      )
+    } else bottomDoor.toggle(true)
+  })
+
+  let downButton = new Button(
+    'models/elevator/Button.glb',
+    {
+      rotation: Quaternion.Euler(180, 0, 0),
+      position: new Vector3(21.7, 16, 23.8),
+    },
+    'Button_Action'
+  )
+
+  downButton.addComponent(
+    new OnPointerDown(() => {
+      sceneMessageBus.emit('callElevatorUp', {})
+    })
+  )
+
+  sceneMessageBus.on('callElevatorUp', () => {
+    downButton.press()
+    if (!elevator.isUp) {
+      bottomDoor.toggle(false)
+      elevator.up()
+      downButton.addComponentOrReplace(
+        new utils.Delay(6000, () => {
+          topDoor.toggle(true)
+        })
+      )
+    } else topDoor.toggle(true)
+  })
+
+  //button
 
   // doors
   //

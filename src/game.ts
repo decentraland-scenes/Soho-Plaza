@@ -98,6 +98,9 @@ let scanner = new WearablesScanner(
     log('REJECTED')
 
     //sceneMessageBus.emit('closeDoor', {})
+  },
+  {
+    position: new Vector3(191, 0.3, 256),
   }
 )
 
