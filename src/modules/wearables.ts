@@ -1,27 +1,27 @@
-import * as cryptoUtils from '../../node_modules/decentraland-crypto-utils/avatar/index'
-import * as wearables from '../../node_modules/decentraland-crypto-utils/wearable/index'
+// import * as cryptoUtils from '../../node_modules/decentraland-crypto-utils/avatar/index'
+// import * as wearables from '../../node_modules/decentraland-crypto-utils/wearable/index'
 
 export async function checkWearableCategory(category: Category) {
-  let wearablesList = await wearables.getListOfWearables()
-  let equipped = await cryptoUtils.equipedItems()
+  //   let wearablesList = await wearables.getListOfWearables()
+  //   let equipped = await cryptoUtils.equipedItems()
 
-  log(wearablesList, equipped)
+  //   log(wearablesList, equipped)
 
-  for (let item of equipped) {
-    for (let wearablesCollection of wearablesList) {
-      for (let wearable of wearablesCollection.wearables) {
-        if (item === wearable.id) {
-          if (wearable.category == category) {
-            log('found matching wearable! ', item)
-            return true
-          } else {
-            continue
-          }
-        }
-      }
-    }
-  }
-  log('no matching wearables')
+  //   for (let item of equipped) {
+  //     for (let wearablesCollection of wearablesList) {
+  //       for (let wearable of wearablesCollection.wearables) {
+  //         if (item === wearable.id) {
+  //           if (wearable.category == category) {
+  //             log('found matching wearable! ', item)
+  //             return true
+  //           } else {
+  //             continue
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  //   log('no matching wearables')
   return false
 }
 

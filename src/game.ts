@@ -8,7 +8,7 @@ import { addBuildings } from './modules/buildings'
 import { addLinks } from './modules/externalLinks'
 import { followingEye } from './modules/krakenEye'
 import { WearablesScanner } from './modules/scanner'
-import { Category } from '../node_modules/decentraland-crypto-utils/wearable/types'
+import { Category } from './modules/wearables'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -69,29 +69,29 @@ followingEye()
 
 // Wearables scanner
 
-// let scanner = new WearablesScanner(
-//   {
-//     position: new Vector3(191, 0.3, 259),
-//     rotation: Quaternion.Euler(0, 180, 0),
-//   },
-//   Category.Eyewear,
-//   sceneMessageBus,
-//   () => {
-//     log('SUCCESS')
+let scanner = new WearablesScanner(
+  {
+    position: new Vector3(191, 0.3, 259),
+    rotation: Quaternion.Euler(0, 180, 0),
+  },
+  Category.Eyewear,
+  sceneMessageBus,
+  () => {
+    log('SUCCESS')
 
-//     //   sceneMessageBus.emit('openDoor', {})
-//     //   door.addComponentOrReplace(
-//     // 	new utils.Delay(5000, () => {
-//     // 	  sceneMessageBus.emit('closeDoor', {})
-//     // 	})
-//     //   )
-//   },
-//   () => {
-//     log('REJECTED')
+    //   sceneMessageBus.emit('openDoor', {})
+    //   door.addComponentOrReplace(
+    // 	new utils.Delay(5000, () => {
+    // 	  sceneMessageBus.emit('closeDoor', {})
+    // 	})
+    //   )
+  },
+  () => {
+    log('REJECTED')
 
-//     //sceneMessageBus.emit('closeDoor', {})
-//   }
-// )
+    //sceneMessageBus.emit('closeDoor', {})
+  }
+)
 
 // sceneMessageBus.on('scanning', () => {
 //   scanner.scan()
