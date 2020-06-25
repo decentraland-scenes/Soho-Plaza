@@ -35,7 +35,7 @@ export class WearablesScanner extends Entity {
     }
 
     if (!triggerScale) {
-      triggerScale = new Vector3(2.5, 2.5, 2.5)
+      triggerScale = new Vector3(2.5, 4, 2.5)
     }
 
     const scannerTriggerEntity = new Entity()
@@ -68,9 +68,10 @@ export class WearablesScanner extends Entity {
           )
         },
         null, //onCameraExit
-        false
+        true
       )
     )
+    engine.addEntity(scannerTriggerEntity)
     //this.addComponent(new AudioSource(new AudioClip('sounds/click.mp3')))
   }
 

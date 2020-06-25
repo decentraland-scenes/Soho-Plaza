@@ -9,6 +9,7 @@ import { addLinks } from './modules/externalLinks'
 import { followingEye } from './modules/krakenEye'
 import { WearablesScanner } from './modules/scanner'
 import { Category } from './modules/wearables'
+import { placePlatforms } from './modules/platforms'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -93,14 +94,18 @@ let scanner = new WearablesScanner(
   }
 )
 
-// sceneMessageBus.on('scanning', () => {
-//   scanner.scan()
-// })
+sceneMessageBus.on('scanning', () => {
+  scanner.scan()
+})
 
-// sceneMessageBus.on('scanapprove', () => {
-//   scanner.approve()
-// })
+sceneMessageBus.on('scanapprove', () => {
+  scanner.approve()
+})
 
-// sceneMessageBus.on('scanreject', () => {
-//   scanner.reject()
-// })
+sceneMessageBus.on('scanreject', () => {
+  scanner.reject()
+})
+
+// ELEVATOR AND OTHER PLATFORMS
+
+placePlatforms()
