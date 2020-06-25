@@ -5,6 +5,7 @@ import { picker } from './picker'
 
 // Adds a voxel to the scene
 const voxelShape = new BoxShape()
+export const baseGridHeight = 1.37
 
 function addBaseVoxel(x: number, y: number, z: number) {
   log('Voxel added')
@@ -27,7 +28,8 @@ export function buildBaseGrid() {
   baseGrid.addComponent(resources.models.baseGrid)
   baseGrid.addComponent(
     new Transform({
-      position: new Vector3(211, 0.1, 142),
+      // position: new Vector3(218.835, baseGridHeight, 153.812),
+      position: new Vector3(219, baseGridHeight, 154),
     })
   )
   baseGrid.addComponent(
@@ -35,7 +37,11 @@ export function buildBaseGrid() {
       (e) => {
         if (Manager.activeMode == Mode.Add) {
           let transform = picker.getComponent(Transform).position
-          addBaseVoxel(transform.x, VOXEL_SIZE / 2 + 0.1, transform.z) // Base grid height is 0.1
+          addBaseVoxel(
+            transform.x,
+            VOXEL_SIZE / 2 + 0.1 + baseGridHeight, // Offset voxel based on grid thickness (0.1m) and height
+            transform.z
+          )
         }
       },
       {

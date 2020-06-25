@@ -10,6 +10,8 @@ import { followingEye } from './modules/krakenEye'
 import { WearablesScanner } from './modules/scanner'
 import { Category } from './modules/wearables'
 import { placePlatforms } from './modules/platforms'
+import { addVoxels } from './voxels/voxelBuilder'
+import { addNFTs } from './galleries/galleryBuilder'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -30,7 +32,8 @@ addScreens()
 
 // BOOM BOX
 
-//// Sequencer Fountain
+// SEQUENCER FOUNTAIN
+
 addZenquencer(
   {
     position: new Vector3(285.4, 0.2, 287.2),
@@ -39,15 +42,19 @@ addZenquencer(
   sceneMessageBus
 )
 
-//// Mural
+// MURAL
 
-//addMural()
+// addMural()
 
-/// Voxel 3d editor
+/// VOXEL EDITOR
 
-//addVoxels()
+addVoxels()
 
-// Piano
+// NFT GALLERY
+
+addNFTs()
+
+// PIANO
 
 addPiano(
   new Transform({

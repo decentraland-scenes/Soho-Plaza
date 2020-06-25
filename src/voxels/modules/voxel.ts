@@ -2,7 +2,7 @@ import { Manager, Mode, materials, colors } from '../manager'
 import { pickedVoxelID, pickerMaterial } from './picker'
 import { changeVoxels } from './serverHandler'
 
-export const VOXEL_SIZE = 0.25
+export const VOXEL_SIZE = 0.5
 export const voxelsGroup: ComponentGroup = engine.getComponentGroup(Transform)
 export const voxels: Entity[] = [] // Stores all cubes in the scene
 

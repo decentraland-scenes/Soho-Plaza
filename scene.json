@@ -413,6 +413,17 @@
     ],
     "base": "72,-9"
   },
+  "spawnPoints": [
+    {
+      "name": "spawn1",
+      "default": true,
+      "position": {
+        "x": 82.5,
+        "y": 1,
+        "z": 285
+      }
+    }
+  ],
   "communications": {
     "type": "webrtc",
     "signalling": "https://signalling-01.decentraland.org"

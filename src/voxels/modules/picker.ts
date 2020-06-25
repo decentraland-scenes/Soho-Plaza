@@ -1,5 +1,6 @@
 import { Manager, colors } from '../manager'
 import { VOXEL_SIZE } from './voxel'
+import { baseGridHeight } from "./baseGrid"
 
 // Picker
 export const picker = new Entity()
@@ -63,9 +64,9 @@ engine.addEntity(fixedRayEntity)
 // Snaps the picker plane to discrete points on or halfway between the grid lines
 function pickerBase(raycastHitEntity: RaycastHitEntity) {
   picker.getComponent(Transform).rotation = Quaternion.Euler(90, 0, 0)
-  let x: number = Math.round(raycastHitEntity.hitPoint.x * 8) / 8
-  let z: number = Math.round(raycastHitEntity.hitPoint.z * 8) / 8
-  picker.getComponent(Transform).position.set(x, 0.11, z)
+  let x: number = Math.round(raycastHitEntity.hitPoint.x * 4) / 4
+  let z: number = Math.round(raycastHitEntity.hitPoint.z * 4) / 4
+  picker.getComponent(Transform).position.set(x, 0.11 + baseGridHeight, z)
   picker.getComponent(Transform).scale.setAll(VOXEL_SIZE)
 }
 

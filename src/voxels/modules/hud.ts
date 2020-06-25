@@ -23,9 +23,9 @@ export class HUD {
     this.addIcon.sourceWidth = 50
     this.addIcon.sourceHeight = 50
     this.addIcon.width = 18
-    this.addIcon.height = 19.98 // Compensate by 11.1% for aspect ratio issue
+    this.addIcon.height = 18
     this.addIcon.positionX = 0
-    this.addIcon.positionY = 15
+    this.addIcon.positionY = 11
     this.addIcon.isPointerBlocker = false
 
     // Subtract icon
@@ -33,9 +33,9 @@ export class HUD {
     this.subtractIcon.sourceWidth = 50
     this.subtractIcon.sourceHeight = 50
     this.subtractIcon.width = 18
-    this.subtractIcon.height = 19.98 // Compensate by 11.1% for aspect ratio issue
+    this.subtractIcon.height = 18 
     this.subtractIcon.positionX = 0
-    this.subtractIcon.positionY = 15
+    this.subtractIcon.positionY = 11
     this.subtractIcon.isPointerBlocker = false
     this.subtractIcon.visible = false
 
@@ -44,9 +44,9 @@ export class HUD {
     this.eyeDropIcon.sourceWidth = 50
     this.eyeDropIcon.sourceHeight = 50
     this.eyeDropIcon.width = 18
-    this.eyeDropIcon.height = 19.98 // Compensate by 11.1% for aspect ratio issue
+    this.eyeDropIcon.height = 18
     this.eyeDropIcon.positionX = 0
-    this.eyeDropIcon.positionY = 15
+    this.eyeDropIcon.positionY = 11
     this.eyeDropIcon.isPointerBlocker = false
     this.eyeDropIcon.visible = false
   }
