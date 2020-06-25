@@ -139,7 +139,9 @@ export class TwoWayPlatform extends Entity {
   }
 
   public up(): void {
+    if (this.isUp) return
     this.moving = true
+    this.animationDown.stop()
     this.animationUp.stop()
     this.animationUp.play()
     this.addComponentOrReplace(
@@ -151,7 +153,9 @@ export class TwoWayPlatform extends Entity {
   }
 
   public down(): void {
+    if (!this.isUp) return
     this.moving = true
+    this.animationUp.stop()
     this.animationDown.stop()
     this.animationDown.play()
     this.addComponentOrReplace(
@@ -175,16 +179,16 @@ export function placePlatforms() {
     'ElevatorDOWN_Action',
     'elevatorUp',
     'elevatorDown',
-    8000
+    6000
   )
 
   sceneMessageBus.on('elevatorUp', (e) => {
     elevator.up()
-    //topDoor.toggle(true)
+
     bottomDoor.toggle(false)
     log('elevator going up')
     topDoor.addComponentOrReplace(
-      new utils.Delay(8000, () => {
+      new utils.Delay(6000, () => {
         topDoor.toggle(true)
       })
     )
@@ -193,10 +197,10 @@ export function placePlatforms() {
   sceneMessageBus.on('elevatorDown', (e) => {
     elevator.down()
     topDoor.toggle(false)
-    //bottomDoor.toggle(false)
+
     log('elevator going down')
     bottomDoor.addComponentOrReplace(
-      new utils.Delay(8000, () => {
+      new utils.Delay(6000, () => {
         bottomDoor.toggle(true)
       })
     )
@@ -234,7 +238,7 @@ export function placePlatforms() {
   sceneMessageBus.on('callElevatorDown', () => {
     upButton.press()
     if (elevator.isUp) {
-      topDoor.toggle(true)
+      topDoor.toggle(false)
       elevator.down()
       upButton.addComponentOrReplace(
         new utils.Delay(6000, () => {

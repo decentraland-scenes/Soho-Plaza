@@ -1,7 +1,11 @@
+let invisibleMaterial = new Material()
+invisibleMaterial.albedoColor = new Color4(0, 0, 0, 0)
+
 export default class Door extends Entity {
   isOpen: boolean = false
   openAnim: AnimationState
   closeAnim: AnimationState
+  invisibleWall: BoxShape
   //   openSound = new AudioClip('sounds/open.mp3')
   //   closeSound = new AudioClip('sounds/close.mp3')
 
@@ -10,7 +14,9 @@ export default class Door extends Entity {
     pos: TranformConstructorArgs,
     openAnim: string,
     closeAnim: string,
-    open?: boolean
+    open?: boolean,
+    invisibleWall?: boolean,
+    invisibleWallTransform?: TranformConstructorArgs
   ) {
     super()
     this.addComponent(new Transform(pos))
@@ -28,6 +34,17 @@ export default class Door extends Entity {
     if (open) {
       this.isOpen = open
       this.openAnim.play()
+    }
+
+    if (invisibleWall == true) {
+      let invisibleWallEntity = new Entity()
+      invisibleWallEntity.addComponent(new Transform(invisibleWallTransform))
+      this.invisibleWall = new BoxShape()
+      invisibleWallEntity.addComponent(this.invisibleWall)
+      this.invisibleWall.isPointerBlocker = true
+      this.invisibleWall.withCollisions = true
+      invisibleWallEntity.addComponent(invisibleMaterial)
+      engine.addEntity(invisibleWallEntity)
     }
   }
 
@@ -47,5 +64,10 @@ export default class Door extends Entity {
     this.closeAnim.stop()
     const clip = value ? this.openAnim : this.closeAnim
     clip.play()
+
+    if (this.invisibleWall) {
+      this.invisibleWall.isPointerBlocker = !value
+      this.invisibleWall.withCollisions = !value
+    }
   }
 }

@@ -12,6 +12,8 @@ import { Category } from './modules/wearables'
 import { placePlatforms } from './modules/platforms'
 import { addVoxels } from './voxels/voxelBuilder'
 import { addNFTs } from './galleries/galleryBuilder'
+import Door from './modules/door'
+import utils from '../node_modules/decentraland-ecs-utils/index'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -104,16 +106,39 @@ let scanner = new WearablesScanner(
   }
 )
 
+let capsuleDoor = new Door(
+  new GLTFShape('models/dj-console/door_capsule.glb'),
+  {
+    rotation: Quaternion.Euler(0, 0, 0),
+    position: new Vector3(160, 0, 160),
+  },
+  'DoorOPEN_Action',
+  'DoorCLOSE_Action',
+  false,
+  true,
+  {
+    position: new Vector3(195, 1, 262),
+    scale: new Vector3(4, 6, 1),
+  }
+)
+
 sceneMessageBus.on('scanning', () => {
   scanner.scan()
 })
 
 sceneMessageBus.on('scanapprove', () => {
   scanner.approve()
+  capsuleDoor.toggle(true)
+  capsuleDoor.addComponentOrReplace(
+    new utils.Delay(5000, () => {
+      capsuleDoor.toggle(false)
+    })
+  )
 })
 
 sceneMessageBus.on('scanreject', () => {
   scanner.reject()
+  capsuleDoor.toggle(false)
 })
 
 // ELEVATOR AND OTHER PLATFORMS
