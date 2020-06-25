@@ -9,7 +9,8 @@ import { addLinks } from './modules/externalLinks'
 import { followingEye } from './modules/krakenEye'
 import { WearablesScanner } from './modules/scanner'
 import { Category } from './modules/wearables'
-import { addVoxels } from './voxels/game'
+import { addVoxels } from './voxels/voxelBuilder'
+import { addNFTs } from './galleries/galleryBuilder'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -30,7 +31,7 @@ addScreens()
 
 // BOOM BOX
 
-//// Sequencer Fountain
+// SEQUENCER FOUNTAIN
 
 addZenquencer(
   {
@@ -40,15 +41,19 @@ addZenquencer(
   sceneMessageBus
 )
 
-//// Mural
+// MURAL
 
 // addMural()
 
-/// Voxel 3d editor
+/// VOXEL EDITOR
 
 addVoxels()
 
-// Piano
+// NFT GALLERY
+
+addNFTs()
+
+// PIANO
 
 addPiano(
   new Transform({
