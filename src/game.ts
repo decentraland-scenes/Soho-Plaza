@@ -24,24 +24,25 @@ addBuildings()
 
 // VIDEO SCREENS
 
-// addScreens()
+addScreens()
 
 // DANCE FLOOR
 
 // BOOM BOX
 
 //// Sequencer Fountain
-// addZenquencer(
-//   {
-//     position: new Vector3(285.4, 0.2, 287.2),
-//     rotation: Quaternion.Euler(0, 90, 0),
-//   },
-//   sceneMessageBus
-// )
+
+addZenquencer(
+  {
+    position: new Vector3(285.4, 0.2, 287.2),
+    rotation: Quaternion.Euler(0, 90, 0),
+  },
+  sceneMessageBus
+)
 
 //// Mural
 
-//addMural()
+// addMural()
 
 /// Voxel 3d editor
 
@@ -49,12 +50,12 @@ addVoxels()
 
 // Piano
 
-// addPiano(
-//   new Transform({
-//     position: new Vector3(230, 0, 22),
-//   }),
-//   sceneMessageBus
-// )
+addPiano(
+  new Transform({
+    position: new Vector3(230, 0, 22),
+  }),
+  sceneMessageBus
+)
 
 // Voxel fountain
 
@@ -62,7 +63,7 @@ addVoxels()
 
 // Links to partners
 
-// addLinks()
+addLinks()
 
 // Kraken following eye
 

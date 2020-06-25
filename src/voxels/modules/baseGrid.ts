@@ -27,7 +27,7 @@ export function buildBaseGrid() {
   baseGrid.addComponent(resources.models.baseGrid)
   baseGrid.addComponent(
     new Transform({
-      position: new Vector3(211, 0.1, 142),
+      position: new Vector3(218.835, 1.37, 153.812),
     })
   )
   baseGrid.addComponent(
