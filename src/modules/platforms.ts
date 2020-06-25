@@ -1,5 +1,6 @@
 import utils from '../../node_modules/decentraland-ecs-utils/index'
 import { sceneMessageBus } from './serverHandler'
+import Door from './door'
 
 /// Reusable class for all platforms
 export class Platform extends Entity {
@@ -175,13 +176,41 @@ export function placePlatforms() {
 
   sceneMessageBus.on('elevatorUp', (e) => {
     elevator.up()
+    topDoor.toggle(false)
+    bottomDoor.toggle(false)
     log('elevator going up')
+    topDoor.addComponentOrReplace(
+      new utils.Delay(8000, () => {
+        topDoor.toggle(true)
+      })
+    )
   })
 
   sceneMessageBus.on('elevatorDown', (e) => {
     elevator.down()
+    topDoor.toggle(false)
+    bottomDoor.toggle(false)
     log('elevator going down')
+    bottomDoor.addComponentOrReplace(
+      new utils.Delay(8000, () => {
+        bottomDoor.toggle(true)
+      })
+    )
   })
+
+  let topDoor = new Door(
+    new GLTFShape('models/elevator/DoorFirstFloor.glb'),
+    { rotation: Quaternion.Euler(0, 0, 0), position: new Vector3(160, 0, 160) },
+    'DoorElevatorFirstFloorOPEN_Action',
+    'DoorElevatorFirstFloorCLOSE_Action'
+  )
+
+  let bottomDoor = new Door(
+    new GLTFShape('models/elevator/DoorBottomFloor.glb'),
+    { rotation: Quaternion.Euler(0, 0, 0), position: new Vector3(160, 0, 160) },
+    'DoorBottomElevatorOPEN_Action',
+    'DoorBottomElevatorCLOSE_Action'
+  )
 
   // doors
   //
