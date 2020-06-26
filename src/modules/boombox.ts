@@ -228,9 +228,12 @@ sceneMessageBus.on('boomboxOff', (e) => {
     }
     boombox.toggle(false)
     boombox.songPlaying = 0
+
     if (boombox.hasComponent(AudioSource)) {
+      boombox.addComponentOrReplace(
+        new AudioSource(new AudioClip(boombox.music1))
+      )
       boombox.getComponent(AudioSource).playing = false
-      boombox.removeComponent(AudioSource)
     }
   }
 })
