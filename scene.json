@@ -415,12 +415,59 @@
   },
   "spawnPoints": [
     {
-      "name": "spawn1",
+      "name": "museumA",
       "default": true,
       "position": {
-        "x": 82.5,
+        "x": [105, 107],
+        "y": 1,
+        "z": [286, 288]
+      },
+      "cameraTarget": {
+        "x": 81,
         "y": 1,
         "z": 285
+      }
+    },
+    {
+      "name": "museumB",
+      "default": true,
+      "position": {
+        "x": [46, 48],
+        "y": 1,
+        "z": [134, 136]
+      },
+      "cameraTarget": {
+        "x": 47,
+        "y": 1,
+        "z": 140
+      }
+    },
+    {
+      "name": "fountain",
+      "default": true,
+      "position": {
+        "x": [190, 192],
+        "y": 1,
+        "z": [54, 56]
+      },
+      "cameraTarget": {
+        "x": 208,
+        "y": 1,
+        "z": 70
+      }
+    },
+    {
+      "name": "cave",
+      "default": true,
+      "position": {
+        "x": [245, 247],
+        "y": 1,
+        "z": [226, 228]
+      },
+      "cameraTarget": {
+        "x": 273,
+        "y": 1,
+        "z": 249
       }
     }
   ],
