@@ -9,7 +9,6 @@ export function createFountain(
   let rings: Ring[] = []
 
   let base = new Entity()
-  //base.addComponent(new GLTFShape('models/fountain/Base.glb'))
   base.addComponent(new Transform(position))
   engine.addEntity(base)
 
@@ -64,7 +63,7 @@ export function createFountain(
   rings.push(ring4)
 
   let cyanConsole = new Console(
-    { position: new Vector3(-23, -0.1, 0) },
+    { position: new Vector3(-23, 0.1, 0) },
     base,
     'models/buttons/Cyan/Base/BaseCyan.glb',
     3,
@@ -79,7 +78,7 @@ export function createFountain(
 
   let redConsole = new Console(
     {
-      position: new Vector3(0, -0.1, 23),
+      position: new Vector3(0, 0.1, 23),
       rotation: Quaternion.Euler(0, 90, 0),
     },
     base,
@@ -96,7 +95,7 @@ export function createFountain(
 
   let violetConsole = new Console(
     {
-      position: new Vector3(23, -0.1, 0),
+      position: new Vector3(23, 0.1, 0),
       rotation: Quaternion.Euler(0, 180, 0),
     },
     base,
@@ -113,7 +112,7 @@ export function createFountain(
 
   let yellowConsole = new Console(
     {
-      position: new Vector3(0, -0.1, -23),
+      position: new Vector3(0, 0.1, -23),
       rotation: Quaternion.Euler(0, 270, 0),
     },
     base,
