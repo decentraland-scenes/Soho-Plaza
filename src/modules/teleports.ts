@@ -10,10 +10,8 @@ export enum Locations {
   MAKERS = '-56,99',
   PIXELCHAIN = '51,96',
   SUPERRARE = '55,94',
-  BOOMBOX = '',
+  BOOMBOX = '25,-127',
   FEVER = '',
-  KNOWNORIGIN = '',
-  DODI = '',
 }
 
 export class Teleport extends Entity {
@@ -87,7 +85,7 @@ export function placeTeleports() {
 
   // voxel editor
   let teleportPos5 = new Transform({
-    position: new Vector3(267.99, 0.8, 182.64),
+    position: new Vector3(267.99, 0.45, 182.64),
     rotation: Quaternion.Euler(0, 90, 0),
   })
 
