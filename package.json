@@ -14,7 +14,8 @@
     "decentraland-ecs": "^6.4.10-20200622161814.commit-2ea490a"
   },
   "dependencies": {
+    "decentraland-crypto-utils": "git+https://github.com/HPrivakos/decentraland-crypto-utils.git",
     "decentraland-ecs-utils": "^1.1.4",
-    "decentraland-crypto-utils": "git+https://github.com/HPrivakos/decentraland-crypto-utils.git"
+    "eth-connect": "^4.0.2"
   }
 }

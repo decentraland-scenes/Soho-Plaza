@@ -13,6 +13,8 @@ import { addNFTs } from './galleries/galleryBuilder'
 import utils from '../node_modules/decentraland-ecs-utils/index'
 import { addDanceFloor } from './modules/danceFloor'
 import { placeTeleports } from './modules/teleports'
+import { GuestBook } from './guestbook'
+import { Dispenser } from './dispenser'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -85,3 +87,50 @@ placePlatforms()
 // Teleports
 
 placeTeleports()
+
+// GUESTBOOK
+
+let guestBook = new GuestBook(
+  {
+    position: new Vector3(97, 0.2, 262),
+    rotation: Quaternion.Euler(0, 150, 0),
+  },
+  'soho'
+)
+
+// POAP BOOTH
+
+let POAPBooth = new Dispenser(
+  {
+    position: new Vector3(104, 0, 257),
+    rotation: Quaternion.Euler(0, 80, 0),
+  },
+  'soho'
+)
+
+// MAKE POAP BOOTH MULTIPLAYER
+
+sceneMessageBus.on('activatePoap', () => {
+  POAPBooth.activate()
+})
+
+// POAP BANNER
+
+let POAPBanner = new Entity()
+POAPBanner.addComponent(
+  new Transform({
+    position: new Vector3(99, 0, 260),
+    rotation: Quaternion.Euler(0, 60, 0),
+  })
+)
+POAPBanner.addComponent(new GLTFShape('models/poap/POAP_Banner.glb'))
+engine.addEntity(POAPBanner)
+
+POAPBanner.addComponent(
+  new OnPointerDown(
+    (e) => {
+      openExternalURL('https://www.poap.xyz/')
+    },
+    { hoverText: 'Learn More' }
+  )
+)
