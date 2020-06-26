@@ -34,7 +34,7 @@ export class Button extends Entity {
 export class Switch extends Entity {
   onAnim: AnimationState
   offAnim: AnimationState
-  clicked: boolean = false
+  isClicked: boolean = false
   constructor(
     model: string,
     transform: TranformConstructorArgs,
@@ -60,17 +60,18 @@ export class Switch extends Entity {
     this.offAnim = new AnimationState(offAnim, { looping: false })
     this.getComponent(Animator).addClip(this.onAnim)
     this.getComponent(Animator).addClip(this.offAnim)
+    this.onAnim.stop()
   }
 
   public toggle(value: boolean): void {
-    if (value) {
-      this.offAnim.stop()
-      this.offAnim.play()
-    } else {
-      this.onAnim.stop()
-      this.onAnim.play()
-    }
-    this.clicked = value
+    if (this.isClicked === value) return
+    this.isClicked = value
+
+    this.onAnim.stop()
+    this.offAnim.stop()
+    const clip = value ? this.onAnim : this.offAnim
+    clip.play()
+
     this.getComponent(AudioSource).playOnce()
   }
 }
