@@ -106,6 +106,16 @@ engine.addEntity(teleports)
   )
   engine.addEntity(skate_park)
 
+  //add skate_01
+let skate_01 = new Entity()
+skate_01.addComponent(new GLTFShape("models/skate_01.glb"))
+skate_01.addComponent(new Transform({
+	position: new Vector3(160, 0, 160),
+	rotation: Quaternion.Euler(0, 0, 0)
+}
+))
+engine.addEntity(skate_01)
+
   // VOXEL AREA
 
   //add kraken
