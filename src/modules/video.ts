@@ -65,7 +65,7 @@ export function addScreens() {
     },
     { position: new Vector3(28.8, 5, 75) },
     new Vector3(75, 14, 80),
-    'https://theuniverse.club/live/genesisplaza/index.m3u8'
+    'https://theuniverse.club/live/sohoplaza/index.m3u8'
   )
 
   const screen2 = new VideoScreen(
@@ -76,6 +76,17 @@ export function addScreens() {
     },
     { position: new Vector3(40, 5, 282) },
     new Vector3(75, 14, 80),
-    'https://theuniverse.club/live/genesisplaza/index.m3u8'
+    'https://theuniverse.club/live/sohoplaza/index.m3u8'
+  )
+
+  const screen3 = new VideoScreen(
+    {
+      position: new Vector3(174.72, 20, 159.3),
+      rotation: Quaternion.Euler(0, 55, 0), //new Quaternion(-0.7259005, 0.2195348, -0.5940643, 0.2682545),
+      scale: new Vector3(10 * 0.8, 5.6 * 0.8, 10 * 0.8),
+    },
+    { position: new Vector3(145, 5, 137.9) },
+    new Vector3(110, 14, 120),
+    'https://video.dcl.guru/live/dclcoretv/index.m3u8'
   )
 }
