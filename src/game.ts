@@ -13,6 +13,7 @@ import { addNFTs } from './galleries/galleryBuilder'
 import utils from '../node_modules/decentraland-ecs-utils/index'
 import { addDanceFloor } from './modules/danceFloor'
 import { placeTeleports } from './modules/teleports'
+import { buildWall } from './pixelchain-wall/buidWall'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -47,7 +48,7 @@ addZenquencer(
 
 // MURAL
 
-// addMural()
+buildWall()
 
 /// VOXEL EDITOR
 
