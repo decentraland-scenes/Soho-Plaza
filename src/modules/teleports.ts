@@ -119,10 +119,10 @@ export function placeTeleports() {
     rotation: Quaternion.Euler(0, 135, 0),
   })
 
-  // kraken South
+  // rocket
   let teleportPos10 = new Transform({
-    position: new Vector3(175.89, 2.7, 175.11),
-    rotation: Quaternion.Euler(0, 45, 0),
+    position: new Vector3(306.2, 3.3, 160.8),
+    rotation: Quaternion.Euler(0, 0, 0),
   })
 
   //   let teleportPos11 = new Transform({
