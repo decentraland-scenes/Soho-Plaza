@@ -84,9 +84,9 @@ export async function getLastMessage(location: string): Promise<string> {
 
 // change text displayed in the plaza
 export async function updateMessageBoards() {
-  log('checking boards')
+  //log('checking boards')
   let discoMessage = await getLastMessage('disco')
-  log('setting Artichoke message : ', discoMessage)
+  //log('setting Artichoke message : ', discoMessage)
   if (discoMessage) {
     setDiscoText(discoMessage)
   }

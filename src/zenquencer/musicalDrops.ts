@@ -25,7 +25,7 @@ export class MusicalDrop extends Entity {
   ) {
     super()
     engine.addEntity(this)
-    //this.addComponent(shape)
+
     this.addComponent(transform)
 
     // note ID

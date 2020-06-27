@@ -289,6 +289,15 @@ export function placePlatforms() {
     'skate1'
   )
 
+  let arrow1 = new Entity()
+  arrow1.addComponent(new GLTFShape('models/Arrow.glb'))
+  arrow1.addComponent(
+    new Transform({
+      position: new Vector3(142.3, 9.5, 215.8),
+    })
+  )
+  engine.addEntity(arrow1)
+
   let skate01IsMoving: boolean = false
 
   sceneMessageBus.on('skate1', (e) => {
@@ -296,11 +305,14 @@ export function placePlatforms() {
       log('skate was already moving')
       return
     }
+    arrow1.getComponent(GLTFShape).visible = false
     skate01IsMoving = true
     skate_01.activate()
     skate_01.addComponentOrReplace(
-      new utils.Delay(2000, () => {
+      new utils.Delay((2000 / 28) * 1000, () => {
         skate01IsMoving = false
+        arrow1.getComponent(GLTFShape).visible = true
+        //skate_01.animation.stop()
       })
     )
   })
@@ -318,18 +330,30 @@ export function placePlatforms() {
     'skate2'
   )
 
+  let arrow2 = new Entity()
+  arrow2.addComponent(new GLTFShape('models/Arrow.glb'))
+  arrow2.addComponent(
+    new Transform({
+      position: new Vector3(142.3, 5, 158.8),
+    })
+  )
+  engine.addEntity(arrow2)
+
   let skate02IsMoving: boolean = false
 
   sceneMessageBus.on('skate2', (e) => {
-    if (skate01IsMoving) {
+    if (skate02IsMoving) {
       log('skate was already moving')
       return
     }
+    arrow2.getComponent(GLTFShape).visible = false
     skate02IsMoving = true
     skate_02.activate()
     skate_02.addComponentOrReplace(
-      new utils.Delay(1200, () => {
+      new utils.Delay((1200 / 28) * 1000, () => {
         skate02IsMoving = false
+        arrow2.getComponent(GLTFShape).visible = true
+        //skate_02.animation.stop()
       })
     )
   })
