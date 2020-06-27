@@ -103,19 +103,25 @@ export function placeTeleports() {
 
   // minicapsule 1
   let teleportPos8 = new Transform({
-    position: new Vector3(144.88, 0.45, 293.19),
+    position: new Vector3(144.88, 0.6, 293.19),
     rotation: Quaternion.Euler(0, 135, 0),
   })
 
   // minicapsule 2
   let teleportPos9 = new Transform({
-    position: new Vector3(169.92, 0.3, 307),
+    position: new Vector3(169.92, 0.5, 307),
+    rotation: Quaternion.Euler(0, 135, 0),
+  })
+
+  // minicapsule 4
+  let teleportPos11 = new Transform({
+    position: new Vector3(152.23, 0.5, 305.87),
     rotation: Quaternion.Euler(0, 135, 0),
   })
 
   // kraken South
   let teleportPos10 = new Transform({
-    position: new Vector3(175.89, 2, 175.11),
+    position: new Vector3(175.89, 2.7, 175.11),
     rotation: Quaternion.Euler(0, 45, 0),
   })
 
@@ -180,10 +186,16 @@ export function placeTeleports() {
       transform: teleportPos9,
     },
     {
+      name: 'So You',
+      model: new GLTFShape('models/teleports/SoYou.glb'),
+      location: Locations.SOYOU,
+      transform: teleportPos10,
+    },
+    {
       name: 'Boombox Club',
       model: new GLTFShape('models/teleports/Boombox-club.glb'),
       location: Locations.BOOMBOX,
-      transform: teleportPos10,
+      transform: teleportPos11,
     },
 
     // SO YOU  teleportPos11

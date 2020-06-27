@@ -65,7 +65,7 @@ addNFTs()
 
 addPiano(
   new Transform({
-    position: new Vector3(230, 0, 22),
+    position: new Vector3(229.7, 0, 26.03),
   }),
   sceneMessageBus
 )
@@ -93,5 +93,5 @@ let water = new AmbientSound(
   'sounds/ambient/water2.mp3',
   0,
   true,
-  0.3
+  0.5
 )
