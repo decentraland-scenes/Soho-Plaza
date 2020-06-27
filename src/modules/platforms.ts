@@ -304,4 +304,116 @@ export function placePlatforms() {
       })
     )
   })
+
+  //add Car_Body
+  let Car_Body = new Entity()
+  Car_Body.addComponent(new GLTFShape('models/Car_Body.glb'))
+  Car_Body.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(Car_Body)
+  Car_Body.addComponent(new Animator())
+  let carAnim = new AnimationState('Action.002', {
+    looping: false,
+  })
+  Car_Body.getComponent(Animator).addClip(carAnim)
+
+  //add WheelBack_L
+  let WheelBack_L = new Entity()
+  WheelBack_L.addComponent(new GLTFShape('models/WheelBack_L.glb'))
+  WheelBack_L.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(WheelBack_L)
+  WheelBack_L.addComponent(new Animator())
+  let WheelBack_LAnim = new AnimationState('Action.006', {
+    looping: false,
+  })
+  WheelBack_L.getComponent(Animator).addClip(WheelBack_LAnim)
+
+  //add WheelBack_R
+  let WheelBack_R = new Entity()
+  WheelBack_R.addComponent(new GLTFShape('models/WheelBack_R.glb'))
+  WheelBack_R.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(WheelBack_R)
+  WheelBack_R.addComponent(new Animator())
+  let WheelBack_RAnim = new AnimationState('Action.007', {
+    looping: false,
+  })
+  WheelBack_R.getComponent(Animator).addClip(WheelBack_RAnim)
+
+  //add WheelFront_L
+  let WheelFront_L = new Entity()
+  WheelFront_L.addComponent(new GLTFShape('models/WheelFront_L.glb'))
+  WheelFront_L.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(WheelFront_L)
+  WheelFront_L.addComponent(new Animator())
+  let WheelFront_LAnim = new AnimationState('Action.005', {
+    looping: false,
+  })
+  WheelFront_L.getComponent(Animator).addClip(WheelFront_LAnim)
+
+  //add WheelFront_R
+  let WheelFront_R = new Entity()
+  WheelFront_R.addComponent(new GLTFShape('models/WheelFront_R.glb'))
+  WheelFront_R.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(WheelFront_R)
+  WheelFront_R.addComponent(new Animator())
+  let WheelFront_RAnim = new AnimationState('Action.001', {
+    looping: false,
+  })
+  WheelFront_R.getComponent(Animator).addClip(WheelFront_RAnim)
+
+  const totalCarTime: number = 100
+
+  class CarTimerSystem implements ISystem {
+    carTimer: number = totalCarTime
+    update(dt: number) {
+      this.carTimer -= dt
+      if (this.carTimer < 0) {
+        this.carTimer = totalCarTime
+        resetCarAnims()
+        log('RESETTING CARS')
+      }
+    }
+  }
+
+  engine.addSystem(new CarTimerSystem())
+
+  function resetCarAnims() {
+    carAnim.stop()
+    WheelFront_LAnim.stop()
+    WheelFront_RAnim.stop()
+    WheelBack_LAnim.stop()
+    WheelBack_RAnim.stop()
+
+    carAnim.play()
+    WheelFront_LAnim.play()
+    WheelFront_RAnim.play()
+    WheelBack_LAnim.play()
+    WheelBack_RAnim.play()
+  }
+
+  sceneMessageBus.emit('getcartime', {})
 }
