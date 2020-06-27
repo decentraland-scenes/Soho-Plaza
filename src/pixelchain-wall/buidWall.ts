@@ -60,35 +60,31 @@ export function buildWall() {
   // and also users don't see the mural loading for too much time
 
   // Initialize the entities. We are using a timeout so the scene can load first
-  setTimeout(2000, () => {
+  //   setTimeout(2000, () => {
+  //     // mural.startLoading()
+  //     // palette.startLoading()
+  //     // palette.startSyncing()
+  //     // mural.startSyncing()
+  //     // palette.show()
+  //     // mural.show()
+  //     // button.show()
+  //   })
+
+  addOneTimeTrigger(new Vector3(251, 0.45, 20), new Vector3(60, 8, 60), () => {
     mural.startLoading()
     palette.startLoading()
     palette.startSyncing()
-
-    // mural.startSyncing()
-    // palette.show()
-
-    // mural.show()
-    // button.show()
   })
 
   // When the user enters the scene, it starts syncing with other players
-  addOneTimeTrigger(
-    new Vector3(250.89, 0.45, 20),
-    new Vector3(50, 8, 46),
-    () => {
-      mural.startSyncing()
-      palette.show()
-    }
-  )
+  addOneTimeTrigger(new Vector3(251, 0.45, 20), new Vector3(50, 8, 46), () => {
+    mural.startSyncing()
+    palette.show()
+  })
 
   // When the user is near the mural, then start showing it
-  addOneTimeTrigger(
-    new Vector3(250.89, 0.45, 14),
-    new Vector3(45, 8, 20),
-    () => {
-      mural.show()
-      button.show() // Show the button here, to make sure that everything is synced
-    }
-  )
+  addOneTimeTrigger(new Vector3(251, 0.45, 14), new Vector3(45, 8, 20), () => {
+    mural.show()
+    button.show() // Show the button here, to make sure that everything is synced
+  })
 }

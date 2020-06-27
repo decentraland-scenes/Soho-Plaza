@@ -276,7 +276,7 @@ export function placePlatforms() {
     } else topDoor.toggle(true)
   })
 
-  //add skate_01
+  // Skateboard 1
   let skate_01 = new Platform(
     new GLTFShape('models/skate_01.glb'),
     {
@@ -299,121 +299,150 @@ export function placePlatforms() {
     skate01IsMoving = true
     skate_01.activate()
     skate_01.addComponentOrReplace(
-      new utils.Delay(10000, () => {
+      new utils.Delay(2000, () => {
         skate01IsMoving = false
       })
     )
   })
 
-  //add Car_Body
-  let Car_Body = new Entity()
-  Car_Body.addComponent(new GLTFShape('models/Car_Body.glb'))
-  Car_Body.addComponent(
-    new Transform({
+  // Skateboard 2
+  let skate_02 = new Platform(
+    new GLTFShape('models/skate_02.glb'),
+    {
       position: new Vector3(160, 0, 160),
       rotation: Quaternion.Euler(0, 0, 0),
-    })
+    },
+    { position: new Vector3(142.25, 5, 158.8) },
+    new Vector3(0.75, 2, 1.5),
+    'Skate_02_Action',
+    'skate2'
   )
-  engine.addEntity(Car_Body)
-  Car_Body.addComponent(new Animator())
-  let carAnim = new AnimationState('Action.002', {
-    looping: false,
-  })
-  Car_Body.getComponent(Animator).addClip(carAnim)
 
-  //add WheelBack_L
-  let WheelBack_L = new Entity()
-  WheelBack_L.addComponent(new GLTFShape('models/WheelBack_L.glb'))
-  WheelBack_L.addComponent(
-    new Transform({
-      position: new Vector3(160, 0, 160),
-      rotation: Quaternion.Euler(0, 0, 0),
-    })
-  )
-  engine.addEntity(WheelBack_L)
-  WheelBack_L.addComponent(new Animator())
-  let WheelBack_LAnim = new AnimationState('Action.006', {
-    looping: false,
-  })
-  WheelBack_L.getComponent(Animator).addClip(WheelBack_LAnim)
+  let skate02IsMoving: boolean = false
 
-  //add WheelBack_R
-  let WheelBack_R = new Entity()
-  WheelBack_R.addComponent(new GLTFShape('models/WheelBack_R.glb'))
-  WheelBack_R.addComponent(
-    new Transform({
-      position: new Vector3(160, 0, 160),
-      rotation: Quaternion.Euler(0, 0, 0),
-    })
-  )
-  engine.addEntity(WheelBack_R)
-  WheelBack_R.addComponent(new Animator())
-  let WheelBack_RAnim = new AnimationState('Action.007', {
-    looping: false,
-  })
-  WheelBack_R.getComponent(Animator).addClip(WheelBack_RAnim)
-
-  //add WheelFront_L
-  let WheelFront_L = new Entity()
-  WheelFront_L.addComponent(new GLTFShape('models/WheelFront_L.glb'))
-  WheelFront_L.addComponent(
-    new Transform({
-      position: new Vector3(160, 0, 160),
-      rotation: Quaternion.Euler(0, 0, 0),
-    })
-  )
-  engine.addEntity(WheelFront_L)
-  WheelFront_L.addComponent(new Animator())
-  let WheelFront_LAnim = new AnimationState('Action.005', {
-    looping: false,
-  })
-  WheelFront_L.getComponent(Animator).addClip(WheelFront_LAnim)
-
-  //add WheelFront_R
-  let WheelFront_R = new Entity()
-  WheelFront_R.addComponent(new GLTFShape('models/WheelFront_R.glb'))
-  WheelFront_R.addComponent(
-    new Transform({
-      position: new Vector3(160, 0, 160),
-      rotation: Quaternion.Euler(0, 0, 0),
-    })
-  )
-  engine.addEntity(WheelFront_R)
-  WheelFront_R.addComponent(new Animator())
-  let WheelFront_RAnim = new AnimationState('Action.001', {
-    looping: false,
-  })
-  WheelFront_R.getComponent(Animator).addClip(WheelFront_RAnim)
-
-  const totalCarTime: number = 100
-
-  class CarTimerSystem implements ISystem {
-    carTimer: number = totalCarTime
-    update(dt: number) {
-      this.carTimer -= dt
-      if (this.carTimer < 0) {
-        this.carTimer = totalCarTime
-        resetCarAnims()
-        log('RESETTING CARS')
-      }
+  sceneMessageBus.on('skate2', (e) => {
+    if (skate01IsMoving) {
+      log('skate was already moving')
+      return
     }
-  }
+    skate02IsMoving = true
+    skate_02.activate()
+    skate_02.addComponentOrReplace(
+      new utils.Delay(1200, () => {
+        skate02IsMoving = false
+      })
+    )
+  })
 
-  engine.addSystem(new CarTimerSystem())
+  //   //add Car_Body
+  //   let Car_Body = new Entity()
+  //   Car_Body.addComponent(new GLTFShape('models/Car_Body.glb'))
+  //   Car_Body.addComponent(
+  //     new Transform({
+  //       position: new Vector3(160, 0, 160),
+  //       rotation: Quaternion.Euler(0, 0, 0),
+  //     })
+  //   )
+  //   engine.addEntity(Car_Body)
+  //   Car_Body.addComponent(new Animator())
+  //   let carAnim = new AnimationState('Action.002', {
+  //     looping: false,
+  //   })
+  //   Car_Body.getComponent(Animator).addClip(carAnim)
 
-  function resetCarAnims() {
-    carAnim.stop()
-    WheelFront_LAnim.stop()
-    WheelFront_RAnim.stop()
-    WheelBack_LAnim.stop()
-    WheelBack_RAnim.stop()
+  //   //add WheelBack_L
+  //   let WheelBack_L = new Entity()
+  //   WheelBack_L.addComponent(new GLTFShape('models/WheelBack_L.glb'))
+  //   WheelBack_L.addComponent(
+  //     new Transform({
+  //       position: new Vector3(160, 0, 160),
+  //       rotation: Quaternion.Euler(0, 0, 0),
+  //     })
+  //   )
+  //   engine.addEntity(WheelBack_L)
+  //   WheelBack_L.addComponent(new Animator())
+  //   let WheelBack_LAnim = new AnimationState('Action.006', {
+  //     looping: false,
+  //   })
+  //   WheelBack_L.getComponent(Animator).addClip(WheelBack_LAnim)
 
-    carAnim.play()
-    WheelFront_LAnim.play()
-    WheelFront_RAnim.play()
-    WheelBack_LAnim.play()
-    WheelBack_RAnim.play()
-  }
+  //   //add WheelBack_R
+  //   let WheelBack_R = new Entity()
+  //   WheelBack_R.addComponent(new GLTFShape('models/WheelBack_R.glb'))
+  //   WheelBack_R.addComponent(
+  //     new Transform({
+  //       position: new Vector3(160, 0, 160),
+  //       rotation: Quaternion.Euler(0, 0, 0),
+  //     })
+  //   )
+  //   engine.addEntity(WheelBack_R)
+  //   WheelBack_R.addComponent(new Animator())
+  //   let WheelBack_RAnim = new AnimationState('Action.007', {
+  //     looping: false,
+  //   })
+  //   WheelBack_R.getComponent(Animator).addClip(WheelBack_RAnim)
 
-  sceneMessageBus.emit('getcartime', {})
+  //   //add WheelFront_L
+  //   let WheelFront_L = new Entity()
+  //   WheelFront_L.addComponent(new GLTFShape('models/WheelFront_L.glb'))
+  //   WheelFront_L.addComponent(
+  //     new Transform({
+  //       position: new Vector3(160, 0, 160),
+  //       rotation: Quaternion.Euler(0, 0, 0),
+  //     })
+  //   )
+  //   engine.addEntity(WheelFront_L)
+  //   WheelFront_L.addComponent(new Animator())
+  //   let WheelFront_LAnim = new AnimationState('Action.005', {
+  //     looping: false,
+  //   })
+  //   WheelFront_L.getComponent(Animator).addClip(WheelFront_LAnim)
+
+  //   //add WheelFront_R
+  //   let WheelFront_R = new Entity()
+  //   WheelFront_R.addComponent(new GLTFShape('models/WheelFront_R.glb'))
+  //   WheelFront_R.addComponent(
+  //     new Transform({
+  //       position: new Vector3(160, 0, 160),
+  //       rotation: Quaternion.Euler(0, 0, 0),
+  //     })
+  //   )
+  //   engine.addEntity(WheelFront_R)
+  //   WheelFront_R.addComponent(new Animator())
+  //   let WheelFront_RAnim = new AnimationState('Action.001', {
+  //     looping: false,
+  //   })
+  //   WheelFront_R.getComponent(Animator).addClip(WheelFront_RAnim)
+
+  //   const totalCarTime: number = 100
+
+  //   class CarTimerSystem implements ISystem {
+  //     carTimer: number = totalCarTime
+  //     update(dt: number) {
+  //       this.carTimer -= dt
+  //       if (this.carTimer < 0) {
+  //         this.carTimer = totalCarTime
+  //         resetCarAnims()
+  //         log('RESETTING CARS')
+  //       }
+  //     }
+  //   }
+
+  //   engine.addSystem(new CarTimerSystem())
+
+  //   function resetCarAnims() {
+  //     carAnim.stop()
+  //     WheelFront_LAnim.stop()
+  //     WheelFront_RAnim.stop()
+  //     WheelBack_LAnim.stop()
+  //     WheelBack_RAnim.stop()
+
+  //     carAnim.play()
+  //     WheelFront_LAnim.play()
+  //     WheelFront_RAnim.play()
+  //     WheelBack_LAnim.play()
+  //     WheelBack_RAnim.play()
+  //   }
+
+  //   sceneMessageBus.emit('getcartime', {})
 }

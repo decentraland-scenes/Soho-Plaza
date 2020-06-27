@@ -81,12 +81,12 @@ export function addScreens() {
 
   const screen3 = new VideoScreen(
     {
-      position: new Vector3(174.72, 20, 159.3),
-      rotation: Quaternion.Euler(0, 55, 0), //new Quaternion(-0.7259005, 0.2195348, -0.5940643, 0.2682545),
+      position: new Vector3(165.17, 6.4, 83),
+      rotation: Quaternion.Euler(0, -90, 0), //new Quaternion(-0.7259005, 0.2195348, -0.5940643, 0.2682545),
       scale: new Vector3(10 * 0.8, 5.6 * 0.8, 10 * 0.8),
     },
-    { position: new Vector3(145, 5, 137.9) },
-    new Vector3(110, 14, 120),
+    { position: new Vector3(174, 5, 82) },
+    new Vector3(50, 14, 80),
     'https://video.dcl.guru/live/dclcoretv/index.m3u8'
   )
 }
