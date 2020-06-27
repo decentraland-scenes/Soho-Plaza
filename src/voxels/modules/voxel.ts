@@ -3,8 +3,13 @@ import { pickedVoxelID, pickerMaterial } from './picker'
 import { changeVoxels } from './serverHandler'
 
 export const VOXEL_SIZE = 0.5
-export const voxelsGroup: ComponentGroup = engine.getComponentGroup(Transform)
-export const voxels: Entity[] = [] // Stores all cubes in the scene
+let maxVoxels: number = 1000
+
+@Component('voxel')
+export class VoxelComponent {}
+export const voxelsGroup: ComponentGroup = engine.getComponentGroup(
+  VoxelComponent
+)
 
 export const sceneMessageBus = new MessageBus()
 
@@ -17,11 +22,16 @@ export type VoxelData = {
 }
 
 export let voxelData: VoxelData[] = []
+export const voxels: Entity[] = [] // Stores all cubes in the scene
 
 export class Voxel extends Entity {
   private shape: BoxShape
 
   constructor(shape: BoxShape, transform: Transform) {
+    if (voxelsGroup.entities.length > maxVoxels) {
+      Manager.playRejectSound()
+      return
+    }
     let entityName =
       'x' +
       transform.position.x.toString() +
@@ -37,6 +47,8 @@ export class Voxel extends Entity {
     this.shape = shape
 
     let thisVoxel = this
+
+    this.addComponent(new VoxelComponent())
 
     this.addComponent(
       new OnPointerDown(
@@ -63,6 +75,10 @@ export class Voxel extends Entity {
   editVoxel(x: number, y: number, z: number, mode: Mode, color?: number) {
     switch (mode) {
       case Mode.Add:
+        if (voxelsGroup.entities.length > maxVoxels) {
+          Manager.playRejectSound()
+          break
+        }
         log('Voxel added')
         Manager.playAddVoxelSound()
         const voxel = new Voxel(

@@ -4,7 +4,13 @@ import { HUD, inRange } from './modules/hud'
 import utils from '../../node_modules/decentraland-ecs-utils/index'
 // import { addVoxels } from './voxels/game'
 import { getVoxels } from './modules/serverHandler'
-import { Voxel, VOXEL_SIZE, voxels, VoxelData } from './modules/voxel'
+import {
+  Voxel,
+  VOXEL_SIZE,
+  voxels,
+  VoxelData,
+  voxelData,
+} from './modules/voxel'
 import { buildBaseGrid } from './modules/baseGrid'
 // import { buildBaseGrid } from './modules/baseGrid'
 
