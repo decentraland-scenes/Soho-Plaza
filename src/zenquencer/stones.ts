@@ -62,7 +62,6 @@ export class Stone extends Entity {
       this.index
     )
     this.drop.setParent(this)
-    this.drop.removeComponent(GLTFShape)
     drops.push(this.drop)
   }
 }

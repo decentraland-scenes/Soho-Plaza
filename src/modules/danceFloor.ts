@@ -10,6 +10,7 @@ export enum Radios {
   INTERVIEW = 'https://dclcoreradio.com/dclradio.ogg',
   DELTA = 'https://cdn.instream.audio/:9069/stream?_=171cd6c2b6e',
   SIGNS = 'https://edge.singsingmusic.net/MC2.mp3',
+  MKLAB = 'https://freeuk13.listen2myradio.com/live.mp3?typeportmount=s2_20223_stream_944192845',
 }
 
 let isInRadioRange: boolean = false
@@ -234,13 +235,13 @@ export function addDanceFloor() {
     new OnPointerDown(
       () => {
         sceneMessageBus.emit('setRadio', {
-          station: Radios.SIGNS,
+          station: Radios.MKLAB,
         })
         yellowButton.press()
       },
       {
         button: ActionButton.PRIMARY,
-        hoverText: 'Signs',
+        hoverText: 'MK Lab',
       }
     )
   )
