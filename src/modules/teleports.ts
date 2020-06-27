@@ -11,7 +11,7 @@ export enum Locations {
   PIXELCHAIN = '51,96',
   SUPERRARE = '55,94',
   BOOMBOX = '25,-127',
-  FEVER = '-95,-89',
+  FEVER = '94,-88',
 }
 
 export class Teleport extends Entity {

@@ -3,6 +3,7 @@ export default {
     add: new AudioClip('sounds/addVoxel.mp3'),
     subtract: new AudioClip('sounds/subtractVoxel.mp3'),
     eyeDrop: new AudioClip('sounds/eyeDropVoxel.mp3'),
+    reject: new AudioClip('sounds/access_denied.mp3'),
   },
   models: {
     baseGrid: new GLTFShape('models/baseGrid.glb'),
