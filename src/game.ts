@@ -14,6 +14,7 @@ import utils from '../node_modules/decentraland-ecs-utils/index'
 import { addDanceFloor } from './modules/danceFloor'
 import { placeTeleports } from './modules/teleports'
 import { buildWall } from './pixelchain-wall/buidWall'
+import { AmbientSound } from './modules/ambientSound'
 
 Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
   log(`pos: `, Camera.instance.position)
@@ -26,15 +27,17 @@ export let sceneMessageBus = new MessageBus()
 
 addBuildings()
 
-// VIDEO SCREENS
-
-addScreens()
-
 // DANCE FLOOR
 
 addDanceFloor()
 
-// BOOM BOX
+// Kraken following eye
+
+followingEye()
+
+// ELEVATOR AND OTHER PLATFORMS
+
+placePlatforms()
 
 // SEQUENCER FOUNTAIN
 
@@ -62,7 +65,7 @@ addNFTs()
 
 addPiano(
   new Transform({
-    position: new Vector3(230, 0, 22),
+    position: new Vector3(229.7, 0, 26.03),
   }),
   sceneMessageBus
 )
@@ -75,14 +78,20 @@ createFountain({ position: new Vector3(231.5, 0, 84.5) }, sceneMessageBus)
 
 addLinks()
 
-// Kraken following eye
-
-followingEye()
-
-// ELEVATOR AND OTHER PLATFORMS
-
-placePlatforms()
-
 // Teleports
 
 placeTeleports()
+
+// VIDEO SCREENS
+
+addScreens()
+
+/// Ambient sound
+
+let water = new AmbientSound(
+  { position: new Vector3(181, 3, 117) },
+  'sounds/ambient/water2.mp3',
+  0,
+  true,
+  0.5
+)

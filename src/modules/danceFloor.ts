@@ -10,6 +10,7 @@ export enum Radios {
   INTERVIEW = 'https://dclcoreradio.com/dclradio.ogg',
   DELTA = 'https://cdn.instream.audio/:9069/stream?_=171cd6c2b6e',
   SIGNS = 'https://edge.singsingmusic.net/MC2.mp3',
+  MKLAB = 'https://freeuk13.listen2myradio.com/live.mp3?typeportmount=s2_20223_stream_944192845',
 }
 
 let isInRadioRange: boolean = false
@@ -51,7 +52,7 @@ export function addDanceFloor() {
   )
 
   let capsuleDoor = new Door(
-    new GLTFShape('models/dj-console/door_capsule.glb'),
+    new GLTFShape('models/door_capsule.glb'),
     {
       rotation: Quaternion.Euler(0, 0, 0),
       position: new Vector3(160, 0, 160),
@@ -126,7 +127,7 @@ export function addDanceFloor() {
 
   /// CONSOLE
   let baseConsole = new Entity()
-  baseConsole.addComponent(new GLTFShape('models/dj-console/dj-capsule.glb'))
+  baseConsole.addComponent(new GLTFShape('models/dj-capsule.glb'))
   baseConsole.addComponent(
     new Transform({
       position: new Vector3(194.5, 0, 299),
@@ -136,7 +137,7 @@ export function addDanceFloor() {
   engine.addEntity(baseConsole)
 
   let blueButton = new Button(
-    'models/dj-console/blue_button.glb',
+    'models/buttons/blue_button.glb',
     {},
     'BlueButton_Action',
     baseConsole
@@ -158,7 +159,7 @@ export function addDanceFloor() {
   )
 
   let greenButton = new Button(
-    'models/dj-console/green_button.glb',
+    'models/buttons/green_button.glb',
     {},
     'GreenButton_Action',
     baseConsole
@@ -180,7 +181,7 @@ export function addDanceFloor() {
   )
 
   let violetButton = new Button(
-    'models/dj-console/violet_button.glb',
+    'models/buttons/violet_button.glb',
     {},
     'VioletButton_Action',
     baseConsole
@@ -202,7 +203,7 @@ export function addDanceFloor() {
   )
 
   let redButton = new Button(
-    'models/dj-console/red_button.glb',
+    'models/buttons/red_button.glb',
     {},
     'RedButton_Action',
     baseConsole
@@ -224,7 +225,7 @@ export function addDanceFloor() {
   )
 
   let yellowButton = new Button(
-    'models/dj-console/yellow_button.glb',
+    'models/buttons/yellow_button.glb',
     {},
     'YellowButton_Action',
     baseConsole
@@ -234,13 +235,13 @@ export function addDanceFloor() {
     new OnPointerDown(
       () => {
         sceneMessageBus.emit('setRadio', {
-          station: Radios.SIGNS,
+          station: Radios.MKLAB,
         })
         yellowButton.press()
       },
       {
         button: ActionButton.PRIMARY,
-        hoverText: 'Signs',
+        hoverText: 'MK Lab',
       }
     )
   )

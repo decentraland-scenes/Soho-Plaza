@@ -11,7 +11,7 @@ export enum Locations {
   PIXELCHAIN = '51,96',
   SUPERRARE = '55,94',
   BOOMBOX = '25,-127',
-  FEVER = '',
+  FEVER = '94,-88',
 }
 
 export class Teleport extends Entity {
@@ -103,20 +103,26 @@ export function placeTeleports() {
 
   // minicapsule 1
   let teleportPos8 = new Transform({
-    position: new Vector3(144.88, 0.45, 293.19),
+    position: new Vector3(144.88, 0.6, 293.19),
     rotation: Quaternion.Euler(0, 135, 0),
   })
 
   // minicapsule 2
   let teleportPos9 = new Transform({
-    position: new Vector3(169.92, 0.3, 307),
+    position: new Vector3(169.92, 0.5, 307),
     rotation: Quaternion.Euler(0, 135, 0),
   })
 
-  // kraken South
+  // minicapsule 4
+  let teleportPos11 = new Transform({
+    position: new Vector3(152.23, 0.5, 305.87),
+    rotation: Quaternion.Euler(0, 135, 0),
+  })
+
+  // rocket
   let teleportPos10 = new Transform({
-    position: new Vector3(175.89, 2, 175.11),
-    rotation: Quaternion.Euler(0, 45, 0),
+    position: new Vector3(306.2, 3.3, 160.8),
+    rotation: Quaternion.Euler(0, 0, 0),
   })
 
   //   let teleportPos11 = new Transform({
@@ -180,10 +186,16 @@ export function placeTeleports() {
       transform: teleportPos9,
     },
     {
+      name: 'So You',
+      model: new GLTFShape('models/teleports/SoYou.glb'),
+      location: Locations.SOYOU,
+      transform: teleportPos10,
+    },
+    {
       name: 'Boombox Club',
       model: new GLTFShape('models/teleports/Boombox-club.glb'),
       location: Locations.BOOMBOX,
-      transform: teleportPos10,
+      transform: teleportPos11,
     },
 
     // SO YOU  teleportPos11

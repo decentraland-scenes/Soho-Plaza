@@ -17,6 +17,7 @@ export enum Mode {
 const addVoxelSound = new Audio(resources.sounds.add)
 const subtractVoxelSound = new Audio(resources.sounds.subtract)
 const eyeDropVoxelSound = new Audio(resources.sounds.eyeDrop)
+const rejectSound = new Audio(resources.sounds.reject)
 
 // Colors to cycle through (7 main colours + white + black)
 export const colors: Color3[] = [
@@ -57,6 +58,10 @@ export class Manager {
 
   public static playEyeDropVoxelSound(): void {
     eyeDropVoxelSound.getComponent(AudioSource).playOnce()
+  }
+
+  public static playRejectSound(): void {
+    rejectSound.getComponent(AudioSource).playOnce()
   }
 
   // Color

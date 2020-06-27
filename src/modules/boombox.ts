@@ -38,7 +38,7 @@ export default class BoomBox extends Entity {
   ) {
     super()
 
-    this.addComponent(new GLTFShape('models/boombox/Boombox.glb'))
+    this.addComponent(new GLTFShape('models/Boombox.glb'))
     this.addComponent(new Transform(position))
 
     const animator = new Animator()
@@ -156,13 +156,13 @@ let boombox = new BoomBox(
   'sounds/boombox/bgm.mp3',
   'sounds/click.mp3',
   'sounds/click.mp3',
-  'models/boombox/VioletButton.glb',
+  'models/buttons/VioletSwitch.glb',
   'ButtonVioletON_Action',
   'ButtonVioletOFF_Action',
-  'models/boombox/RedButton.glb',
+  'models/buttons/RedSwitch.glb',
   'RedButtonON_Action',
   'RedButtonOFF_Action',
-  'models/boombox/YellowButton.glb',
+  'models/buttons/YellowSwitch.glb',
   'YellowButtonON_Action',
   'YellowButtonOFF_Action'
 )
