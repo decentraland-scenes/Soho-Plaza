@@ -95,3 +95,19 @@ let water = new AmbientSound(
   true,
   0.5
 )
+
+let forest = new AmbientSound(
+  { position: new Vector3(185, 3, 18) },
+  'sounds/ambient/forest.mp3',
+  0,
+  true,
+  0.1
+)
+
+let chopper = new AmbientSound(
+  { position: new Vector3(189, 15, 238) },
+  'sounds/ambient/chopper.mp3',
+  0,
+  true,
+  0.8
+)
