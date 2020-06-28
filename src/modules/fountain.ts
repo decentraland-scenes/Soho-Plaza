@@ -14,7 +14,7 @@ export function createFountain(
 
   let ring1 = new Ring(
     {
-      position: new Vector3(0, -0.75, 0),
+      position: new Vector3(0, -0.65, 0),
     },
     'models/fountain/FirstRing.glb',
     '1stRing_Action_01',
@@ -27,7 +27,7 @@ export function createFountain(
 
   let ring2 = new Ring(
     {
-      position: new Vector3(0, -0.8, 0),
+      position: new Vector3(0, -0.7, 0),
     },
     'models/fountain/SecondRing.glb',
     '2ndRing_Action_01',
@@ -40,7 +40,7 @@ export function createFountain(
 
   let ring3 = new Ring(
     {
-      position: new Vector3(0, -1, 0),
+      position: new Vector3(0, -0.9, 0),
     },
     'models/fountain/ThirdRing.glb',
     '3rdRing_Action_01',
@@ -52,7 +52,7 @@ export function createFountain(
 
   let ring4 = new Ring(
     {
-      position: new Vector3(0, -1, 0),
+      position: new Vector3(0, -0.9, 0),
     },
     'models/fountain/FourthRing.glb',
     '4thRing_Action_01',

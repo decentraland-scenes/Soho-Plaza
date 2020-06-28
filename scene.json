@@ -1,10 +1,11 @@
 {
   "display": {
-    "title": "interactive-text",
+    "title": "Soho Plaza",
+    "description": "A plaza dedicated to art and pop culture icons, full of fun things to explore!",
     "favicon": "favicon_asset"
   },
   "contact": {
-    "name": "author-name",
+    "name": "Decentraland",
     "email": ""
   },
   "owner": "",
