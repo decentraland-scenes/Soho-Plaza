@@ -626,10 +626,10 @@ export const data = [
     color: Color3.White(),
     link: "https://opensea.io/assets/0x22c1f6050e56d2876009903609a2cc3fef83b415/13421"
   },
-  { // POAP Soho (REPLACE)
+  { // POAP Soho
     code: 10,
     contract_address: "0x22c1f6050e56d2876009903609a2cc3fef83b415",
-    token_id: "13232",
+    token_id: "13661",
     transform: {
       position: { x: 160 - 142.309, y: 15.271, z: 160 - 4.356 },
       rotation: { x: 0, y: 90 + 150, z: 0 },
@@ -637,7 +637,7 @@ export const data = [
     },
     style: 18,
     color: Color3.White(),
-    link: "https://opensea.io/assets/0x22c1f6050e56d2876009903609a2cc3fef83b415/13232"
+    link: "https://opensea.io/assets/0x22c1f6050e56d2876009903609a2cc3fef83b415/13661"
   },
   { // POAP Async
     code: 11,
