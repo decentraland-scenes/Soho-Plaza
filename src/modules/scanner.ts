@@ -60,8 +60,9 @@ export class WearablesScanner extends Entity {
           messageBus.emit('scanning', {})
 
           scannerTriggerEntity.addComponentOrReplace(
-            new utils.Delay(4000, () => {
-              if (checkWearableCategory(filter)) {
+            new utils.Delay(4000, async () => {
+              let result: boolean = await checkWearableCategory(filter)
+              if (result) {
                 messageBus.emit('scanapprove', {})
                 successAction()
               } else {
@@ -87,7 +88,6 @@ export class WearablesScanner extends Entity {
     this.addComponentOrReplace(
       new AudioSource(thisScanner.scanAudio)
     ).playOnce()
-    //this.getComponent(AudioSource).playOnce()
   }
 
   public approve(): void {
@@ -98,7 +98,6 @@ export class WearablesScanner extends Entity {
     this.addComponentOrReplace(
       new AudioSource(thisScanner.allowAudio)
     ).playOnce()
-    //this.getComponent(AudioSource).playOnce()
   }
 
   public reject(): void {
@@ -109,6 +108,5 @@ export class WearablesScanner extends Entity {
     this.addComponentOrReplace(
       new AudioSource(thisScanner.rejectAudio)
     ).playOnce()
-    //this.getComponent(AudioSource).playOnce()
   }
 }
