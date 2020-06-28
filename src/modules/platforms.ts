@@ -430,10 +430,12 @@ export function placePlatforms() {
 
   class CarTimerSystem implements ISystem {
     car1Timer: number = totalCar1Time
-	car2Timer: number = totalCar2Time
-	synced: boolean = false
+    car2Timer: number = totalCar2Time
+    synced: boolean = false
     update(dt: number) {
-		if (!this.synced){ return}
+      if (!this.synced) {
+        return
+      }
       this.car1Timer -= dt
       this.car2Timer -= dt
       if (this.car1Timer < 0) {
@@ -482,14 +484,13 @@ export function placePlatforms() {
 
     sceneMessageBus.on('herearecars', (e, sender) => {
       if (sender !== 'self') {
-		  carTimes.synced = true
+        carTimes.synced = true
         carTimes.car1Timer = e.car1
         carTimes.car2Timer = e.car2
       }
-	})
-	setTimeout(2000, () => {
-		carTimes.synced = true
-	}
-
+    })
+    setTimeout(2000, () => {
+      carTimes.synced = true
+    })
   })
 }

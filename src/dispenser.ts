@@ -1,14 +1,17 @@
 // import { openUI1 } from './ui'
 import utils from '../node_modules/decentraland-ecs-utils/index'
 import { makeTransaction } from './poapHandler'
-import { sceneMessageBus } from './game'
 
 export class Dispenser extends Entity {
   idleAnim = new AnimationState('Idle_POAP', { looping: true })
   buyAnim = new AnimationState('Action_POAP', { looping: false })
   buttonAnim = new AnimationState('Button_Action', { looping: false })
   eventName: string
-  constructor(transform: TranformConstructorArgs, eventName: string) {
+  constructor(
+    transform: TranformConstructorArgs,
+    eventName: string,
+    messagebus: MessageBus
+  ) {
     super()
     engine.addEntity(this)
 
@@ -32,7 +35,7 @@ export class Dispenser extends Entity {
         (e) => {
           button.getComponent(Animator).getClip('Action').stop()
           button.getComponent(Animator).getClip('Action').play()
-          sceneMessageBus.emit('activatePoap', {})
+          messagebus.emit('activatePoap', {})
           makeTransaction(eventName)
         },
         { hoverText: 'Get Attendance Token' }

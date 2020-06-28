@@ -1,11 +1,28 @@
 import { openUI } from './ui'
-import { userData, setUserData } from './poapHandler'
+import { UserData, getUserData } from '@decentraland/Identity'
 
 // external servers being used by the project - Please change these to your own if working on something else!
 export let fireBaseServer =
   'https://us-central1-decentraland-events.cloudfunctions.net/app/'
 
 // get player data
+export let userData: UserData
+
+type eventData = {
+  secret: string
+  event_id: string
+}
+
+type signedEventData = {
+  signed_message: string
+  event_id: string
+}
+
+export async function setUserData() {
+  const data = await getUserData()
+  log(data.displayName)
+  userData = data
+}
 
 export class GuestBook extends Entity {
   eventName: string

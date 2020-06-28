@@ -10,11 +10,11 @@ import { followingEye } from './modules/krakenEye'
 import { placePlatforms } from './modules/platforms'
 import { addVoxels } from './voxels/voxelBuilder'
 import { addNFTs } from './galleries/galleryBuilder'
-import utils from '../node_modules/decentraland-ecs-utils/index'
+//import utils from '../node_modules/decentraland-ecs-utils/index'
 import { addDanceFloor } from './modules/danceFloor'
 import { placeTeleports } from './modules/teleports'
-import { GuestBook } from './guestbook'
 import { Dispenser } from './dispenser'
+import { GuestBook } from './guestbook'
 
 import { buildWall } from './pixelchain-wall/buidWall'
 import { AmbientSound } from './modules/ambientSound'
@@ -105,22 +105,23 @@ let water = new AmbientSound(
 
 // GUESTBOOK
 
-let guestBook = new GuestBook(
-  {
-    position: new Vector3(97, 0.2, 262),
-    rotation: Quaternion.Euler(0, 150, 0),
-  },
-  'soho'
-)
+// let guestBook = new GuestBook(
+//   {
+//     position: new Vector3(97, 0.2, 262),
+//     rotation: Quaternion.Euler(0, 150, 0),
+//   },
+//   'soho'
+// )
 
-// POAP BOOTH
+// // POAP BOOTH
 
 let POAPBooth = new Dispenser(
   {
-    position: new Vector3(104, 0, 257),
+    position: new Vector3(100, 0, 262),
     rotation: Quaternion.Euler(0, 80, 0),
   },
-  'soho'
+  'soho',
+  sceneMessageBus
 )
 
 // MAKE POAP BOOTH MULTIPLAYER
@@ -134,7 +135,7 @@ sceneMessageBus.on('activatePoap', () => {
 let POAPBanner = new Entity()
 POAPBanner.addComponent(
   new Transform({
-    position: new Vector3(99, 0, 260),
+    position: new Vector3(98, 0, 260),
     rotation: Quaternion.Euler(0, 60, 0),
   })
 )
