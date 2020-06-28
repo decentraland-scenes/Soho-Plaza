@@ -2,6 +2,7 @@ import utils from '../../node_modules/decentraland-ecs-utils/index'
 import { sceneMessageBus } from './serverHandler'
 import Door from './door'
 import { Button } from './buttons'
+import { setTimeout } from '../pixelchain-wall/Utils'
 
 /// Reusable class for all platforms
 export class Platform extends Entity {
@@ -424,13 +425,15 @@ export function placePlatforms() {
   })
   Car_02_Collider.getComponent(Animator).addClip(car2ColliderAnim)
 
-  const totalCar1Time: number = 3000 / 30
-  const totalCar2Time: number = 1500 / 30
+  const totalCar1Time: number = 3000 / 25
+  const totalCar2Time: number = 1500 / 25
 
   class CarTimerSystem implements ISystem {
     car1Timer: number = totalCar1Time
-    car2Timer: number = totalCar2Time
+	car2Timer: number = totalCar2Time
+	synced: boolean = false
     update(dt: number) {
+		if (!this.synced){ return}
       this.car1Timer -= dt
       this.car2Timer -= dt
       if (this.car1Timer < 0) {
@@ -446,7 +449,8 @@ export function placePlatforms() {
     }
   }
 
-  engine.addSystem(new CarTimerSystem())
+  let carTimes = new CarTimerSystem()
+  engine.addSystem(carTimes)
 
   function resetCar1Anims() {
     carAnim.stop()
@@ -464,5 +468,28 @@ export function placePlatforms() {
     car2ColliderAnim.play()
   }
 
-  sceneMessageBus.emit('getcartime', {})
+  setTimeout(2000, () => {
+    sceneMessageBus.emit('getcartimes', {})
+
+    sceneMessageBus.on('getcartimes', (e, sender) => {
+      if (sender !== 'self' && carTimes.synced) {
+        this.messageBus.emit('herearecars', {
+          car1: carTimes.car1Timer,
+          car2: carTimes.car2Timer,
+        })
+      }
+    })
+
+    sceneMessageBus.on('herearecars', (e, sender) => {
+      if (sender !== 'self') {
+		  carTimes.synced = true
+        carTimes.car1Timer = e.car1
+        carTimes.car2Timer = e.car2
+      }
+	})
+	setTimeout(2000, () => {
+		carTimes.synced = true
+	}
+
+  })
 }
