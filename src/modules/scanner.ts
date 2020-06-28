@@ -6,6 +6,7 @@ export class WearablesScanner extends Entity {
   scanAnim: AnimationState
   allowAnim: AnimationState
   rejectAnim: AnimationState
+  scanAudio: AudioClip = new AudioClip('sounds/LaserHum.mp3')
   allowAudio: AudioClip = new AudioClip('sounds/accept.mp3')
   rejectAudio: AudioClip = new AudioClip('sounds/access_denied.mp3')
   constructor(
@@ -82,6 +83,10 @@ export class WearablesScanner extends Entity {
     this.rejectAnim.stop()
     this.scanAnim.stop()
     this.scanAnim.play()
+    let thisScanner = this
+    this.addComponentOrReplace(
+      new AudioSource(thisScanner.scanAudio)
+    ).playOnce()
     //this.getComponent(AudioSource).playOnce()
   }
 

@@ -1,6 +1,6 @@
 import { Manager, colors } from '../manager'
-import { VOXEL_SIZE } from './voxel'
-import { baseGridHeight } from "./baseGrid"
+import { VOXEL_SIZE, Voxel } from './voxel'
+import { baseGridHeight } from './baseGrid'
 
 // Picker
 export const picker = new Entity()
@@ -34,10 +34,12 @@ class PickerSystem implements ISystem {
       if (raycastHitEntity.didHit) {
         // Check entity exists i.e. not been deleted
         if (engine.entities[raycastHitEntity.entity.entityId]) {
-          if (raycastHitEntity.entity.meshName != 'base_collider') {
+          if (
+            engine.entities[raycastHitEntity.entity.entityId] instanceof Voxel
+          ) {
             pickedVoxelID = raycastHitEntity.entity.entityId
             pickerFace(engine.entities[pickedVoxelID], raycastHitEntity)
-          } else {
+          } else if (raycastHitEntity.entity.meshName == 'base_collider') {
             pickerBase(raycastHitEntity)
             pickedVoxelID = null
           }

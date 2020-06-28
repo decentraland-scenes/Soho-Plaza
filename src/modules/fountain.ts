@@ -9,7 +9,6 @@ export function createFountain(
   let rings: Ring[] = []
 
   let base = new Entity()
-  //base.addComponent(new GLTFShape('models/fountain/Base.glb'))
   base.addComponent(new Transform(position))
   engine.addEntity(base)
 
@@ -64,66 +63,66 @@ export function createFountain(
   rings.push(ring4)
 
   let cyanConsole = new Console(
-    { position: new Vector3(-23, -0.1, 0) },
+    { position: new Vector3(-23, 0.1, 0) },
     base,
-    'models/buttons/Cyan/Base/BaseCyan.glb',
+    'models/buttons/BaseCyan.glb',
     3,
-    'models/buttons/Cyan/Buttons/ButtonA_Cyan.glb',
+    'models/buttons/ButtonA_Cyan.glb',
     'ButtonA_Action',
-    'models/buttons/Cyan/Buttons/ButtonB_Cyan.glb',
+    'models/buttons/ButtonB_Cyan.glb',
     'ButtonB_Action',
-    'models/buttons/Cyan/Buttons/ButtonC_Cyan.glb',
+    'models/buttons/ButtonC_Cyan.glb',
     'ButtonC_Action',
     messagebus
   )
 
   let redConsole = new Console(
     {
-      position: new Vector3(0, -0.1, 23),
+      position: new Vector3(0, 0.1, 23),
       rotation: Quaternion.Euler(0, 90, 0),
     },
     base,
-    'models/buttons/Red/Base/BaseRed.glb',
+    'models/buttons/BaseRed.glb',
     2,
-    'models/buttons/Red/Buttons/ButtonA_Red.glb',
+    'models/buttons/ButtonA_Red.glb',
     'ButtonA_Action',
-    'models/buttons/Red/Buttons/ButtonB_Red.glb',
+    'models/buttons/ButtonB_Red.glb',
     'ButtonB_Action',
-    'models/buttons/Red/Buttons/ButtonC_Red.glb',
+    'models/buttons/ButtonC_Red.glb',
     'ButtonC_Action',
     messagebus
   )
 
   let violetConsole = new Console(
     {
-      position: new Vector3(23, -0.1, 0),
+      position: new Vector3(23, 0.1, 0),
       rotation: Quaternion.Euler(0, 180, 0),
     },
     base,
-    'models/buttons/Violet/Base/BaseViolet.glb',
+    'models/buttons/BaseViolet.glb',
     1,
-    'models/buttons/Violet/Buttons/ButtonA_Violet.glb',
+    'models/buttons/ButtonA_Violet.glb',
     'ButtonA_Action',
-    'models/buttons/Violet/Buttons/ButtonB_Violet.glb',
+    'models/buttons/ButtonB_Violet.glb',
     'ButtonB_Action',
-    'models/buttons/Violet/Buttons/ButtonC_Violet.glb',
+    'models/buttons/ButtonC_Violet.glb',
     'ButtonC_Action',
     messagebus
   )
 
   let yellowConsole = new Console(
     {
-      position: new Vector3(0, -0.1, -23),
+      position: new Vector3(0, 0.1, -23),
       rotation: Quaternion.Euler(0, 270, 0),
     },
     base,
-    'models/buttons/Yellow/Base/BaseYellow.glb',
+    'models/buttons/BaseYellow.glb',
     0,
-    'models/buttons/Yellow/Buttons/ButtonA_Yellow.glb',
+    'models/buttons/ButtonA_Yellow.glb',
     'ButtonA_Action',
-    'models/buttons/Yellow/Buttons/ButtonB_Yellow.glb',
+    'models/buttons/ButtonB_Yellow.glb',
     'ButtonB_Action',
-    'models/buttons/Yellow/Buttons/ButtonC_Yellow.glb',
+    'models/buttons/ButtonC_Yellow.glb',
     'ButtonC_Action',
     messagebus
   )

@@ -1,27 +1,29 @@
 export function addBuildings() {
   // SOHO BASE STREET
 
-//add street
-let street = new Entity()
-street.addComponent(new GLTFShape("models/street.glb"))
-street.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(street)
+  //add street
+  let street = new Entity()
+  street.addComponent(new GLTFShape('models/street.glb'))
+  street.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(street)
 
-//add teleports
-let teleports = new Entity()
-teleports.addComponent(new GLTFShape("models/teleports.glb"))
-teleports.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(teleports)
+  //add teleports
+  let teleports = new Entity()
+  teleports.addComponent(new GLTFShape('models/teleports.glb'))
+  teleports.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(teleports)
 
-//add globe
+  //add globe
   let globe = new Entity()
   globe.addComponent(new GLTFShape('models/globe.glb'))
   globe.addComponent(
@@ -32,7 +34,7 @@ engine.addEntity(teleports)
   )
   engine.addEntity(globe)
 
-  // MAIN MUSEUM 
+  // MAIN MUSEUM
 
   //add museum
   let museum = new Entity()
@@ -45,16 +47,16 @@ engine.addEntity(teleports)
   )
   engine.addEntity(museum)
 
-   //add color_drops
-   let color_drops = new Entity()
-   color_drops.addComponent(new GLTFShape('models/color_drops.glb'))
-   color_drops.addComponent(
-     new Transform({
-       position: new Vector3(160, 0, 160),
-       rotation: Quaternion.Euler(0, 0, 0),
-     })
-   )
-   engine.addEntity(color_drops)
+  //add color_drops
+  let color_drops = new Entity()
+  color_drops.addComponent(new GLTFShape('models/color_drops.glb'))
+  color_drops.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(color_drops)
 
   // PS1 MUSEUM
 
@@ -69,7 +71,7 @@ engine.addEntity(teleports)
   )
   engine.addEntity(museum_b)
 
-// CAPSULE NIGHTCLUB
+  // CAPSULE NIGHTCLUB
 
   //add capsule
   let capsule = new Entity()
@@ -188,74 +190,78 @@ engine.addEntity(teleports)
   engine.addEntity(kotaro)
 
   //add water_fountain
-let water_fountain = new Entity()
-water_fountain.addComponent(new GLTFShape("models/water_fountain.glb"))
-water_fountain.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(water_fountain)
+  let water_fountain = new Entity()
+  water_fountain.addComponent(new GLTFShape('models/water_fountain.glb'))
+  water_fountain.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(water_fountain)
 
-// ANIMALS PARK
+  // ANIMALS PARK
 
-//add animals_park
-let animals_park = new Entity()
-animals_park.addComponent(new GLTFShape("models/animals_park.glb"))
-animals_park.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(animals_park)
+  //add animals_park
+  let animals_park = new Entity()
+  animals_park.addComponent(new GLTFShape('models/animals_park.glb'))
+  animals_park.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(animals_park)
 
+  // DINO CINEMA
 
-// DINO CINEMA 
+  //add cinema_park
+  let cinema_park = new Entity()
+  cinema_park.addComponent(new GLTFShape('models/cinema_park.glb'))
+  cinema_park.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(cinema_park)
 
-//add cinema_park
-let cinema_park = new Entity()
-cinema_park.addComponent(new GLTFShape("models/cinema_park.glb"))
-cinema_park.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(cinema_park)
+  // DRAGON CAVE
 
-// DRAGON CAVE 
+  //add dragon_park
+  let dragon_park = new Entity()
+  dragon_park.addComponent(new GLTFShape('models/dragon_park.glb'))
+  dragon_park.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(dragon_park)
 
-//add dragon_park
-let dragon_park = new Entity()
-dragon_park.addComponent(new GLTFShape("models/dragon_park.glb"))
-dragon_park.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(dragon_park)
+  //KONG PARK
 
-//KONG PARK
+  //add kong_park
+  let kong_park = new Entity()
+  kong_park.addComponent(new GLTFShape('models/kong_park.glb'))
+  kong_park.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(kong_park)
 
-//add kong_park
-let kong_park = new Entity()
-kong_park.addComponent(new GLTFShape("models/kong_park.glb"))
-kong_park.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(kong_park)
+  // SPACESHIP
 
-// SPACESHIP 
-
-//add spaceship_park
-let spaceship_park = new Entity()
-spaceship_park.addComponent(new GLTFShape("models/spaceship_park.glb"))
-spaceship_park.addComponent(new Transform({
-	position: new Vector3(160, 0, 160),
-	rotation: Quaternion.Euler(0, 0, 0)
-}
-))
-engine.addEntity(spaceship_park)
-
+  //add spaceship_park
+  let spaceship_park = new Entity()
+  spaceship_park.addComponent(new GLTFShape('models/spaceship_park.glb'))
+  spaceship_park.addComponent(
+    new Transform({
+      position: new Vector3(160, 0, 160),
+      rotation: Quaternion.Euler(0, 0, 0),
+    })
+  )
+  engine.addEntity(spaceship_park)
 }
