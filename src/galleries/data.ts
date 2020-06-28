@@ -338,10 +338,10 @@ export const data = [
     color: Color3.White(),
     link: "https://opensea.io/assets/0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756/23972"
   },
-  { // Unstable Condition
+  { // Teddy Machine
     code: 27,
     contract_address: "0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756",
-    token_id: "22754",
+    token_id: "18274",
     transform: {
       position: { x: 160 - 87.061, y: 9.716, z: 160 + 115.246 },
       rotation: { x: 0, y: 90 + 180, z: 0 },
@@ -349,7 +349,7 @@ export const data = [
     },
     style: 18,
     color: Color3.White(),
-    link: "https://opensea.io/assets/0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756/22754"
+    link: "https://opensea.io/assets/0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756/18274"
   },
   { // The Tempest and the Cliff
     code: 28,
@@ -587,7 +587,7 @@ export const data = [
     color: Color3.White(),
     link: "https://opensea.io/assets/0x22c1f6050e56d2876009903609a2cc3fef83b415/12903"
   },
-  { // POAP ChainGuardians 
+  { // POAP ChainGuardians
     code: 7,
     contract_address: "0x22c1f6050e56d2876009903609a2cc3fef83b415",
     token_id: "13054",
@@ -742,5 +742,59 @@ export const data = [
     style: 18,
     color: Color3.White(),
     link: "https://opensea.io/assets/0xecf7ef42b57ee37a959bf507183c5dd6bf182081/13"
+  },
+
+  /// --- Billboards ---
+  { // Unstable Condition
+    code: 27,
+    contract_address: "0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756",
+    token_id: "22754",
+    transform: {
+      position: { x: 160 + 14.935, y: 17.918, z: 160 - 0.265 },
+      rotation: { x: 0, y: 90 - 37.521, z: 0 },
+      scale: { x: 14, y: 14, z: 14 }
+    },
+    style: 21,
+    color: Color3.Black(),
+    link: "https://opensea.io/assets/0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756/22754"
+  },
+  { // Machine Sea Horse
+    code: 27,
+    contract_address: "0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756",
+    token_id: "24961",
+    transform: {
+      position: { x: 160 + 17.671, y: 17.918, z: 160 + 1.836 },
+      rotation: { x: 0, y: 232.479, z: 0 },
+      scale: { x: 14, y: 14, z: 14 }
+    },
+    style: 21,
+    color: Color3.Black(),
+    link: "https://opensea.io/assets/0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756/24961"
+  },
+  { // Take Control or Taken
+    code: 27,
+    contract_address: "0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756",
+    token_id: "20644",
+    transform: {
+      position: { x: 160 - 55.495, y: 16.12, z: 160 - 55.853 },
+      rotation: { x: 0, y: 90 + 142.479, z: 0 },
+      scale: { x: 11, y: 11, z: 11 }
+    },
+    style: 21,
+    color: Color3.Black(),
+    link: "https://opensea.io/assets/0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756/20644"
+  },
+  { // The Hunter
+    code: 27,
+    contract_address: "0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756",
+    token_id: "24960",
+    transform: {
+      position: { x: 160 - 57.648, y: 16.12, z: 160 - 57.507 },
+      rotation: { x: 0, y: 52.479, z: 0 },
+      scale: { x: 11, y: 11, z: 11 }
+    },
+    style: 21,
+    color: Color3.Black(),
+    link: "https://opensea.io/assets/0x2a46f2ffd99e19a89476e2f62270e0a35bbf0756/24960"
   },
 ]

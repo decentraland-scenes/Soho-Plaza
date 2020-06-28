@@ -80,6 +80,7 @@ export function addNFTs(): void {
           button: ActionButton.ANY,
           showFeedback: true,
           hoverText: 'More Info',
+          distance: 30
         }
       )
     )
