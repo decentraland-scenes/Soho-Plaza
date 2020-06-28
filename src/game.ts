@@ -101,13 +101,13 @@ let forest = new AmbientSound(
   'sounds/ambient/forest.mp3',
   0,
   true,
-  0.5
+  0.1
 )
 
-//   let chopper = new AmbientSound(
-// 	{ position: new Vector3(189, 15, 238) },
-// 	'sounds/ambient/chopper.mp3',
-// 	0,
-// 	true,
-// 	0.5
-//   )
+let chopper = new AmbientSound(
+  { position: new Vector3(189, 15, 238) },
+  'sounds/ambient/chopper.mp3',
+  0,
+  true,
+  0.8
+)
