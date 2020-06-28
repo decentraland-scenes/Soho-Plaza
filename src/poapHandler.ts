@@ -1,16 +1,14 @@
-import { getUserData, UserData } from '@decentraland/Identity'
 import * as eth from '../node_modules/eth-connect/esm'
 import * as EthereumController from '@decentraland/EthereumController'
 import { getProvider } from '@decentraland/web3-provider'
 import poapContract from './abis/PoapDelegateMint'
-import { sceneMessageBus } from './game'
+import { userData } from './guestbook'
+import { setUserData } from './userAccuount'
 
 export let ethController = EthereumController
 
 export let fireBaseServer =
   'https://us-central1-decentraland-events.cloudfunctions.net/app/'
-
-export let userData: UserData
 
 type eventData = {
   secret: string
@@ -27,18 +25,6 @@ let qrHex: string
 let secret: eventData
 
 let signature: signedEventData
-
-export async function fetchUserData() {
-  const data = await getUserData()
-  log(data.displayName)
-  return data
-}
-
-export async function setUserData() {
-  const data = await getUserData()
-  log(data.displayName)
-  userData = data
-}
 
 export async function callQRAPI(event: string) {
   const url = fireBaseServer + 'get-poap-code/?event=' + event
@@ -71,7 +57,7 @@ export async function getSignedMessage(data: eventData, qrHex: string) {
   let method = 'POST'
   let headers = { 'Content-Type': 'application/json' }
   let body = JSON.stringify({
-    address: userData.publicKey,
+    address: userData,
     delegated: true,
     qr_hash: qrHex,
     secret: data.secret,
@@ -96,10 +82,8 @@ export async function getSignedMessage(data: eventData, qrHex: string) {
 }
 
 export async function makeTransaction(event: string) {
+  await setUserData()
   if (!userData) {
-    userData = await fetchUserData()
-  }
-  if (!userData.hasConnectedWeb3) {
     log('no wallet')
     return
   }
@@ -130,12 +114,12 @@ export async function makeTransaction(event: string) {
 
   await PoapDelegatedMint.mintToken(
     signature.event_id,
-    userData.publicKey,
+    userData,
     signature.signed_message,
     {
-      from: userData.publicKey,
+      from: userData,
     }
-  ).then(sceneMessageBus.emit('activatePoap', {}))
+  ).then()
 
   return
 }

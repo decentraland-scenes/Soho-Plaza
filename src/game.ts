@@ -89,10 +89,6 @@ placeTeleports()
 
 addScreens()
 
-/// Ambient sound
-
-placeTeleports()
-
 /// Ambient sounds
 
 let water = new AmbientSound(
