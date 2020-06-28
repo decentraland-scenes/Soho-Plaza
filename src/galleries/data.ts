@@ -39,10 +39,10 @@ export const data = [
     color: Color3.White(),
     link: "https://opensea.io/assets/0xb932a70a57673d89f4acffbe830e8ed7f75fb9e0/7754"
   },
-  { // Motel For Cosmic Debris
+  { // FUTURE
     code: 4,
-    contract_address: "0xb932a70a57673d89f4acffbe830e8ed7f75fb9e0",
-    token_id: "6334",
+    contract_address: "0x4679b43e6ebcb2e7fca0f4e943e6231b87cf29f7",
+    token_id: "21",
     transform: {
       position: { x: 160 - 87.012, y: 3.566, z: 160 + 104.805 },
       rotation: { x: 0, y: 90 + 204.917, z: 0 },
@@ -50,7 +50,7 @@ export const data = [
     },
     style: 18,
     color: Color3.White(),
-    link: "https://opensea.io/assets/0xb932a70a57673d89f4acffbe830e8ed7f75fb9e0/6334"
+    link: "https://opensea.io/assets/0x4679b43e6ebcb2e7fca0f4e943e6231b87cf29f7/21"
   },
   { // Coffee love 1/1
     code: 5,
@@ -442,10 +442,10 @@ export const data = [
     color: Color3.White(),
     link: "https://opensea.io/assets/0x6c424c25e9f1fff9642cb5b7750b0db7312c29ad/100"
   },
-  { // The Tribe
+  { // PRESENT
     code: 35,
-    contract_address: "0x6c424c25e9f1fff9642cb5b7750b0db7312c29ad",
-    token_id: "162",
+    contract_address: "0x4679b43e6ebcb2e7fca0f4e943e6231b87cf29f7",
+    token_id: "11",
     transform: {
       position: { x: 160 - 92.731, y: 9.365, z: 160 + 105.886 },
       rotation: { x: 0, y: 90 + 116.174, z: 0 },
@@ -453,7 +453,7 @@ export const data = [
     },
     style: 18,
     color: Color3.White(),
-    link: "https://opensea.io/assets/0x6c424c25e9f1fff9642cb5b7750b0db7312c29ad/162"
+    link: "https://opensea.io/assets/0x4679b43e6ebcb2e7fca0f4e943e6231b87cf29f7/11"
   },
   { // Forms of Love
     code: 36,
@@ -732,8 +732,8 @@ export const data = [
   },
   { // Shibu's Masterpiece (REPLACE)
     code: 18,
-    contract_address: "0x32b7495895264ac9d0b12d32afd435453458b1c6",
-    token_id: "8684",
+    contract_address: "0x4679b43e6ebcb2e7fca0f4e943e6231b87cf29f7",
+    token_id: "1",
     transform: {
       position: { x: 160 - 111.369, y: 15.271, z: 160 - 3.988 },
       rotation: { x: 0, y: 90 + 30, z: 0 },
@@ -741,7 +741,7 @@ export const data = [
     },
     style: 18,
     color: Color3.White(),
-    link: "https://opensea.io/assets/0x32b7495895264ac9d0b12d32afd435453458b1c6/8684"
+    link: "https://opensea.io/assets/0x4679b43e6ebcb2e7fca0f4e943e6231b87cf29f7/1"
   },
 
   /// --- Billboards ---
