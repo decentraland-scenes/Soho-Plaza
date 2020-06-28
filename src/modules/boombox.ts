@@ -2,6 +2,12 @@ import { sceneMessageBus } from './serverHandler'
 import utils from '../../node_modules/decentraland-ecs-utils/index'
 import { Switch } from './buttons'
 
+export enum Songs {
+  song1 = 'sounds/boombox/Freestyle-Type-Beat-Real_Free-Type-Beat-2020-Rap-Trap-Instrumental.mp3',
+  song2 = 'sounds/boombox/Gunna-x-Lil-Baby-Type-Beat-Too-Cold-(ProdByKairo).mp3',
+  song3 = 'sounds/boombox/INFECTED-HARD-BASS-TYPE BEAT.mp3',
+}
+
 export default class BoomBox extends Entity {
   music1: string
   music2: string
@@ -136,11 +142,11 @@ export default class BoomBox extends Entity {
 
     if (value) {
       playingClip.playing = true
-      this.addComponentOrReplace(
-        new utils.Delay(40000, () => {
-          playingClip.playing = false
-          this.playing = false
-        })
+    //   this.addComponentOrReplace(
+    //     new utils.Delay(40000, () => {
+    //       playingClip.playing = false
+    //       this.playing = false
+    //     })
       )
     } else {
       playingClip.playing = false
@@ -153,9 +159,9 @@ let boombox = new BoomBox(
     position: new Vector3(156.5, 5.24, 119),
     rotation: Quaternion.Euler(0, -15, 0),
   },
-  'sounds/boombox/bgm.mp3',
-  'sounds/click.mp3',
-  'sounds/click.mp3',
+  Songs.song1,
+  Songs.song2,
+  Songs.song3,
   'models/buttons/VioletSwitch.glb',
   'ButtonVioletON_Action',
   'ButtonVioletOFF_Action',
@@ -192,21 +198,24 @@ sceneMessageBus.on('boombox', (e) => {
       boombox.switch1.toggle(true)
       boombox.addComponentOrReplace(
         new AudioSource(new AudioClip(boombox.music1))
-      )
+	  )
+	  boombox.getComponent(AudioSource).loop = true
       boombox.getComponent(AudioSource).playing = true
       break
     case 2:
       boombox.switch2.toggle(true)
       boombox.addComponentOrReplace(
         new AudioSource(new AudioClip(boombox.music2))
-      )
+	  )
+	  boombox.getComponent(AudioSource).loop = true
       boombox.getComponent(AudioSource).playing = true
       break
     case 3:
       boombox.switch3.toggle(true)
       boombox.addComponentOrReplace(
         new AudioSource(new AudioClip(boombox.music3))
-      )
+	  )
+	  boombox.getComponent(AudioSource).loop = true
       boombox.getComponent(AudioSource).playing = true
       break
   }
