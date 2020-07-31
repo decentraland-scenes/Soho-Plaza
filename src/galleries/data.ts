@@ -730,9 +730,9 @@ export const data = [
     color: Color3.White(),
     link: "https://opensea.io/assets/0xecf7ef42b57ee37a959bf507183c5dd6bf182081/13"
   },
-  { // Shibu's Masterpiece (REPLACE)
+  { // Shibu's Masterpiece (Soho Plaza)
     code: 18,
-    contract_address: "0x4679b43e6ebcb2e7fca0f4e943e6231b87cf29f7",
+    contract_address: "0x5b8c7104122ab9d33550d43d2343b20dcd455126",
     token_id: "1",
     transform: {
       position: { x: 160 - 111.369, y: 15.271, z: 160 - 3.988 },
@@ -741,7 +741,7 @@ export const data = [
     },
     style: 18,
     color: Color3.White(),
-    link: "https://opensea.io/assets/0x4679b43e6ebcb2e7fca0f4e943e6231b87cf29f7/1"
+    link: "https://opensea.io/assets/0x5b8c7104122ab9d33550d43d2343b20dcd455126/1"
   },
 
   /// --- Billboards ---
