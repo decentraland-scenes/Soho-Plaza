@@ -142,12 +142,11 @@ export default class BoomBox extends Entity {
 
     if (value) {
       playingClip.playing = true
-    //   this.addComponentOrReplace(
-    //     new utils.Delay(40000, () => {
-    //       playingClip.playing = false
-    //       this.playing = false
-    //     })
-      )
+      //   this.addComponentOrReplace(
+      //     new utils.Delay(40000, () => {
+      //       playingClip.playing = false
+      //       this.playing = false
+      //     }))
     } else {
       playingClip.playing = false
     }
@@ -198,24 +197,24 @@ sceneMessageBus.on('boombox', (e) => {
       boombox.switch1.toggle(true)
       boombox.addComponentOrReplace(
         new AudioSource(new AudioClip(boombox.music1))
-	  )
-	  boombox.getComponent(AudioSource).loop = true
+      )
+      boombox.getComponent(AudioSource).loop = true
       boombox.getComponent(AudioSource).playing = true
       break
     case 2:
       boombox.switch2.toggle(true)
       boombox.addComponentOrReplace(
         new AudioSource(new AudioClip(boombox.music2))
-	  )
-	  boombox.getComponent(AudioSource).loop = true
+      )
+      boombox.getComponent(AudioSource).loop = true
       boombox.getComponent(AudioSource).playing = true
       break
     case 3:
       boombox.switch3.toggle(true)
       boombox.addComponentOrReplace(
         new AudioSource(new AudioClip(boombox.music3))
-	  )
-	  boombox.getComponent(AudioSource).loop = true
+      )
+      boombox.getComponent(AudioSource).loop = true
       boombox.getComponent(AudioSource).playing = true
       break
   }
