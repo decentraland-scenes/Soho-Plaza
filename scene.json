@@ -2,7 +2,8 @@
   "display": {
     "title": "Soho Plaza",
     "description": "A plaza dedicated to art and pop culture icons, full of fun things to explore!",
-    "favicon": "favicon_asset"
+    "favicon": "favicon_asset",
+    "navmapThumbnail": "https://decentraland.org/images/thumbnail/soho-plaza.png"
   },
   "contact": {
     "name": "Decentraland",
