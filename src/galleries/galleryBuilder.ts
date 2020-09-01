@@ -5,7 +5,7 @@ export function addNFTs(): void {
   // Sound entities
   const moreInfoSound = new Entity()
   moreInfoSound.addComponent(new Transform())
-  moreInfoSound.getComponent(Transform).position = Camera.instance.position
+  moreInfoSound.setParent(Attachable.PLAYER)
   moreInfoSound.addComponent(
     new AudioSource(new AudioClip('sounds/navigationForward.mp3'))
   )
@@ -80,7 +80,7 @@ export function addNFTs(): void {
           button: ActionButton.ANY,
           showFeedback: true,
           hoverText: 'More Info',
-          distance: 30
+          distance: 30,
         }
       )
     )
