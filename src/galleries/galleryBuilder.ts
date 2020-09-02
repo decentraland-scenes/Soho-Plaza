@@ -5,11 +5,12 @@ export function addNFTs(): void {
   // Sound entities
   const moreInfoSound = new Entity()
   moreInfoSound.addComponent(new Transform())
-  moreInfoSound.setParent(Attachable.PLAYER)
+
   moreInfoSound.addComponent(
     new AudioSource(new AudioClip('sounds/navigationForward.mp3'))
   )
   engine.addEntity(moreInfoSound)
+  moreInfoSound.setParent(Attachable.PLAYER)
 
   /// --- NFTs ---
   //This is how the frames enum will look like.
