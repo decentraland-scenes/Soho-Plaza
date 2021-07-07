@@ -1,7 +1,7 @@
 import { seqNumbers } from './stones'
 import { awsServer, fireBaseServer } from '../modules/serverHandler'
 import { playerRealm, setRealm } from '../modules/realmData'
-import utils from '../../node_modules/decentraland-ecs-utils/index'
+import * as utils from '@dcl/ecs-scene-utils'
 
 // get latest sequencer state stored in server
 export async function getStones(): Promise<number[][]> {

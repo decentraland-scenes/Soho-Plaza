@@ -10,16 +10,16 @@ import { followingEye } from './modules/krakenEye'
 import { placePlatforms } from './modules/platforms'
 import { addVoxels } from './voxels/voxelBuilder'
 import { addNFTs } from './galleries/galleryBuilder'
-import utils from '../node_modules/decentraland-ecs-utils/index'
+
 import { addDanceFloor } from './modules/danceFloor'
 import { placeTeleports } from './modules/teleports'
 import { buildWall } from './pixelchain-wall/buidWall'
 import { AmbientSound } from './modules/ambientSound'
 
-Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
-  log(`pos: `, Camera.instance.position)
-  log(`rot: `, Camera.instance.rotation)
-})
+// Input.instance.subscribe('BUTTON_DOWN', ActionButton.PRIMARY, false, (e) => {
+//   log(`pos: `, Camera.instance.position)
+//   log(`rot: `, Camera.instance.rotation)
+// })
 
 export let sceneMessageBus = new MessageBus()
 

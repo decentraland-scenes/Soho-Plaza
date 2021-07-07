@@ -1,6 +1,6 @@
 import { voxelData, VoxelData } from './voxel'
 import { setRealm, playerRealm } from '../../modules/realmData'
-import utils from '../../../node_modules/decentraland-ecs-utils/index'
+import * as utils from '@dcl/ecs-scene-utils'
 import { awsServer, fireBaseServer } from '../../modules/serverHandler'
 
 // get lastest mural state

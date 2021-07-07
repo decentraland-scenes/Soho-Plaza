@@ -1,7 +1,7 @@
 import { Manager, materials, colors, Mode } from './manager'
 import { pickerMaterial } from './modules/picker'
-import { HUD, inRange } from './modules/hud'
-import utils from '../../node_modules/decentraland-ecs-utils/index'
+import { HUD } from './modules/hud'
+import * as utils from '@dcl/ecs-scene-utils'
 // import { addVoxels } from './voxels/game'
 import { getVoxels } from './modules/serverHandler'
 import {
@@ -13,6 +13,8 @@ import {
 } from './modules/voxel'
 import { buildBaseGrid } from './modules/baseGrid'
 // import { buildBaseGrid } from './modules/baseGrid'
+
+export let inRange: boolean = false
 
 export function addVoxels(): void {
   // UI Elements
@@ -88,25 +90,19 @@ export function addVoxels(): void {
   )
 
   activeArea.addComponent(
-    new utils.TriggerComponent(
-      triggerBox, //shape
-      0, //layer
-      0, //triggeredByLayer
-      null, //onTriggerEnter
-      null, //onTriggerExit
-      () => {
+    new utils.TriggerComponent(triggerBox, {
+      onCameraEnter: () => {
         hud.switchModeIcon(Mode.Add, true)
         Manager.activeMode = Mode.Add
         updateVoxels()
         inRange = true
       },
-      () => {
+      onCameraExit: () => {
         hud.switchModeIcon(Mode.None, true)
         //Manager.activeMode = Mode.None
         inRange = false
-      }, //onCameraExit
-      false
-    )
+      },
+    })
   )
 
   let updateHandler = new Entity()

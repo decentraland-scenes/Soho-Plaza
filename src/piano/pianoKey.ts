@@ -1,5 +1,7 @@
-import utils from '../../node_modules/decentraland-ecs-utils/index'
-import { TriggerBoxShape } from '../../node_modules/decentraland-ecs-utils/triggers/triggerSystem'
+import * as utils from '@dcl/ecs-scene-utils'
+export const sceneMessageBus = new MessageBus()
+
+export let keys: PianoKey[] = []
 
 export class PianoKey extends Entity {
   material: Material = new Material()
@@ -12,11 +14,11 @@ export class PianoKey extends Entity {
     transform: Transform,
     color: Color3,
     sound: AudioClip,
-    trigger: TriggerBoxShape,
-    note: number,
-    messagebus: MessageBus
+    trigger: utils.TriggerBoxShape,
+    note: number
   ) {
     super()
+    engine.addEntity(this)
     this.addComponent(shape)
     this.addComponent(transform)
     this.material.albedoColor = color
@@ -34,19 +36,14 @@ export class PianoKey extends Entity {
     this.addComponent(
       new utils.TriggerComponent(
         trigger, //shape
-        0, //layer
-        0, //triggeredByLayer
-        null, //onTriggerEnter
-        null, //onTriggerExit
-        () => {
-          //onCameraEnter
-          messagebus.emit('noteOn', { note: this.note })
-        },
-        () => {
-          //onCameraExit
-          messagebus.emit('noteOff', { note: this.note })
-        },
-        false // debug
+        {
+          onCameraEnter: () => {
+            sceneMessageBus.emit('noteOn', { note: this.note })
+          },
+          onCameraExit: () => {
+            sceneMessageBus.emit('noteOff', { note: this.note })
+          },
+        }
       )
     )
   }
@@ -57,4 +54,14 @@ export class PianoKey extends Entity {
   public end(): void {
     this.material.emissiveColor = this.offColor
   }
+}
+
+export function addKeyListeners() {
+  sceneMessageBus.on('noteOn', (e) => {
+    keys[e.note].play()
+  })
+
+  sceneMessageBus.on('noteOff', (e) => {
+    keys[e.note].end()
+  })
 }

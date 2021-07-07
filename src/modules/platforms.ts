@@ -1,4 +1,4 @@
-import utils from '../../node_modules/decentraland-ecs-utils/index'
+import * as utils from '@dcl/ecs-scene-utils'
 import { sceneMessageBus } from './serverHandler'
 import Door from './door'
 import { Button } from './buttons'
@@ -36,16 +36,12 @@ export class Platform extends Entity {
     triggerEntity.addComponent(
       new utils.TriggerComponent(
         triggerBox, //shape
-        0, //layer
-        0, //triggeredByLayer
-        null, //onTriggerEnter
-        null, //onTriggerExit
-        () => {
-          log('triggered platform')
-          sceneMessageBus.emit(messageBusHandle, {})
-        },
-        null, //onCameraExit
-        false //true
+        {
+          onCameraEnter: () => {
+            log('triggered platform')
+            sceneMessageBus.emit(messageBusHandle, {})
+          },
+        }
       )
     )
     engine.addEntity(triggerEntity)
@@ -100,20 +96,13 @@ export class TwoWayPlatform extends Entity {
     trigger1Entity.addComponent(new Transform(trigger1Pos))
 
     trigger1Entity.addComponent(
-      new utils.TriggerComponent(
-        triggerBox, //shape
-        0, //layer
-        0, //triggeredByLayer
-        null, //onTriggerEnter
-        null, //onTriggerExit
-        () => {
+      new utils.TriggerComponent(triggerBox, {
+        onCameraEnter: () => {
           if (this.moving) return
           log('triggered platform')
           sceneMessageBus.emit(messageBusHandleUp, {})
         },
-        null, //onCameraExit
-        false //true
-      )
+      })
     )
     engine.addEntity(trigger1Entity)
 
@@ -121,20 +110,13 @@ export class TwoWayPlatform extends Entity {
     trigger2Entity.addComponent(new Transform(trigger2Pos))
 
     trigger2Entity.addComponent(
-      new utils.TriggerComponent(
-        triggerBox, //shape
-        0, //layer
-        0, //triggeredByLayer
-        null, //onTriggerEnter
-        null, //onTriggerExit
-        () => {
+      new utils.TriggerComponent(triggerBox, {
+        onCameraEnter: () => {
           if (this.moving) return
           log('triggered platform')
           sceneMessageBus.emit(messageBusHandleDown, {})
         },
-        null, //onCameraExit
-        false //true
-      )
+      })
     )
     engine.addEntity(trigger2Entity)
   }

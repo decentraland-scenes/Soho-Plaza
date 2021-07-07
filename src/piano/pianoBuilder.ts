@@ -1,4 +1,4 @@
-import utils from '../../node_modules/decentraland-ecs-utils/index'
+import * as utils from '@dcl/ecs-scene-utils'
 import resources from '../resources'
 import { PianoKey } from './pianoKey'
 
@@ -52,8 +52,7 @@ export function addPiano(transform: Transform, messagebus: MessageBus): void {
       Color3.White(),
       whiteKeySounds[i],
       resources.trigger.triggerWhitePianoKey,
-      i,
-      messagebus
+      i
     )
     key.setParent(pianoBase)
     keys.push(key)
@@ -93,8 +92,7 @@ export function addPiano(transform: Transform, messagebus: MessageBus): void {
       Color3.Black(),
       blackKeySounds[i],
       resources.trigger.triggerBlackPianoKey,
-      i + whiteKeySounds.length,
-      messagebus
+      i + whiteKeySounds.length
     )
     key.setParent(pianoBase)
     keys.push(key)

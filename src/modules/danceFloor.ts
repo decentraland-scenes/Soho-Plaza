@@ -1,5 +1,5 @@
 import { sceneMessageBus } from './serverHandler'
-import utils from '../../node_modules/decentraland-ecs-utils/index'
+import * as utils from '@dcl/ecs-scene-utils'
 import { Button } from './buttons'
 import { WearablesScanner } from './scanner'
 import { Category } from './wearables'
@@ -7,10 +7,10 @@ import Door from './door'
 
 export enum Radios {
   RAVE = 'https://icecast.ravepartyradio.org/ravepartyradio-192.mp3',
-  INTERVIEW = 'https://dclcoreradio.com/dclradio.ogg',
   DELTA = 'https://cdn.instream.audio/:9069/stream?_=171cd6c2b6e',
+  GRAFFITI = 'https://n07.radiojar.com/2qm1fc5kb.m4a?1617129761=&rj-tok=AAABeIR7VqwAilDFeUM39SDjmw&rj-ttl=5',
   SIGNS = 'https://edge.singsingmusic.net/MC2.mp3',
-  MKLAB = 'https://freeuk13.listen2myradio.com/live.mp3?typeportmount=s2_20223_stream_944192845',
+  JAZZ = 'https://live.vegascity.fm/radio/8010/the_flamingos.mp3',
 }
 
 let isInRadioRange: boolean = false
@@ -29,22 +29,22 @@ export function addDanceFloor() {
       position: new Vector3(191, 0.3, 259),
       rotation: Quaternion.Euler(0, 180, 0),
     },
-    Category.Eyewear,
+    'thug',
     sceneMessageBus,
     () => {
       log('SUCCESS')
 
-      //   sceneMessageBus.emit('openDoor', {})
-      //   door.addComponentOrReplace(
-      // 	new utils.Delay(5000, () => {
-      // 	  sceneMessageBus.emit('closeDoor', {})
-      // 	})
+      //   sceneMessageBus.emit('openClubDoor', {})
+      //   capsuleDoor.addComponentOrReplace(
+      //     new utils.Delay(5000, () => {
+      //       sceneMessageBus.emit('closeDoor', {})
+      //     })
       //   )
     },
     () => {
       log('REJECTED')
 
-      //sceneMessageBus.emit('closeDoor', {})
+      //   sceneMessageBus.emit('closeDoor', {})
     },
     {
       position: new Vector3(191, 0.3, 256),
@@ -109,19 +109,12 @@ export function addDanceFloor() {
   )
 
   exitTrigger.addComponent(
-    new utils.TriggerComponent(
-      triggerBox, //shape
-      0, //layer
-      0, //triggeredByLayer
-      null, //onTriggerEnter
-      null, //onTriggerExit
-      () => {
+    new utils.TriggerComponent(triggerBox, {
+      onCameraEnter: () => {
         log('triggered exit door')
         sceneMessageBus.emit('openClubDoor', {})
       },
-      null, //onCameraExit
-      false
-    )
+    })
   )
   engine.addEntity(exitTrigger)
 
@@ -147,13 +140,13 @@ export function addDanceFloor() {
     new OnPointerDown(
       () => {
         sceneMessageBus.emit('setRadio', {
-          station: Radios.RAVE,
+          station: Radios.JAZZ,
         })
         blueButton.press()
       },
       {
         button: ActionButton.PRIMARY,
-        hoverText: 'Rave',
+        hoverText: 'Jazz',
       }
     )
   )
@@ -169,13 +162,13 @@ export function addDanceFloor() {
     new OnPointerDown(
       () => {
         sceneMessageBus.emit('setRadio', {
-          station: Radios.INTERVIEW,
+          station: Radios.GRAFFITI,
         })
         greenButton.press()
       },
       {
         button: ActionButton.PRIMARY,
-        hoverText: 'DCL Interviews',
+        hoverText: 'Graffiti',
       }
     )
   )
@@ -235,13 +228,13 @@ export function addDanceFloor() {
     new OnPointerDown(
       () => {
         sceneMessageBus.emit('setRadio', {
-          station: Radios.MKLAB,
+          station: Radios.RAVE,
         })
         yellowButton.press()
       },
       {
         button: ActionButton.PRIMARY,
-        hoverText: 'MK Lab',
+        hoverText: 'Rave',
       }
     )
   )
@@ -283,13 +276,8 @@ export function addDanceFloor() {
     Vector3.Zero()
   )
   discoTrigger.addComponent(
-    new utils.TriggerComponent(
-      discoTriggerBox, //shape
-      0, //layer
-      0, //triggeredByLayer
-      null, //onTriggerEnter
-      null, //onTriggerExit
-      () => {
+    new utils.TriggerComponent(discoTriggerBox, {
+      onCameraEnter: () => {
         sceneMessageBus.emit('enteredRadioRange', {})
         isInRadioRange = true
         if (currentRadio) {
@@ -298,12 +286,11 @@ export function addDanceFloor() {
 
         log('triggered!')
       },
-      () => {
+      onCameraExit: () => {
         isInRadioRange = false
         radioOff()
-      }, //onCameraExit
-      false
-    )
+      },
+    })
   )
   engine.addEntity(discoTrigger)
 

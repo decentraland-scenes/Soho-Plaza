@@ -1,5 +1,4 @@
 import { sceneMessageBus } from './serverHandler'
-import utils from '../../node_modules/decentraland-ecs-utils/index'
 import { Switch } from './buttons'
 
 export enum Songs {

@@ -1,7 +1,6 @@
 import resources from '../resources'
 import { Mode } from '../manager'
-
-export let inRange: boolean = false
+import { inRange } from '../voxelBuilder'
 
 export class HUD {
   private container: UIContainerRect
@@ -33,7 +32,7 @@ export class HUD {
     this.subtractIcon.sourceWidth = 50
     this.subtractIcon.sourceHeight = 50
     this.subtractIcon.width = 18
-    this.subtractIcon.height = 18 
+    this.subtractIcon.height = 18
     this.subtractIcon.positionX = 0
     this.subtractIcon.positionY = 11
     this.subtractIcon.isPointerBlocker = false

@@ -1,22 +1,24 @@
-import * as cryptoUtils from '../../node_modules/decentraland-crypto-utils/avatar/index'
+import * as crypto from '@dcl/crypto-scene-utils'
+import { getUserData } from '@decentraland/Identity'
 
-export async function checkWearableCategory(category: Category) {
-  let wearablesList = await getListOfWearables()
-  let equipped = await cryptoUtils.equipedItems()
+export async function checkWearableCategory(search: string) {
+  let user = await getUserData()
+  if (!user.hasConnectedWeb3) {
+    return false
+  }
+  let wearablesList = await crypto.wearable.getListOfWearables({
+    textSearch: search,
+  })
+  let equipped = await crypto.avatar.equipedItems()
 
   log(wearablesList, equipped)
 
   for (let item of equipped) {
-    for (let wearablesCollection of wearablesList) {
-      for (let wearable of wearablesCollection.wearables) {
-        if (item === wearable.id) {
-          if (wearable.category == category) {
-            log('found matching wearable! ', item)
-            return true
-          } else {
-            continue
-          }
-        }
+    for (let wearable of wearablesList) {
+      if (item === wearable.id) {
+        return true
+      } else {
+        continue
       }
     }
   }

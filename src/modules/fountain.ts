@@ -1,4 +1,4 @@
-import utils from '../../node_modules/decentraland-ecs-utils/index'
+import * as utils from '@dcl/ecs-scene-utils'
 import { sceneMessageBus } from './serverHandler'
 import { Button } from './buttons'
 
@@ -341,27 +341,12 @@ export class Ring extends Entity {
     this.getComponent(Animator).addClip(this.animation3)
   }
   public play1(): void {
-    //log('playing1')
-    this.animation1.stop()
-    this.animation2.stop()
-    this.animation3.stop()
-
     this.animation1.play()
   }
   public play2(): void {
-    //log('playing2')
-    this.animation1.stop()
-    this.animation2.stop()
-    this.animation3.stop()
-
     this.animation2.play()
   }
   public play3(): void {
-    //log('playing3')
-    this.animation1.stop()
-    this.animation2.stop()
-    this.animation3.stop()
-
     this.animation3.play()
   }
 }

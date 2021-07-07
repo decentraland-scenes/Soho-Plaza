@@ -1,4 +1,4 @@
-import utils from '../../node_modules/decentraland-ecs-utils/index'
+import * as utils from '@dcl/ecs-scene-utils'
 
 export class VideoScreen extends Entity {
   texture: VideoTexture
@@ -16,6 +16,7 @@ export class VideoScreen extends Entity {
 
     this.texture = new VideoTexture(new VideoClip(streamURL))
     this.texture.playing = false
+    this.texture.loop = true
     const mat = new Material()
     mat.albedoTexture = this.texture
     mat.specularIntensity = 0
@@ -30,20 +31,14 @@ export class VideoScreen extends Entity {
     let triggerBox = new utils.TriggerBoxShape(triggerScale, Vector3.Zero())
 
     triggerEntity.addComponent(
-      new utils.TriggerComponent(
-        triggerBox, //shape
-        0, //layer
-        0, //triggeredByLayer
-        null, //onTriggerEnter
-        null, //onTriggerExit
-        () => {
+      new utils.TriggerComponent(triggerBox, {
+        onCameraEnter: () => {
           this.activate()
         },
-        () => {
+        onCameraExit: () => {
           this.deactivate()
-        }, //onCameraExit
-        false // debug mode
-      )
+        },
+      })
     )
     engine.addEntity(triggerEntity)
   }
@@ -65,7 +60,7 @@ export function addScreens() {
     },
     { position: new Vector3(28.8, 5, 75) },
     new Vector3(75, 14, 80),
-    'https://theuniverse.club/live/sohoplaza/index.m3u8'
+    'https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875'
   )
 
   const screen2 = new VideoScreen(
@@ -76,7 +71,7 @@ export function addScreens() {
     },
     { position: new Vector3(40, 5, 282) },
     new Vector3(75, 14, 80),
-    'https://theuniverse.club/live/sohoplaza/index.m3u8'
+    'https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875'
   )
 
   const screen3 = new VideoScreen(
@@ -87,6 +82,6 @@ export function addScreens() {
     },
     { position: new Vector3(174, 5, 82) },
     new Vector3(50, 14, 80),
-    'https://video.dcl.guru/live/dclcoretv/index.m3u8'
+    'https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875'
   )
 }

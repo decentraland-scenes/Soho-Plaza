@@ -1,4 +1,4 @@
-import utils from '../../node_modules/decentraland-ecs-utils/index'
+import * as utils from '@dcl/ecs-scene-utils'
 
 import { Stone, stones, seqNumbers } from './stones'
 import { getStones, changeSequencer } from './serverHandler'
@@ -19,13 +19,8 @@ export function addZenquencer(
   pool.addComponent(resources.models.pool)
   pool.addComponent(new Transform(transform))
   pool.addComponent(
-    new utils.TriggerComponent(
-      zenquencerTriggerBox, //shape
-      0, //layer
-      0, //triggeredByLayer
-      null, //onTriggerEnter
-      null, //onTriggerExit
-      async function () {
+    new utils.TriggerComponent(zenquencerTriggerBox, {
+      onCameraEnter: async function () {
         //onCameraEnter
 
         updateStones()
@@ -37,9 +32,7 @@ export function addZenquencer(
         //   await updateMural()
         // }
       },
-      null, //onCameraExit
-      false //debug
-    )
+    })
   )
   engine.addEntity(pool)
 
