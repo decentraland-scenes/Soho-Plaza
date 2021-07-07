@@ -9,7 +9,7 @@ export async function getVoxels(): Promise<VoxelData[]> {
     if (!playerRealm) {
       await setRealm()
     }
-    let url = awsServer + 'voxels/' + playerRealm + '/voxels.json'
+    let url = awsServer + 'voxels/' + playerRealm + '2' + '/voxels.json'
     let response = await fetch(url).then()
     let json = await response.json()
     return json.tiles
@@ -27,7 +27,7 @@ export async function changeVoxels() {
     // Only send request if no more changes come over the next second
     new utils.Delay(1000, async function () {
       try {
-        let url = fireBaseServer + 'update-voxels?realm=' + playerRealm
+        let url = fireBaseServer + 'update-voxels?realm=' + playerRealm + '2'
         let body = JSON.stringify({ voxels: voxelData })
         let headers = {}
         let response = await fetch(url, {
