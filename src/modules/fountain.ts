@@ -3,7 +3,7 @@ import { sceneMessageBus } from './serverHandler'
 import { Button } from './buttons'
 
 export function createFountain(
-  position: TranformConstructorArgs,
+  position: TransformConstructorArgs,
   messagebus: MessageBus
 ) {
   let rings: Ring[] = []
@@ -317,7 +317,7 @@ export class Ring extends Entity {
   animation3: AnimationState
 
   constructor(
-    transform: TranformConstructorArgs,
+    transform: TransformConstructorArgs,
     model: string,
     animation1: string,
     animation2: string,
@@ -369,7 +369,7 @@ export class Ring extends Entity {
 export class Console extends Entity {
   clickAnim: AnimationState
   constructor(
-    transform: TranformConstructorArgs,
+    transform: TransformConstructorArgs,
     parent: Entity,
     model: string,
     targetRing: number,

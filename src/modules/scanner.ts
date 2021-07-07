@@ -10,12 +10,12 @@ export class WearablesScanner extends Entity {
   allowAudio: AudioClip = new AudioClip('sounds/accept.mp3')
   rejectAudio: AudioClip = new AudioClip('sounds/access_denied.mp3')
   constructor(
-    position: TranformConstructorArgs,
+    position: TransformConstructorArgs,
     filter: Category,
     messageBus: MessageBus,
     successAction: () => void,
     rejectAction?: () => void,
-    triggerPos?: TranformConstructorArgs,
+    triggerPos?: TransformConstructorArgs,
     triggerScale?: Vector3
   ) {
     super()

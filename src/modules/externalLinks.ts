@@ -4,7 +4,7 @@ invisibleMaterial.alphaTest = 1
 
 export class ExternalLink extends Entity {
   constructor(
-    transform: TranformConstructorArgs,
+    transform: TransformConstructorArgs,
     link: string,
     onHover: string,
     testMode?: boolean

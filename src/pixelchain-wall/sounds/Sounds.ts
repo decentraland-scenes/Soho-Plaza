@@ -5,7 +5,7 @@ sound.addComponent(
   new AudioSource(new AudioClip('sounds/navigationForward.mp3'))
 )
 engine.addEntity(sound)
-sound.setParent(Attachable.PLAYER)
+sound.setParent(Attachable.AVATAR)
 
 export function playSound() {
   sound.getComponent(AudioSource).playOnce()

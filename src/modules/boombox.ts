@@ -28,7 +28,7 @@ export default class BoomBox extends Entity {
   switch3: Switch
 
   constructor(
-    position: TranformConstructorArgs,
+    position: TransformConstructorArgs,
     music1: string,
     music2: string,
     music3: string,

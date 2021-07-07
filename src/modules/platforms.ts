@@ -11,8 +11,8 @@ export class Platform extends Entity {
 
   constructor(
     model: GLTFShape,
-    platformPos: TranformConstructorArgs,
-    triggerPos: TranformConstructorArgs,
+    platformPos: TransformConstructorArgs,
+    triggerPos: TransformConstructorArgs,
     triggerScale: Vector3,
     animation: string,
     messageBusHandle: string
@@ -68,9 +68,9 @@ export class TwoWayPlatform extends Entity {
 
   constructor(
     model: GLTFShape,
-    platformPos: TranformConstructorArgs,
-    trigger1Pos: TranformConstructorArgs,
-    trigger2Pos: TranformConstructorArgs,
+    platformPos: TransformConstructorArgs,
+    trigger1Pos: TransformConstructorArgs,
+    trigger2Pos: TransformConstructorArgs,
     triggerScale: Vector3,
     animationUp: string,
     animationDown: string,

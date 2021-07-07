@@ -11,12 +11,12 @@ export default class Door extends Entity {
 
   constructor(
     model: GLTFShape,
-    pos: TranformConstructorArgs,
+    pos: TransformConstructorArgs,
     openAnim: string,
     closeAnim: string,
     open?: boolean,
     invisibleWall?: boolean,
-    invisibleWallTransform?: TranformConstructorArgs
+    invisibleWallTransform?: TransformConstructorArgs
   ) {
     super()
     this.addComponent(new Transform(pos))

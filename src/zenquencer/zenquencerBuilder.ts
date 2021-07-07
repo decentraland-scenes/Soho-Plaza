@@ -6,7 +6,7 @@ import { loopPlayer, loopDuration, drops } from './musicalDrops'
 import resources from './resources'
 
 export function addZenquencer(
-  transform: TranformConstructorArgs,
+  transform: TransformConstructorArgs,
   messageBus: MessageBus
 ): void {
   // create trigger area object, setting size and relative position

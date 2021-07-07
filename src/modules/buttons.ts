@@ -2,7 +2,7 @@ export class Button extends Entity {
   clickAnim: AnimationState
   constructor(
     model: string,
-    transform: TranformConstructorArgs,
+    transform: TransformConstructorArgs,
     animationName: string,
     parent?: Entity
   ) {
@@ -37,7 +37,7 @@ export class Switch extends Entity {
   isClicked: boolean = false
   constructor(
     model: string,
-    transform: TranformConstructorArgs,
+    transform: TransformConstructorArgs,
     onAnim: string,
     offAnim: string,
     parent?: Entity

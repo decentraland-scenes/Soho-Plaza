@@ -19,7 +19,7 @@ openDialogSound.addComponent(
   new AudioSource(new AudioClip('sounds/navigationForward.mp3'))
 )
 engine.addEntity(openDialogSound)
-openDialogSound.setParent(Attachable.PLAYER)
+openDialogSound.setParent(Attachable.AVATAR)
 
 // Close dialog sound
 export const closeDialogSound = new Entity()
@@ -28,7 +28,7 @@ closeDialogSound.addComponent(
   new AudioSource(new AudioClip('sounds/navigationBackward.mp3'))
 )
 engine.addEntity(closeDialogSound)
-closeDialogSound.setParent(Attachable.PLAYER)
+closeDialogSound.setParent(Attachable.AVATAR)
 
 export function closeUI(npc?: boolean) {
   messagebg.visible = false
