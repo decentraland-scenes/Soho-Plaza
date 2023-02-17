@@ -60,7 +60,7 @@ export function addScreens() {
     },
     { position: new Vector3(28.8, 5, 75) },
     new Vector3(75, 14, 80),
-    'https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875'
+    'https://player.vimeo.com/external/575854261.m3u8?s=d09797037b7f4f1013d337c04836d1e998ad9c80'
   )
 
   const screen2 = new VideoScreen(
@@ -71,7 +71,7 @@ export function addScreens() {
     },
     { position: new Vector3(40, 5, 282) },
     new Vector3(75, 14, 80),
-    'https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875'
+    'https://player.vimeo.com/external/575854261.m3u8?s=d09797037b7f4f1013d337c04836d1e998ad9c80'
   )
 
   const screen3 = new VideoScreen(
@@ -82,6 +82,6 @@ export function addScreens() {
     },
     { position: new Vector3(174, 5, 82) },
     new Vector3(50, 14, 80),
-    'https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875'
+    'https://player.vimeo.com/external/575854261.m3u8?s=d09797037b7f4f1013d337c04836d1e998ad9c80'
   )
 }

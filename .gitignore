@@ -116,3 +116,4 @@ server/functions/keys/
 
 ## compiled scene
 bin
+package-lock.json

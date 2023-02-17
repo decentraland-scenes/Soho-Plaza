@@ -10,6 +10,9 @@ import {
   updateMessageJSON,
 } from './awsUpload'
 
+var Filter = require('bad-words')
+const filter = new Filter()
+
 const functions = require('firebase-functions')
 const express = require('express')
 const cors = require('cors')
@@ -106,9 +109,11 @@ app.post('/addmessage', (req: any, res: any) => {
   let location: string = String(req.query.location)
   let message: string = String(req.query.message)
 
+  let cleanMessage = filter.clean(message)
+
   let url = awsBaseURL + '/messageboards/' + location + '.json'
 
-  updateMessageJSON(url, message, location)
+  updateMessageJSON(url, cleanMessage, location)
 
   return res.status(200).send('updated message board')
 })

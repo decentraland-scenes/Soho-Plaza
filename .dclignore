@@ -11,5 +11,5 @@ node_modules
 *.tsx
 Dockerfile
 dist
-
+server
 
