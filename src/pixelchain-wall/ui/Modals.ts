@@ -60,10 +60,8 @@ const textInput = new UIInputText(container)
 textInput.width = "280px"
 textInput.height = "35px"
 textInput.fontSize = 30
-textInput.placeholderColor = Color4.Gray()
 textInput.positionY = -22
 textInput.positionX = 30
-textInput.background = Color4.Yellow()
 textInput.color = Color4.White()
 
 export function showInput(titleText: string, inputNameText: string, placeHolder: string, onTextSubmit: (text: string) => void): void {

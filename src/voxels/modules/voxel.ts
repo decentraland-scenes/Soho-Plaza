@@ -129,7 +129,8 @@ sceneMessageBus.on('editVoxel', (e) => {
   let x = e.position.x + e.normal.x * VOXEL_SIZE
   let y = e.position.y + e.normal.y * VOXEL_SIZE
   let z = e.position.z + e.normal.z * VOXEL_SIZE
-  engine.entities[e.voxel].editVoxel(x, y, z, e.mode, e.colIndex)
+  let voxel:any = engine.entities[e.voxel]
+  voxel.editVoxel(x, y, z, e.mode, e.colIndex)
   log('editing voxel')
   voxelData.push({
     x: x,
